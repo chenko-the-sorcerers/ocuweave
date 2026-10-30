@@ -10,7 +10,8 @@ No unreleased changes recorded.
 ## [0.2.0] — 2026-10-31
 
 ### Added
-- Official OTFID v3 acquisition with release, license, size and checksum verification.
+- Official OTFID v3 and separately licensed FairVLMed acquisition with release, license, size and checksum verification.
+- Aggregate-only FairVLMed filename-pairing and clinical-table audit that preserves original notes and does not unpickle NPZ objects.
 - Immutable audit manifests, missing-mask exclusions, decoded-pixel deduplication, conservative perceptual grouping, and explicit exploratory splits when patient IDs are unavailable.
 - Independently implemented compact encoder and query mask head without U-Net; matched encoder/pixel-decoder FCN ablation.
 - Padding-aware BCE + Dice training, validation-only checkpoint selection, held-out metrics, provenance, and original-geometry inference.

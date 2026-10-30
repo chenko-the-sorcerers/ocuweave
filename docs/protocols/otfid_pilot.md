@@ -55,3 +55,12 @@ history and any improved checkpoint. Completed runs are preserved. An interrupte
 run requires a new run directory; optimizer/scheduler resume is not implemented.
 The notebook can rerun safely after a completed run but must not silently reuse a
 checkpoint from a different source revision, config, or manifest.
+
+## Separate image–text cohort
+FairVLMed acquisition is available through `scripts/download_data.py --dataset fairvlmed`.
+It records the Hugging Face commit and file SHA-256 values.
+`audit_fairvlmed.py` inspects filename pairing, official split counts, missing notes
+and exact repeated notes without printing clinical text or decoding NPZ object arrays.
+This is a structural audit, not completed image cleaning or a clinical leakage review.
+The source uses CC BY-NC-ND 4.0; keep its access and redistribution terms separate
+from the MIT software license. Never join its records to OTFID patients.
