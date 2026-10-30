@@ -10,16 +10,10 @@ import numpy as np
 import torch
 from torch.utils.data import DataLoader
 from ocuweave.data.segmentation import SegmentationDataset
-from ocuweave.models.segmenter import OcuWeaveSegmenter
-from ocuweave.baselines.compact_fcn import CompactFCN
+from ocuweave.models.factory import make_model
 from ocuweave.losses.segmentation import segmentation_loss
 from ocuweave.evaluation.segmentation import binary_metrics,aggregate
 from ocuweave.utils.provenance import sha256,write_json
-
-
-def make_model(config):
-    cls={'query':OcuWeaveSegmenter,'fcn':CompactFCN}[config['architecture']]
-    return cls(width=config['width'],dim=config['dim'],queries=config['queries'])
 
 
 def seed_everything(seed):

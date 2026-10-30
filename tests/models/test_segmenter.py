@@ -40,6 +40,11 @@ class SegmenterTests(unittest.TestCase):
                 config['architecture'] = architecture
                 checkpoint = train(manifest,archive,root/architecture,config,allow_unverified=True,device='cpu')
                 result = evaluate(manifest,archive,checkpoint,root/f'{architecture}.json',allow_unverified=True,device='cpu')
+                from ocuweave.inference.segmentation import predict_image
+                from PIL import Image
+                probability=predict_image(checkpoint,Image.new('RGB',(37,25)),device='cpu')
+                self.assertEqual(probability.shape,(25,37))
+                self.assertTrue(((probability>=0)&(probability<=1)).all())
                 self.assertEqual(result['split'], 'test')
                 self.assertGreater(result['metrics']['samples'],0)
                 with self.assertRaises(FileExistsError):

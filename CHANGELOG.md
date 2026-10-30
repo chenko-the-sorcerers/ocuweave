@@ -7,6 +7,21 @@ Dates use ISO 8601. Research hypotheses are not software capabilities.
 
 No unreleased changes recorded.
 
+## [0.2.0] — 2026-10-31
+
+### Added
+- Official OTFID v3 acquisition with release, license, size and checksum verification.
+- Immutable audit manifests, missing-mask exclusions, decoded-pixel deduplication, conservative perceptual grouping, and explicit exploratory splits when patient IDs are unavailable.
+- Independently implemented compact encoder and query mask head without U-Net; matched encoder/pixel-decoder FCN ablation.
+- Padding-aware BCE + Dice training, validation-only checkpoint selection, held-out metrics, provenance, and original-geometry inference.
+- Version-pinned Google Colab notebook with Drive storage, QA panels and learning curves.
+- Synthetic integration, gradient, missing-evidence, metric and grouping tests; CPU research tests in CI.
+
+### Limitations
+- Image-only binary lesion pilot. No paired EMR training, activity prediction, longitudinal endpoint, or clinical validation.
+- Perceptual groups do not establish patient identity; image-level results remain exploratory.
+- Interrupted runs retain their best checkpoint but do not resume optimizer state.
+
 ## [0.1.1] — 2026-10-31
 
 ### Added
@@ -33,6 +48,8 @@ No unreleased changes recorded.
 - Dataset cards for BRSET, FairVLMed, OTFID, OLIVES, and mBRSET.
 - Architecture and evaluation proposals, MIT license, and citation metadata.
 
-[Unreleased]: https://github.com/chenko-the-sorcerers/ocuweave/compare/v0.1.1...HEAD
+[Unreleased]: https://github.com/chenko-the-sorcerers/ocuweave/compare/v0.2.0...HEAD
 [0.1.1]: https://github.com/chenko-the-sorcerers/ocuweave/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/chenko-the-sorcerers/ocuweave/tree/v0.1.0
+
+[0.2.0]: https://github.com/chenko-the-sorcerers/ocuweave/compare/v0.1.1...v0.2.0

@@ -20,11 +20,15 @@ is incomplete or inconsistent. Ocular toxoplasmosis is a focus of the research a
 
 ## Current status
 
-**Pre-experimental research scaffold.** This release provides a patient-level data
-contract, synthetic examples, manifest auditing, experiment specifications, and a
-tested C++/Python interoperability example. It does **not** contain a trained
-OcuWeave model, validated diagnostic predictions, benchmark results, or a published
-paper. The model, objectives, and training protocol remain research proposals.
+**Experimental segmentation implementation.** OTFID acquisition, source auditing,
+conservative duplicate grouping, frozen exploratory splits, a compact non-U-Net
+query segmenter, and an encoder/pixel-decoder matched FCN ablation are implemented.
+Training, held-out evaluation, and image inference use explicit provenance.
+Paired EMR fusion, longitudinal prognosis, and clinical validation remain future work.
+No pretrained weights are bundled and no state-of-the-art performance is claimed.
+
+[Open the Colab pilot](https://colab.research.google.com/github/chenko-the-sorcerers/ocuweave/blob/v0.2.0/notebooks/OcuWeave_OTFID_Colab.ipynb)
+· [Pilot protocol](docs/protocols/otfid_pilot.md)
 
 ## Quick start
 
@@ -33,7 +37,7 @@ Python 3.10+; CMake 3.20+ and a C++17 compiler for the optional native example.
 ```sh
 python -m venv .venv
 # Activate the virtual environment for your operating system.
-python -m pip install -e .
+python -m pip install -e ".[research]"
 python scripts/audit_data.py examples/synthetic_manifest.json
 python scripts/prepare_data.py examples/synthetic_manifest.json --output outputs/audited_manifest.json
 python -m unittest discover -s tests -v
@@ -57,9 +61,12 @@ The CPU operator is a numerical interoperability example, not the proposed fusio
 algorithm. It has no autograd integration and must not be used as a differentiable
 training operator. CUDA kernels are not implemented yet.
 
-`train.py`, `evaluate.py`, and `predict.py` intentionally return an explicit
-not-implemented error after parsing arguments. They never fabricate weights,
-predictions, or metrics. Their `--help` describes the planned entry points.
+For the full image-only experiment, run the version-pinned Colab notebook above.
+It downloads the archive directly to Drive, runs tests, creates an audit, and saves
+checkpoints and evaluation JSON to Drive. No local Mac GPU or dataset copy is needed.
+Use `scripts/train.py --help`, `scripts/evaluate.py --help`, and
+`scripts/predict.py --help` for local command-line equivalents. Python uses PyTorch
+for autograd; the original model code is in `src/ocuweave/models`.
 
 ## Research direction
 
@@ -87,7 +94,7 @@ metadata is synthetic/serialized metadata, not an original clinical note.
 
 ## Repository map
 
-- `configs/`: dataset, model, experiment, and ablation TOML specifications.
+- `configs/`: dataset, model, experiment, and ablation TOML specifications and JSON pilot configurations.
 - `src/ocuweave/`: Python data/model contracts, reference operators, and audit logic.
 - `native/`: C++17 operator, C ABI binding, and optional future CUDA kernels.
 - `scripts/`: explicit research entry points.
@@ -104,11 +111,11 @@ configuration, data provenance, and checkpoint origin.
 Original code in this repository is MIT licensed. Dataset and pretrained-weight
 licenses remain separate. No patient images, clinical notes, or third-party weights
 are redistributed. Public checkpoints are a goal, conditional on upstream terms
-and appropriate privacy review. This scaffold is for research, not patient care.
+and appropriate privacy review. This software is for research, not patient care.
 
 ## Versioning
 
-The current software version is **0.1.1**. Changes are recorded in [CHANGELOG.md](CHANGELOG.md), and releases use annotated Git tags (`vMAJOR.MINOR.PATCH`). During `0.x`, interfaces may evolve; pin a tag or commit for reproducible experiments.
+The current software version is **0.2.0**. Changes are recorded in [CHANGELOG.md](CHANGELOG.md), and releases use annotated Git tags (`vMAJOR.MINOR.PATCH`). During `0.x`, interfaces may evolve; pin a tag or commit for reproducible experiments.
 
 Software versions describe implementation changes, not clinical validation or model quality. Dataset versions, configurations, and future checkpoint versions must be recorded independently. See [the release procedure](docs/protocols/releases.md).
 
@@ -120,4 +127,4 @@ Software versions describe implementation changes, not clinical validation or mo
 - [FlashAttention](https://github.com/Dao-AILab/flash-attention)
 
 These are research references; no upstream implementation or checkpoint is vendored.
-See `CITATION.cff` to cite this software scaffold; no publication acceptance is claimed.
+See `CITATION.cff` to cite this research software; no publication acceptance is claimed.
