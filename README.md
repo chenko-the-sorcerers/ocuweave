@@ -2,9 +2,21 @@
 
 **Evidence-Grounded Vision–Language Learning with Incomplete Clinical Records for Ophthalmic Disease Assessment**
 
+**Marchel Andrian Shevchenko** · Data Sorcerers · **2026**
+
+[Project page](https://data-sorcerers.com/ocuweave/) · [Architecture](docs/architecture.md) · [Dataset cards](docs/dataset_cards/README.md) · [Changelog](CHANGELOG.md) · [Citation](CITATION.cff)
+
+![Synthetic retinal fundus illustration and corresponding lesion segmentation overlay](docs/assets/ocuweave-thumbnail.webp)
+
+*Left: synthetic fundus image. Right: illustrative lesion segmentation. AI-generated educational artwork, not patient data, ground-truth annotation, or an OcuWeave prediction.*
+
 An open research project by **Data Sorcerers**, investigating how retinal images,
 clinical notes, and structured clinical information can be combined when evidence
 is incomplete or inconsistent. Ocular toxoplasmosis is a focus of the research agenda.
+
+## Paper
+
+**Manuscript in preparation.** The project page reserves a Download paper button; it will become active when a public PDF is available. No paper, DOI, submission, or conference acceptance is claimed.
 
 ## Current status
 
@@ -93,6 +105,12 @@ Original code in this repository is MIT licensed. Dataset and pretrained-weight
 licenses remain separate. No patient images, clinical notes, or third-party weights
 are redistributed. Public checkpoints are a goal, conditional on upstream terms
 and appropriate privacy review. This scaffold is for research, not patient care.
+
+## Versioning
+
+The current software version is **0.1.1**. Changes are recorded in [CHANGELOG.md](CHANGELOG.md), and releases use annotated Git tags (`vMAJOR.MINOR.PATCH`). During `0.x`, interfaces may evolve; pin a tag or commit for reproducible experiments.
+
+Software versions describe implementation changes, not clinical validation or model quality. Dataset versions, configurations, and future checkpoint versions must be recorded independently. See [the release procedure](docs/protocols/releases.md).
 
 ## Reference implementations
 
