@@ -57,3 +57,31 @@ def acquire_otfid(destination):
         'filename': path.name, 'bytes': path.stat().st_size, 'official_checksum': item['checksum'],
         'sha256': sha256(path)})
     return path
+
+
+def acquire_fairvlmed(destination):
+    """Preserve the official public release; never rewrite or publish clinical notes."""
+    destination = Path(destination)
+    source = 'https://huggingface.co/datasets/harvardairobotics/FairVLMed'
+    api = 'https://huggingface.co/api/datasets/harvardairobotics/FairVLMed'
+    with urllib.request.urlopen(api, timeout=45) as response:
+        metadata = json.load(response)
+    if metadata.get('cardData', {}).get('license') != 'cc-by-nc-nd-4.0':
+        raise ValueError('FairVLMed license changed; review access terms')
+    revision = metadata['sha']
+    with urllib.request.urlopen(api + '/tree/' + revision + '?recursive=true', timeout=45) as response:
+        tree = json.load(response)
+    files = []
+    for member in ('Dataset/dataset.zip', 'ReadMe/data_summary.csv'):
+        item = next(f for f in tree if f.get('path') == member)
+        expected = item['lfs']['oid']
+        path = download_verified(source + '/resolve/' + revision + '/' + member,
+            destination / member, item['size'], 'sha256', expected)
+        files.append({'path': member, 'bytes': path.stat().st_size, 'sha256': expected})
+    write_json(destination / 'source_metadata.json', metadata)
+    write_json(destination / 'download_manifest.json', {
+        'dataset': 'FairVLMed', 'revision': revision, 'source_url': source,
+        'license': 'CC-BY-NC-ND-4.0', 'files': files,
+        'scope': 'Separate glaucoma image-text cohort; never patient-paired with OTFID.',
+        'clinical_use': False, 'notes_policy': 'Original de-identified notes and GPT-4 summaries must remain distinguishable. No raw notes in public logs.'})
+    return destination
