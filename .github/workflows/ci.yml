@@ -1,0 +1,20 @@
+name: Infrastructure checks
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  infrastructure:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -e .
+      - run: cmake -S . -B build -DBUILD_TESTING=ON
+      - run: cmake --build build
+      - run: ctest --test-dir build --output-on-failure
+      - run: python -m unittest discover -s tests -v
+        env:
+          OCUWEAVE_NATIVE_LIBRARY: ${{ github.workspace }}/build/libocuweave_native.so
+      - run: python scripts/audit_data.py examples/synthetic_manifest.json

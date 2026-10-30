@@ -1,0 +1,8 @@
+name = "fairvlmed_late_fusion"
+dataset = "fairvlmed"
+model = "late_fusion"
+seed = 42
+status = "planned_not_executable"
+patient_disjoint = true
+clinical_leakage_review_required = true
+checkpoint_selection = "validation_only"

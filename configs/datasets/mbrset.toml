@@ -1,0 +1,6 @@
+dataset_id = "mbrset"
+source = "https://physionet.org/content/mbrset/1.0/"
+modality_kind = "clinical_metadata"
+status = "pending_authorized_file_audit"
+manifest = "data/mbrset/manifest.json"
+group_by = "patient_id"

@@ -1,0 +1,6 @@
+name = "ocuweave"
+status = "proposed_not_implemented"
+vision_encoder = "undecided"
+language_encoder = "undecided"
+fusion = "proposed_evidence_grounded"
+pretrained_weights = "none_selected"

@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+message: "Please cite this research software when using OcuWeave. No peer-reviewed paper is available yet."
+type: software
+title: "OcuWeave: Evidence-Grounded Vision–Language Learning with Incomplete Clinical Records for Ophthalmic Disease Assessment"
+authors:
+  - name: "Data Sorcerers"
+version: 0.1.0
+license: MIT
+repository-code: "https://github.com/chenko-the-sorcerers/ocuweave"
+keywords:
+  - ophthalmology
+  - vision-language learning
+  - incomplete clinical records
+  - ocular toxoplasmosis

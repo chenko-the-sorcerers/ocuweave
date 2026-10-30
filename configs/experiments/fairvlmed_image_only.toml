@@ -1,0 +1,8 @@
+name = "fairvlmed_image_only"
+dataset = "fairvlmed"
+model = "image_only"
+seed = 42
+status = "planned_not_executable"
+patient_disjoint = true
+clinical_leakage_review_required = true
+checkpoint_selection = "validation_only"

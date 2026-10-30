@@ -1,0 +1,52 @@
+[
+  {
+    "dataset_id": "synthetic",
+    "sample_id": "example-001",
+    "patient_id": "fictional-a",
+    "split": "train",
+    "image_paths": [
+      "placeholder-a.png"
+    ],
+    "clinical_note": null,
+    "clinical_features": {
+      "synthetic_measurement": 1.0
+    },
+    "targets": {
+      "example_label": 0
+    },
+    "provenance": {
+      "synthetic": true
+    }
+  },
+  {
+    "dataset_id": "synthetic",
+    "sample_id": "example-002",
+    "patient_id": "fictional-b",
+    "split": "validation",
+    "image_paths": [
+      "placeholder-b.png"
+    ],
+    "clinical_note": "Synthetic placeholder; not a patient record.",
+    "targets": {
+      "example_label": 1
+    },
+    "provenance": {
+      "synthetic": true
+    }
+  },
+  {
+    "dataset_id": "synthetic",
+    "sample_id": "example-003",
+    "patient_id": "fictional-c",
+    "split": "test",
+    "image_paths": [
+      "placeholder-c.png"
+    ],
+    "targets": {
+      "example_label": 0
+    },
+    "provenance": {
+      "synthetic": true
+    }
+  }
+]

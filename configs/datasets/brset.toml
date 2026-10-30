@@ -1,0 +1,6 @@
+dataset_id = "brset"
+source = "https://physionet.org/content/brazilian-ophthalmological/1.0.2/"
+modality_kind = "limited_clinical_metadata"
+status = "pending_authorized_file_audit"
+manifest = "data/brset/manifest.json"
+group_by = "patient_id"

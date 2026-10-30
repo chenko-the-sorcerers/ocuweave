@@ -1,0 +1,6 @@
+dataset_id = "otfid"
+source = "https://zenodo.org/records/13883485"
+modality_kind = "image_and_masks"
+status = "pending_authorized_file_audit"
+manifest = "data/otfid/manifest.json"
+group_by = "patient_id"
