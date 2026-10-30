@@ -1,0 +1,11 @@
+{
+  "architecture": "query",
+  "width": 24,
+  "dim": 48,
+  "queries": 8,
+  "size": 192,
+  "batch_size": 8,
+  "epochs": 20,
+  "learning_rate": 0.001,
+  "seed": 42
+}

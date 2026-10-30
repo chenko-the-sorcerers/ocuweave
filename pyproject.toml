@@ -5,12 +5,15 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "ocuweave"
 version = "0.1.1"
-description = "Research scaffold for evidence-grounded ophthalmic vision-language learning"
+description = "Research toolkit for evidence-grounded ophthalmic segmentation"
 readme = "README.md"
 requires-python = ">=3.10"
 license = {file = "LICENSE"}
 authors = [{name = "Marchel Andrian Shevchenko"}]
 dependencies = []
+
+[project.optional-dependencies]
+research = ["torch>=2.6,<3", "numpy>=1.24,<3", "Pillow>=10,<13", "matplotlib>=3.7,<4"]
 
 [project.urls]
 Repository = "https://github.com/chenko-the-sorcerers/ocuweave"
