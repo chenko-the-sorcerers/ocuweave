@@ -59,6 +59,7 @@ def audit_otfid(archive_path, output, *, seed=42, allow_unverified_patients=Fals
             if 'masks' in [p.lower() for p in PurePosixPath(name).parts] and PurePosixPath(name).suffix.lower() in {'.png','.jpg','.jpeg','.bmp','.tif','.tiff'}:
                 masks[mask_key(PurePosixPath(name).stem)].append(name)
         rows, exclusions, warnings = [], [], []
+        thumbnails = {}
         seen_ids = set()
         for source in labels:
             stem = PurePosixPath(source[image_column].strip()).stem
@@ -87,12 +88,13 @@ def audit_otfid(archive_path, output, *, seed=42, allow_unverified_patients=Fals
                     raise ValueError('healthy_label_with_positive_mask')
                 if not healthy and not target.any():
                     raise ValueError('positive_label_with_empty_mask')
+                thumbnails[stem] = np.asarray(image.resize((64,64),Image.Resampling.BILINEAR),dtype=np.float32)/255
                 pixels = np.asarray(image)
                 pixel_hash = hashlib.sha256(str(pixels.shape).encode()+pixels.tobytes()).hexdigest()
                 thumbnail = np.asarray(image.convert('L').resize((9,8),Image.Resampling.BILINEAR))
                 dhash = sum(int(bit)<<i for i,bit in enumerate((thumbnail[:,1:]>thumbnail[:,:-1]).flat))
                 row = {'dhash':f'{dhash:016x}','sample_id':stem,'patient_id':patients.get(stem),'image':images[stem], 'masks':matched,
-                    'label':label,'width':image.width,'height':image.height,'lesion_pixels':int(target.sum()),
+                    'source':source.get('Source'),'label':label,'width':image.width,'height':image.height,'lesion_pixels':int(target.sum()),
                     'mask_sha256':hashlib.sha256(target.tobytes()).hexdigest(),'pixel_sha256':pixel_hash,
                     'clinical_note':None,'clinical_features':{},'healthy_zero_mask':healthy and not matched}
                 rows.append(row)
@@ -111,16 +113,17 @@ def audit_otfid(archive_path, output, *, seed=42, allow_unverified_patients=Fals
             duplicates.extend({'excluded':r['sample_id'],'retained':group[0]['sample_id']} for r in group[1:])
         retained.sort(key=lambda r:r['sample_id'])
         from ocuweave.data.auditing.similarity import group_similar
-        near_duplicates=group_similar(retained)
+        near_duplicates=group_similar(retained,thumbnails)
         split_unit=assign_splits(retained,seed,allow_unverified_patients)
-        manifest={'schema_version':1,'dataset':'OTFID','release':'3.0.0','archive_sha256':sha256(archive_path),
+        manifest={'schema_version':2,'audit_protocol':'otfid-binary-v2','dataset':'OTFID','release':'3.0.0','archive_sha256':sha256(archive_path),
             'source_url':'https://zenodo.org/records/13883485','license':'CC-BY-4.0','seed':seed,
             'split_unit':split_unit,'patient_identity_verified':split_unit=='patient_group','records':retained}
-        report={'source_label_rows':len(labels),'archive_images':len(images),'eligible_samples':len(retained),
+        report={'source_labels':dict(Counter(r[label_column].strip().lower() for r in labels)),
+            'audit_protocol':'otfid-binary-v2','source_label_rows':len(labels),'archive_images':len(images),'eligible_samples':len(retained),
             'labels':dict(Counter(r['label'] for r in retained)),'splits':dict(Counter(r['split'] for r in retained)),
             'exclusions':exclusions,'exact_duplicates_removed':duplicates,'warnings':warnings,
             'split_unit':split_unit,'paired_emr_available':False,'near_duplicate_candidates':near_duplicates,
-            'similarity_policy':'64-bit dHash Hamming <= 4: conservatively group, do not delete; not patient verification.',
+            'similarity_policy':'Screen 64-bit dHash Hamming <= 4; group only if RGB 64x64 thumbnail RMSE <= 0.025 on [0,1]. Do not delete; not patient verification.',
             'unlabelled_images':sorted(set(images)-seen_ids),
             'limitations':['Patient identity absent unless supplied separately; image splits are exploratory.',
                 'Exact duplicates removed; perceptual candidates grouped conservatively. Undetected duplicates and cross-view patient overlap remain possible.',

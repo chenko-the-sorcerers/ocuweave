@@ -16,7 +16,7 @@ inventing negative masks. Union active/inactive masks for this binary endpoint.
 Keep every exclusion and mask-threshold warning in the audit JSON.
 
 Remove exact decoded-pixel duplicates with identical masks. Exclude all conflicting
-mask duplicates. Group retained images with dHash Hamming distance <= 4 conservatively
+mask duplicates. Group retained images with dHash Hamming distance <= 4 and RGB thumbnail RMSE <= 0.025 conservatively
 before splitting; candidates are not deleted. Inspect these candidates because
 retinal appearance can produce false matches, and dHash can miss transformed duplicates.
 

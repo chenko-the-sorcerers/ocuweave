@@ -60,6 +60,15 @@ class DataPipelineTests(unittest.TestCase):
         self.assertEqual(len({r['split_group'] for r in rows[:3]}), 1)
         self.assertEqual(len({r['split'] for r in rows[:3]}), 1)
 
+    def test_coarse_hash_collision_does_not_group_different_images(self):
+        from ocuweave.data.auditing.similarity import group_similar
+        rows=[{'sample_id':str(i),'dhash':'0000000000000000'} for i in range(3)]
+        thumbnails={'0':np.zeros((64,64,3)), '1':np.zeros((64,64,3)), '2':np.ones((64,64,3))}
+        pairs=group_similar(rows,thumbnails)
+        self.assertEqual(sum(pair['grouped'] for pair in pairs),1)
+        self.assertEqual(rows[0]['similarity_group'],rows[1]['similarity_group'])
+        self.assertNotEqual(rows[0]['similarity_group'],rows[2]['similarity_group'])
+
     def test_padding_is_not_background_supervision(self):
         image = Image.new('RGB', (32,16), (100,120,130))
         _, mask, valid = letterbox(image, np.ones((16,32),bool), 32)
