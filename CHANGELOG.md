@@ -18,6 +18,12 @@ No unreleased changes recorded.
 - Version-pinned Google Colab notebook with Drive storage, QA panels and learning curves.
 - Synthetic integration, gradient, missing-evidence, metric and grouping tests; CPU research tests in CI.
 
+### Validation
+- 23 Python tests, CMake/CTest, and Python/C++ parity passed in Colab; CPU CI passed on the experiment branch.
+- OTFID original archive checksum verified; 412 images inspected and 280 retained for the binary-mask task.
+- FairVLMed archive and CSV checksums verified; all 10,000 filename pairs matched, with aggregate-only note checks.
+- Coarse retinal hash false positives were visually reviewed and constrained by an RGB similarity check before freezing splits.
+
 ### Limitations
 - Image-only binary lesion pilot. No paired EMR training, activity prediction, longitudinal endpoint, or clinical validation.
 - Perceptual groups do not establish patient identity; image-level results remain exploratory.
