@@ -10,7 +10,7 @@
 
 [![Checks](https://github.com/chenko-the-sorcerers/ocuweave/actions/workflows/ci.yml/badge.svg)](https://github.com/chenko-the-sorcerers/ocuweave/actions)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Software v0.10.0](https://img.shields.io/badge/software-v0.10.0-334bd3.svg)](https://github.com/chenko-the-sorcerers/ocuweave/tree/v0.10.0)
+[![Software v0.10.1](https://img.shields.io/badge/software-v0.10.1-334bd3.svg)](https://github.com/chenko-the-sorcerers/ocuweave/tree/v0.10.1)
 
 ![FIVES validation: photograph, reference vessel mask and LQNet prediction](docs/assets/fives-lqnet-feasibility.webp)
 
@@ -34,7 +34,7 @@ The current release provides a runnable **image-only** pipeline. The title descr
 Python **3.10+**. Start with CPU; CUDA is optional. C++ tooling is required only for the separate native example. Installation from source is supported; this release is not published to PyPI.
 
 ```bash
-git clone --branch v0.10.0 https://github.com/chenko-the-sorcerers/ocuweave.git
+git clone --branch v0.10.1 https://github.com/chenko-the-sorcerers/ocuweave.git
 cd ocuweave
 python -m venv .venv
 source .venv/bin/activate  # Windows: .venv\Scripts\activate
@@ -127,6 +127,8 @@ Training saves configuration, software version, source revision when available, 
 | IDRiD mean class-positive Dice | 0.0000 | 0.0000 | 0.0000 |
 
 Each is a separate 100-step CPU run, seed 42, evaluated at original image dimensions. FIVES includes one empty reference among 120 validation images; positive-only scores and centerline metrics are in the report. IDRiD predicts background on all annotated validation channels at threshold 0.5. This is an observed failure, not a missing result. The small FIVES Dice difference does not establish superiority; thin-centerline recall did not improve. [Protocols, denominators, time, memory and per-image results](docs/results/cross-task-feasibility-v0100/README.md).
+
+Before the next GPU session, complete the [GPU readiness checklist](docs/protocols/gpu_pretraining_diagnostics.md): tensor review, CUDA smoke checks, fixed-subset fitting and background-prediction diagnostics. Patch sampling and loss changes require separate registered comparisons. These checks are planned and have not run.
 
 ## Cross-task experiment programme
 
@@ -222,7 +224,7 @@ Please cite the **software** until a paper is publicly available. GitHub’s “
   title = {OcuWeave: Evidence-Grounded Vision--Language Learning with
            Incomplete Clinical Records for Ophthalmic Disease Assessment},
   year = {2026},
-  version = {0.10.0},
+  version = {0.10.1},
   url = {https://github.com/chenko-the-sorcerers/ocuweave}
 }
 ```

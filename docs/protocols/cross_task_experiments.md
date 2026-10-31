@@ -2,6 +2,10 @@
 
 Marchel Andrian Shevchenko · 1 November 2026. This is a design, not a completed multi-disease model. Ocular toxoplasmosis remains the primary research target. All new cohorts, adapters, multi-output heads and additional objectives require implementation and audit before execution. No patient pairs are invented across datasets; EMR is excluded.
 
+## Post-pilot readiness gate — 1 November 2026
+
+Before further main-matrix training, complete the [GPU diagnostic checklist](gpu_pretraining_diagnostics.md). This follow-up addresses the measured FIVES/IDRiD feasibility failures and does not retroactively alter the original design, source pins or completed results. The checklist is planned, not an executed GPU result.
+
 ## Ordered execution and resource budget
 
 1. Continue the existing nine-run OTFID suite using its immutable v0.8.1 source/data contract after CUDA smoke passes. Do not substitute a new package version into that suite.

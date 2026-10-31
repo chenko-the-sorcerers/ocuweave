@@ -3,6 +3,15 @@
 Notable changes to OcuWeave are recorded here. Versions follow Semantic Versioning.
 Dates use ISO 8601. Research hypotheses are not software capabilities.
 
+## [0.10.1] — 2026-11-01
+
+### Documentation
+- Record a planned GPU readiness gate before further main research training: tensor/label review, CUDA smoke checks, fixed training-subset fitting, probability/loss/gradient diagnostics and separately registered sampling/objective comparisons.
+- Link the checklist from the README and cross-task protocol; preserve existing measured results and frozen run contracts. No GPU allocation or new medical-data training is performed in this update.
+
+### Validation
+- Version and documentation-link consistency, Python/native regression checks, synthetic manifest audit and installed-wheel CLI smoke validation.
+
 ## [0.10.0] — 2026-11-01
 
 ### Added
