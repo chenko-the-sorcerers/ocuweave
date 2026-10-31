@@ -18,7 +18,8 @@ No unreleased changes recorded.
 - Separate original-note glaucoma protocol and semantic/temporal leakage review form; no cross-dataset patient pairing.
 
 ### Validation
-- Source compilation and notebook-cell syntax checks passed locally. Runtime and packaging checks are recorded before tagging this release.
+- 32 Python tests passed in Colab, including native parity, zero-residual initialization/gradient flow, original-grid evaluation, test-image exclusion and completed-artifact integrity.
+- CMake/CTest, synthetic manifest auditing, wheel packaging, notebook schema/code syntax, and local compilation checks passed.
 
 ### Limitations
 - New architecture implementation is not evidence of improvement, novelty, or clinical validation. Unexecuted experiments remain pending.

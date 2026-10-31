@@ -1,10 +1,36 @@
 """Snapshot public documentation and inventory private research artifacts in Drive."""
 import argparse
+import json
 from datetime import datetime, timezone
 from pathlib import Path
 import shutil
 import subprocess
 from ocuweave.utils.provenance import sha256, write_json
+
+
+def measured_reports(project):
+    """Retain every aggregate field; link high-cardinality rows to source JSON."""
+    patterns=(
+        '02 — Audits/otfid-v3-binary-v2-seed42-v0.2.0/audit.json',
+        '02 — Audits/quality-review-v0.3.0/fairvlmed/summary.json',
+        '02 — Audits/quality-review-v0.3.0/fairvlmed/note_review.json',
+        '02 — Audits/quality-review-v0.3.0/otfid-*/diagnostics.json',
+        '02 — Audits/development-v0.4.0/annotation-geometry/summary.json',
+        '04 — Runs/v0.2.0/pilot-seed42-20epochs/*-test.json',
+        '04 — Runs/v0.2.0/pilot-seed42-20epochs/*/provenance.json',
+        '04 — Runs/v0.2.0/pilot-seed42-20epochs/*/checkpoint.json',
+        '04 — Runs/v0.2.0/pilot-seed42-20epochs/*/history.json',
+        '04 — Runs/v0.4.0/resolution-detail-seeds/summary.json')
+    reports=[]
+    for pattern in patterns:
+        for path in sorted(project.glob(pattern)):
+            data=json.loads(path.read_text())
+            if isinstance(data,dict):
+                data={k:({'rows':len(v),'details':'See source artifact and its recorded SHA-256'}
+                         if k in {'per_image','records','review_queue','normalized_duplicate_groups','exclusions','warnings'} else v)
+                      for k,v in data.items()}
+            reports.append({'source':str(path.relative_to(project)),'sha256':sha256(path),'result':data})
+    return reports
 
 
 def snapshot(project, output):
@@ -24,6 +50,15 @@ def snapshot(project, output):
     write_json(output/'inventory.json',{'source_commit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=repo,text=True).strip(),
         'created_utc':datetime.now(timezone.utc).isoformat(),'artifacts':items,
         'scope':'Private audit/run/notebook artifacts; raw dataset hashes are in acquisition receipts. No clinical notes exported.'})
+    reports=measured_reports(project)
+    write_json(output/'measured-results.json',reports)
+    content=['# Consolidated measured results','',
+        'Machine-generated from the saved source reports below. Historical input-grid and new original-grid metrics are different endpoints.',
+        'Per-image rows and review queues remain in their source files, indexed by SHA-256. Pending runs have no measured performance.','']
+    for report in reports:
+        content += ['## '+report['source'],'','SHA-256: `'+report['sha256']+'`','',
+                    '```json',json.dumps(report['result'],indent=2,ensure_ascii=False),'```','']
+    (output/'measured-results.md').write_text('\n'.join(content))
     return {'snapshot':str(output),'artifacts_indexed':len(items)}
 
 
