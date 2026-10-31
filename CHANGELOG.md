@@ -16,6 +16,7 @@ No unreleased changes recorded.
 - CPU-compatible Colab quality-review notebook that preserves existing pilot checkpoints and test results.
 
 ### Validation
+- 28 Python tests passed in Colab, including native parity; CMake/CTest, wheel packaging, notebook schema and code syntax validation passed.
 - Synthetic corruption, duplicate, label-mismatch, object-array rejection, note privacy, and test-split protection tests.
 - End-to-end synthetic checkpoint diagnostics render figures alongside the existing training/inference integration test.
 
