@@ -30,6 +30,11 @@ No pretrained weights are bundled and no state-of-the-art performance is claimed
 [Open the Colab pilot](https://colab.research.google.com/github/chenko-the-sorcerers/ocuweave/blob/v0.2.0/notebooks/OcuWeave_OTFID_Colab.ipynb)
 · [Pilot protocol](docs/protocols/otfid_pilot.md)
 
+The [quality-review notebook](https://colab.research.google.com/github/chenko-the-sorcerers/ocuweave/blob/v0.3.0/notebooks/OcuWeave_Quality_Review_Colab.ipynb)
+runs on CPU and audits FairVLMed numeric images and development-note flags, then
+diagnoses frozen OTFID checkpoints on training/validation only.
+See the [quality-review protocol](docs/protocols/quality_review.md) for scope and limitations.
+
 ## Quick start
 
 Python 3.10+; CMake 3.20+ and a C++17 compiler for the optional native example.

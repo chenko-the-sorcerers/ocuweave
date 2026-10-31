@@ -7,6 +7,22 @@ Dates use ISO 8601. Research hypotheses are not software capabilities.
 
 No unreleased changes recorded.
 
+## [0.3.0] — 2026-10-31
+
+### Added
+- Pickle-free numeric image audit for FairVLMed, bounded array allocation, exact-pixel duplicate checks, CSV/NPZ label reconciliation, and immutable reports.
+- Development-note review flags with explicit semantic limitations; test note contents and generated summaries are excluded from this review.
+- Training/validation-only checkpoint diagnostics, lesion-area/source strata, resizing-loss checks, and deliberately selected failure panels. Test splits are rejected before loading data.
+- CPU-compatible Colab quality-review notebook that preserves existing pilot checkpoints and test results.
+
+### Validation
+- Synthetic corruption, duplicate, label-mismatch, object-array rejection, note privacy, and test-split protection tests.
+- End-to-end synthetic checkpoint diagnostics render figures alongside the existing training/inference integration test.
+
+### Limitations
+- Numeric integrity and lexical review flags do not establish clinical gradability, patient independence, or absence of target leakage.
+- No new model architecture, training result, clinical efficacy, or multimodal capability is claimed by this release.
+
 ## [0.2.0] — 2026-10-31
 
 ### Added
@@ -55,8 +71,10 @@ No unreleased changes recorded.
 - Dataset cards for BRSET, FairVLMed, OTFID, OLIVES, and mBRSET.
 - Architecture and evaluation proposals, MIT license, and citation metadata.
 
-[Unreleased]: https://github.com/chenko-the-sorcerers/ocuweave/compare/v0.2.0...HEAD
+[Unreleased]: https://github.com/chenko-the-sorcerers/ocuweave/compare/v0.3.0...HEAD
 [0.1.1]: https://github.com/chenko-the-sorcerers/ocuweave/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/chenko-the-sorcerers/ocuweave/tree/v0.1.0
 
 [0.2.0]: https://github.com/chenko-the-sorcerers/ocuweave/compare/v0.1.1...v0.2.0
+
+[0.3.0]: https://github.com/chenko-the-sorcerers/ocuweave/compare/v0.2.0...v0.3.0

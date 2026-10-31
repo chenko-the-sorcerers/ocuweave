@@ -56,8 +56,8 @@ def diagnose(manifest, archive, checkpoint, output, *, split="validation",
     for batch in DataLoader(dataset, batch_size=state["config"]["batch_size"]):
         probabilities = model(batch["image"].to(dev)).sigmoid().cpu().numpy()
         for i, sample_id in enumerate(batch["id"]):
-            valid = batch["valid"][i].numpy()
-            target = batch["mask"][i].numpy()
+            valid = batch["valid"][i].numpy().astype(bool)
+            target = batch["mask"][i].numpy().astype(bool)
             pred = probabilities[i] >= .5
             info = metadata[sample_id]
             original_area = info["lesion_pixels"] / (info["height"] * info["width"])
@@ -130,7 +130,7 @@ def plot_failures(model, dataset, result, path):
     for line, sample_id in enumerate(selected):
         sample = dataset[index[sample_id]]
         pred = model(sample["image"].unsqueeze(0)).sigmoid()[0, 0].numpy() >= .5
-        pred &= sample["valid"][0].numpy()
+        pred &= sample["valid"][0].numpy().astype(bool)
         axes[line, 0].imshow(sample["image"].permute(1, 2, 0))
         axes[line, 0].set_title(sample_id)
         axes[line, 1].imshow(sample["mask"][0], cmap="gray", vmin=0, vmax=1)
