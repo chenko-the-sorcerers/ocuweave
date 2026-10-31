@@ -5,7 +5,7 @@ import zipfile
 from pathlib import Path
 import numpy as np
 from PIL import Image
-from ocuweave.utils.provenance import sha256, write_json
+from ocuweave.utils.provenance import sha256, write_json, software_provenance
 
 
 def panel(image, mask, path, color):
@@ -48,7 +48,7 @@ def export_task(task,root,manifest_path,run_path,output):
             photo=image.copy();photo.thumbnail((1000,1000),Image.Resampling.LANCZOS);photo.save(output/f'{prefix}-photo.jpg',quality=90)
             panel(image,mask,output/f'{prefix}-reference.jpg',(79,208,153))
             panel(image,pred,output/f'{prefix}-prediction.jpg',(255,183,77))
-            examples.append({'sample_id':sid,'selection':selection+' in LQNet validation; ties sorted by ID','prefix':prefix,'metrics':metrics})
+            examples.append({'sample_id':sid,'selection':selection+' in LQNet validation; ties sorted by ID','prefix':prefix,'metrics':metrics,'source_image_sha256':row['image_sha256'],'source_mask_sha256':row['mask_sha256']})
     else:
         from ocuweave.data.adapters.idrid import read_idrid,CLASSES
         sid=evaluation['gallery_sample_ids'][0];image,masks,available=read_idrid(root,rows[sid])
@@ -59,8 +59,10 @@ def export_task(task,root,manifest_path,run_path,output):
             panel(image,masks[c],output/f'{prefix}-reference.jpg',(79,208,153))
             panel(image,pred,output/f'{prefix}-prediction.jpg',(255,183,77))
             scores=next((r for r in evaluation['per_image_class'][name] if r['sample_id']==sid),None)
-            examples.append({'sample_id':sid,'class':name,'annotation_available':bool(available[c]),'selection':'First validation ID, fixed before training','prefix':prefix,'photo':'idrid-photo.jpg','metrics':scores})
-    summary={'dataset':task,'protocol':protocol,'results':results,'examples':examples,
+            examples.append({'sample_id':sid,'class':name,'annotation_available':bool(available[c]),'selection':'First validation ID, fixed before training','prefix':prefix,'photo':'idrid-photo.jpg','metrics':scores,'source_image_sha256':rows[sid]['image_sha256'],'source_mask_sha256':rows[sid]['mask_sha256'][name]})
+    summary={'dataset':task,'exporter':software_provenance(),
+             'environment':json.loads((run_path/'environment.json').read_text()) if (run_path/'environment.json').exists() else None,
+             'protocol':protocol,'results':results,'examples':examples,
              'manifest_sha256':sha256(manifest_path),'counts':manifest['counts'],
              'patient_identity_verified':False,'test_evaluated':False,
              'source_manifest_fields':{k:v for k,v in manifest.items() if k not in {'records','similarity_candidates'}},
