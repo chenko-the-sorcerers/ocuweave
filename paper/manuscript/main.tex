@@ -1,0 +1,25 @@
+\documentclass[conference]{IEEEtran}
+\usepackage{amsmath,amssymb,bm}
+\usepackage{cite}
+\usepackage{booktabs}
+\usepackage[hidelinks]{hyperref}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\ind}{\mathbb{I}}
+\DeclareMathOperator{\GELU}{GELU}
+\DeclareMathOperator{\GN}{GN}
+\DeclareMathOperator{\LN}{LN}
+\DeclareMathOperator{\softmax}{softmax}
+\DeclareMathOperator{\BCE}{BCE}
+\title{OcuWeave: Evidence-Grounded Vision--Language Learning with Incomplete Clinical Records for Ophthalmic Disease Assessment}
+\author{\IEEEauthorblockN{Marchel Andrian Shevchenko}
+\IEEEauthorblockA{Data Sorcerers\\2026}}
+\begin{document}
+\maketitle
+\begin{abstract}
+This working protocol describes the image-only segmentation stage of OcuWeave. We specify a compact query-based network, a residual local-detail extension, development-only data review, and controlled resolution and architecture comparisons. Nine randomly initialized runs are planned across three seeds. Multimodal learning with incomplete clinical records remains a separate, unimplemented research stage. This manuscript does not report completed LQNet experiments, independently validated clinical performance, or a peer-reviewed publication.
+\end{abstract}
+\input{introduction}
+\input{methodology}
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+\end{document}

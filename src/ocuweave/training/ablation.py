@@ -24,6 +24,14 @@ def summarize(root, configs):
     for name,config in configs.items():
         folder=root/name
         row={'run':name,**config,'status':'pending'}
+        row.update({key:None for key in (
+            'source_commit','manifest_sha256','archive_sha256','checkpoint_sha256',
+            'positive_dice','positive_iou','macro_iou','small_lesion_dice','small_lesion_count',
+            'healthy_any_pixel_fp','healthy_mean_fp_area','elapsed_seconds','evaluation_seconds',
+            'optimizer_steps','parameters','peak_cuda_allocated_bytes','peak_cuda_reserved_bytes',
+            'peak_process_rss_bytes','device','device_name')})
+        if contract:
+            row.update({key:contract[key] for key in ('source_commit','manifest_sha256','archive_sha256')})
         if folder.exists():row['status']='incomplete'
         if (folder/'complete.json').exists():
             receipt=json.loads((folder/'complete.json').read_text())
@@ -38,7 +46,9 @@ def summarize(root, configs):
             if timing['optimizer_steps_completed']!=provenance['optimizer_steps_planned']:
                 raise ValueError('Incomplete optimizer budget')
             small=report['by_original_area'].get('small_le_1pct',{})
-            row.update(status='completed',positive_dice=report['metrics']['positive_macro_dice'],
+            row.update(status='completed',
+                manifest_sha256=provenance['manifest_sha256'],archive_sha256=provenance['archive_sha256'],
+                checkpoint_sha256=report['checkpoint_sha256'],positive_dice=report['metrics']['positive_macro_dice'],
                 small_lesion_dice=small.get('positive_macro_dice'),
                 positive_iou=report['metrics']['positive_macro_iou'],macro_iou=report['metrics']['macro_iou'],
                 small_lesion_count=small.get('positive_samples',0),

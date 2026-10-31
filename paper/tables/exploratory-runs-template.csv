@@ -1,0 +1,10 @@
+run,width,dim,queries,batch_size,epochs,learning_rate,architecture,size,seed,status,source_commit,manifest_sha256,archive_sha256,checkpoint_sha256,positive_dice,positive_iou,macro_iou,small_lesion_dice,small_lesion_count,healthy_any_pixel_fp,healthy_mean_fp_area,elapsed_seconds,evaluation_seconds,optimizer_steps,parameters,peak_cuda_allocated_bytes,peak_cuda_reserved_bytes,peak_process_rss_bytes,device,device_name
+query192-seed42,24,48,8,8,20,0.001,query,192,42,pending,,,,,,,,,,,,,,,,,,,,
+query384-seed42,24,48,8,8,20,0.001,query,384,42,pending,,,,,,,,,,,,,,,,,,,,
+detail384-seed42,24,48,8,8,20,0.001,query_detail,384,42,pending,,,,,,,,,,,,,,,,,,,,
+query192-seed123,24,48,8,8,20,0.001,query,192,123,pending,,,,,,,,,,,,,,,,,,,,
+query384-seed123,24,48,8,8,20,0.001,query,384,123,pending,,,,,,,,,,,,,,,,,,,,
+detail384-seed123,24,48,8,8,20,0.001,query_detail,384,123,pending,,,,,,,,,,,,,,,,,,,,
+query192-seed2026,24,48,8,8,20,0.001,query,192,2026,pending,,,,,,,,,,,,,,,,,,,,
+query384-seed2026,24,48,8,8,20,0.001,query,384,2026,pending,,,,,,,,,,,,,,,,,,,,
+detail384-seed2026,24,48,8,8,20,0.001,query_detail,384,2026,pending,,,,,,,,,,,,,,,,,,,,

@@ -84,7 +84,7 @@ class DevelopmentTests(unittest.TestCase):
             self.assertEqual({k:v for k,v in b.items() if k!='architecture'},{k:v for k,v in c.items() if k!='architecture'})
         with tempfile.TemporaryDirectory() as directory:
             report=summarize(directory,configs)
-            self.assertTrue(all(r['status']=='pending' and 'positive_dice' not in r for r in report['runs']))
+            self.assertTrue(all(r['status']=='pending' and r['positive_dice'] is None for r in report['runs']))
             self.assertTrue(all(r['mean_delta'] is None for r in report['paired_comparisons']))
 
 

@@ -3,6 +3,22 @@
 Notable changes to OcuWeave are recorded here. Versions follow Semantic Versioning.
 Dates use ISO 8601. Research hypotheses are not software capabilities.
 
+## [0.7.0] - 2026-10-31
+
+- Add a CPU-only development review bundle with photo-mask reviewer sheets, quality
+  flags, reference overlays, component sampling loss, boundary/area and padding diagnostics.
+  Flagged images are retained; clinical adjudication remains pending.
+- Extract and test original-grid probability restoration without changing interpolation
+  or threshold policy. Add hand-computed metric oracles and review integrity tests.
+- Give all nine experiment rows a stable report schema including data/code/checkpoint
+  hashes, configuration, metrics, timing, memory and status; unmeasured values stay null.
+- Add a LaTeX introduction and methodology with equations matching the implementation,
+  six verified IEEE-style references, and explicit image-only/current versus future-EMR scope.
+- Synchronize CMake project metadata with the Python software version.
+- Validation: 52 Python tests passed (the two native tests initially skipped in the
+  full run passed in a separate native-parity run); CMake/CTest and synthetic audit passed.
+  No GPU training or clinical validation is claimed by this release.
+
 ## [Unreleased]
 
 No unreleased changes recorded.

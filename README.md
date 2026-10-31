@@ -159,3 +159,12 @@ Run the CPU [cleaning notebook](https://colab.research.google.com/github/chenko-
 The local-detail query variant is named **OcuWeave–LQNet (Local-detail Query Network)**. See the [locked protocol](docs/protocols/exploratory_training.md) and [execution status](docs/results/exploratory-training.md). Training strategy naming remains future work. CPU smoke checks do not count as GPU runs or research results.
 
 The v0.6.0 execution attempt is blocked by Colab GPU quota and a failed Drive mount. Actual-data freezing and all nine runs remain pending. [Release-pinned Colab template](https://colab.research.google.com/github/chenko-the-sorcerers/ocuweave/blob/v0.6.0/notebooks/OcuWeave_Exploratory_Colab.ipynb).
+
+## CPU review and manuscript draft (v0.7.0)
+
+[CPU review protocol](docs/protocols/cpu_review.md) covers photo-mask reviewer sheets,
+192/384 component survival and padding analysis, and hand-computed evaluator tests.
+[LaTeX introduction and methodology](paper/manuscript/README.md) document the actual
+LQNet implementation, with IEEE numbered references and equation-to-code traceability.
+The [nine-run report template](paper/tables/exploratory-runs-template.csv) contains
+planned configurations and blank result fields; it is not an executed experiment.

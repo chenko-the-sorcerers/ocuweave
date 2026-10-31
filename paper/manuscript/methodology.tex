@@ -1,0 +1,106 @@
+\section{Methodology}
+\subsection{Study scope and data governance}
+Let $\mathcal D=\{(x_i,y_i,g_i)\}_{i=1}^{N}$ denote eligible fundus photographs $x_i\in\{0,\ldots,255\}^{H_i\times W_i\times3}$, binary reference masks $y_i\in\{0,1\}^{H_i\times W_i}$, and provisional grouping identifiers $g_i$. The binary target is the union of available active and inactive lesion annotations; the model is not trained to classify activity. Images labeled healthy use an empty target. Nonhealthy images without a matched annotation are ineligible for this supervised task, rather than assigned an empty mask. For genuinely binary mask files with maximum intensity at most one, foreground is defined by intensity greater than zero. Otherwise, foreground is defined by intensity greater than 127. Original mask files remain unchanged.
+
+The historical manifest and test artifacts are retained. A new development manifest groups recorded near-duplicate candidates together with existing exact-pixel, split-group, and available patient links using connected components of an identity-evidence graph. A component spanning training and validation is provisionally assigned wholly to training if it already contains a training member; validation-only components retain their assignment. Any candidate involving the historical test set stops the freeze procedure for investigation. These are operational grouping rules, not verified patient identities. Clinical annotation adjudication and patient independence remain unresolved.
+
+Each run records the source revision, dataset archive checksum, manifest checksum, complete configuration, and checkpoint checksum. No old-test predictions or scores are used to select the new architecture or resolution. The exploratory development comparison does not replace a future independent, patient-disjoint evaluation.
+
+\subsection{Photo--mask review and preprocessing}
+Technical review verifies decoded image dimensions, corresponding mask dimensions, and foreground counts against the manifest. A private reviewer sheet separates visual alignment, boundary completeness, blur, illumination, artifacts, retinal-field truncation, and clinical lesion correctness. Automatic quality proxies rank review priorities using training-derived thresholds. They neither establish clinical gradability nor authorize exclusion. All quality-flagged eligible images remain retained pending documented adjudication.
+
+For square input size $S\in\{192,384\}$, define
+\begin{equation}
+ s_i=\min(S/W_i,S/H_i),\quad
+ (w_i,h_i)=\bigl(\max(1,\operatorname{round}(s_iW_i)),
+ \max(1,\operatorname{round}(s_iH_i))\bigr).
+\end{equation}
+The resized content is centered with integer offsets $a_i=\lfloor(S-w_i)/2\rfloor$ and $b_i=\lfloor(S-h_i)/2\rfloor$. RGB intensities are resized bilinearly and divided by 255; masks use nearest-neighbor interpolation. The binary validity map $v_i$ marks the content rectangle, excluding zero padding from training loss. A paired horizontal flip with probability $0.5$ is the only stochastic augmentation. No adaptive preprocessing change is introduced between comparison arms.
+
+Before training, the resized reference is cropped to its content rectangle and restored to $(H_i,W_i)$ using nearest-neighbor interpolation. If $\widetilde y_i^{(S)}$ is this roundtrip mask, we measure overlap with $y_i$, signed relative area error
+\begin{equation}
+ e_i^{(S)}=\frac{|\widetilde y_i^{(S)}|-|y_i|}{|y_i|},\qquad |y_i|>0,
+\end{equation}
+and exact-boundary Dice using four-neighbor, one-pixel boundaries with zero tolerance. We also report padding fraction, whole-mask disappearance, and loss of original four-connected components under the exact nearest-neighbor sampling map. Component identities describe annotation topology, not clinically adjudicated lesion instances; thresholded JPEG artifacts can form tiny components. These are preprocessing measurements, not model accuracy.
+
+\subsection{Compact multiscale visual encoder}
+A $4\times4$ convolution with stride four, group normalization with one group, and GELU produces the first feature grid. Subsequent $2\times2$ stride-two convolutions produce feature maps $F_4,F_8,F_{16}$ with widths $c,2c,4c$, where $c=24$. Each stage includes a spatial mixer:
+\begin{equation}
+ \mathcal M(F)=F+\gamma\odot
+ W_2\GELU\!\left(W_1\GN(\operatorname{DWConv}_{7\times7}(F))\right).
+\end{equation}
+Here $W_1$ and $W_2$ are pointwise convolutions with intermediate width twice the input width, and $\gamma$ is a trainable channel-wise scale initialized to $0.01$. This implementation uses one group in group normalization and is not a replication of ConvNeXt~\cite{liu2022}.
+
+Pointwise projections $\pi_k$ map all three stages to $d=48$ channels. Bilinear resizing $\mathcal U_{4}$ aligns them on the stride-four grid:
+\begin{equation}
+ P=\GELU\!\left(\GN\!\left(W_P
+ [\pi_4(F_4);\mathcal U_4\pi_8(F_8);\mathcal U_4\pi_{16}(F_{16})]\right)\right).
+\end{equation}
+The context sequence $C\in\R^{L\times d}$ is the flattened projected stride-sixteen map. The architecture uses a common projected pixel grid rather than a mirrored encoder--decoder.
+
+\subsection{Query-based binary mask prediction}
+We initialize $K=8$ learned queries $Q\in\R^{K\times d}$ with independent Gaussian entries of variance $1/d$. Four-head cross-attention updates the queries:
+\begin{align}
+ A_h&=\softmax\!\left(\frac{(QW_h^Q)(CW_h^K)^\top}{\sqrt{d_h}}\right)CW_h^V,\\
+ Q'&=\LN\!\left(Q+[A_1;\ldots;A_4]W^O\right),\qquad d_h=d/4.
+\end{align}
+Linear-layer biases are omitted from notation for readability and retained in code. Unlike Mask2Former~\cite{cheng2022}, this head does not use masked cross-attention or bipartite instance matching.
+
+For pixel position $u$ on the shared feature grid, the query mask logits and image-level query weights are
+\begin{align}
+ m_k(u)&=\frac{(W_mq'_k)^\top P(u)}{\sqrt d},\\
+ \alpha_k&=\frac{\exp(w_\alpha^\top q'_k)}{\sum_{j=1}^{K}\exp(w_\alpha^\top q'_j)},\\
+ z_{\mathrm q}&=\mathcal U_S\!\left(\sum_{k=1}^{K}\alpha_km_k+b\right).
+\end{align}
+The scalar bias $b$ starts at $-2$. The weights sum to one across queries; the output is one binary logit map. Individual queries are not supervised or interpreted as distinct lesion instances. The attention interface permits explicitly masked evidence tokens in software, but no clinical tokens are supplied in the present experiment.
+
+\subsection{Local-detail residual branch}
+For the detail variant, a $3\times3$ stride-two convolution followed by normalization and GELU, then a $3\times3$ depthwise convolution with normalization and GELU, produces $D(x)$ at half input resolution. Let $\mathcal U_{1/2}$ resize the coarse full-input logit map onto this grid. The final logits are
+\begin{equation}
+ z_{\mathrm{LQ}}=z_{\mathrm q}+\mathcal U_S\!\left(
+ R_2\GELU\!\left(R_1[D(x);\mathcal U_{1/2}(z_{\mathrm q})]\right)\right).
+\end{equation}
+Both $R_1$ and $R_2$ are pointwise convolutions. The final projection $R_2$, including its bias, is initialized to zero so that the detail model initially reproduces its base query prediction. The extra parameter count, time, and memory are reported; the comparison has equal optimizer-step budgets, not equal computational cost.
+
+\subsection{Objective and controlled optimization}
+For batch size $B$, probabilities $p_{iu}=\sigma(z_{iu})$, targets $y_{iu}$, and binary validity $v_{iu}$, we minimize
+\begin{align}
+ \mathcal L_{\mathrm{BCE}}&=-\frac{\sum_{i,u}v_{iu}\left[y_{iu}\log p_{iu}+(1-y_{iu})\log(1-p_{iu})\right]}{\sum_{i,u}v_{iu}},\\
+ \mathcal L_{\mathrm D}&=\frac1B\sum_i\left[1-
+ \frac{2\sum_uv_{iu}p_{iu}y_{iu}+1}{\sum_uv_{iu}p_{iu}+\sum_uv_{iu}y_{iu}+1}\right],\\
+ \mathcal L&=\mathcal L_{\mathrm{BCE}}+\mathcal L_{\mathrm D}.
+\end{align}
+The implementation uses numerically stable BCE with logits. Empty-reference images remain supervised. Padding is excluded from the objective but remains present in encoder inputs; the current network is not invariant to padded context.
+
+All arms use AdamW with learning rate $10^{-3}$, weight decay $10^{-4}$, default momentum coefficients $(0.9,0.999)$, batch size eight, gradient-norm clipping at one, float32 arithmetic, and twenty epochs with a cosine learning-rate schedule. The total number of updates is $20\lceil N_{\mathrm{train}}/8\rceil$ for every arm; its concrete value is recorded after the development manifest is frozen. No pretrained weights or early stopping are used. The selected checkpoint maximizes validation positive-image mean Dice on its input grid, with the first maximum retained. This selection criterion is disclosed because final comparison uses the original grid.
+
+\begin{table}[t]
+\centering
+\caption{Prespecified exploratory comparison. Each arm uses seeds 42, 123, and 2026. All nine runs are pending at manuscript preparation.}
+\begin{tabular}{lll}
+\toprule Arm & Input & Comparison purpose\\\midrule
+Query & $192^2$ & Development baseline\\
+Query & $384^2$ & Resolution effect\\
+Query + local detail & $384^2$ & Local-detail effect\\\bottomrule
+\end{tabular}
+\end{table}
+A GPU smoke test verifies several batches, finite losses and gradients, image--mask geometry, memory accounting, and checkpoint serialization before the suite starts. Smoke-test outputs are pipeline checks, not research results. Interrupted runs are retained and labeled incomplete.
+
+\subsection{Original-grid validation and reporting}
+For model evaluation, unlike reference-mask roundtrip analysis, probabilities are first cropped to the valid content rectangle and then restored bilinearly to the original image shape:
+\begin{equation}
+ \widehat y_i(u)=\ind\!\left[
+ \operatorname{Bilinear}_{H_i,W_i}\bigl(\operatorname{Crop}_{v_i}\sigma(z_i)\bigr)(u)\geq0.5\right].
+\end{equation}
+Bilinear interpolation uses \texttt{align\_corners=False}. Thresholding precedes neither cropping nor interpolation. We calculate
+\begin{equation}
+ \operatorname{Dice}=\frac{2TP}{2TP+FP+FN},\quad
+ \operatorname{IoU}=\frac{TP}{TP+FP+FN},\quad
+ A_{\mathrm{FP},i}=\frac{FP_i}{H_iW_i}.
+\end{equation}
+If both prediction and target are empty, Dice and IoU are defined as one; if only one is empty they are zero. Positive-image macro Dice and IoU exclude empty targets. ``Small-lesion Dice'' denotes mean image-level Dice over images with original \emph{union} foreground fraction in $(0,0.01]$, not a lesion-instance detection metric. The sample count accompanies this value. Healthy-image false-positive reporting includes both the mean $A_{\mathrm{FP},i}$ and the fraction of healthy images with any predicted foreground. Full-image area fractions are not physical areas or fractions of a segmented retinal field.
+
+We report all seeds, descriptive means and sample standard deviations, and paired seed differences for resolution and detail contrasts. Seed variability does not establish patient-level uncertainty. Any existing image bootstrap is explicitly labeled exploratory. Training time includes the epoch loop, validation, and checkpoint I/O; original-grid evaluation time includes decoding. CUDA peak allocated and reserved bytes and process peak resident memory use distinct scopes and are labeled separately. Hand-computed synthetic cases verify overlap arithmetic, empty-mask conventions, padding removal, interpolation, and threshold ordering. No model-performance result is asserted by passing these checks.
+
+\subsection{Deferred multimodal and clinical endpoints}
+The current implementation does not learn an EMR encoder, a language-model fusion objective, longitudinal progression, or time to vision loss. FairVLMed~\cite{luo2024} remains a separate glaucoma study until note provenance, negation, experiencer, temporal availability, and target leakage have been reviewed. Future claims concerning incomplete clinical records require same-patient image--record linkage and appropriately timed outcomes. A distinct validation protocol and clinical collaborators will be required before these endpoints enter training or evaluation.

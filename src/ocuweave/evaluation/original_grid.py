@@ -15,6 +15,29 @@ from ocuweave.training.engine import checked_manifest, select_device
 from ocuweave.utils.provenance import sha256, write_json
 
 
+def restore_probabilities(probability, valid, original_shape):
+    """Remove rectangular letterbox padding, then bilinear-resize probabilities.
+
+    Threshold only after this transform. This is distinct from nearest-neighbor
+    reference-mask roundtrip analysis.
+    """
+    valid = np.asarray(valid, dtype=bool)
+    if probability.ndim != 4 or probability.shape[:2] != (1, 1):
+        raise ValueError('Expected one B=1, C=1 probability map')
+    if tuple(probability.shape[-2:]) != valid.shape or not valid.any():
+        raise ValueError('A nonempty matching valid region is required')
+    if len(original_shape) != 2 or min(original_shape) < 1:
+        raise ValueError('Positive original height and width required')
+    if not torch.isfinite(probability).all() or (probability < 0).any() or (probability > 1).any():
+        raise ValueError('Finite probabilities in [0, 1] required')
+    yy, xx = np.nonzero(valid)
+    region = valid[yy.min():yy.max()+1, xx.min():xx.max()+1]
+    if not region.all():
+        raise ValueError('Letterbox valid region must be rectangular')
+    cropped = probability[:, :, yy.min():yy.max()+1, xx.min():xx.max()+1]
+    return F.interpolate(cropped, size=original_shape, mode='bilinear', align_corners=False)[0, 0]
+
+
 @torch.no_grad()
 def evaluate_original(manifest, archive, checkpoint, output, *, split='validation', device='cpu', allow_unverified=False):
     require_development_split(split)
@@ -34,9 +57,7 @@ def evaluate_original(manifest, archive, checkpoint, output, *, split='validatio
             pixels,_,valid=letterbox(image,target,size)
             x=torch.from_numpy(pixels.transpose(2,0,1).copy()).float()[None].to(dev)/255
             probability=model(x).sigmoid()
-            yy,xx=np.nonzero(valid)
-            cropped=probability[:,:,yy.min():yy.max()+1,xx.min():xx.max()+1]
-            restored=F.interpolate(cropped,size=target.shape,mode='bilinear',align_corners=False)[0,0].cpu().numpy()
+            restored=restore_probabilities(probability,valid,target.shape).cpu().numpy()
             m=binary_metrics(restored>=.5,target)
             rows.append({'sample_id':row['sample_id'],'source':row.get('source') or 'unknown',
                 'label':row['label'],'area_bin':area_bin(float(target.mean())),
