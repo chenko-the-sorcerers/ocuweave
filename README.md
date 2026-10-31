@@ -157,3 +157,5 @@ Run the CPU [cleaning notebook](https://colab.research.google.com/github/chenko-
 ## Exploratory training with OcuWeave–LQNet
 
 The local-detail query variant is named **OcuWeave–LQNet (Local-detail Query Network)**. See the [locked protocol](docs/protocols/exploratory_training.md) and [execution status](docs/results/exploratory-training.md). Training strategy naming remains future work. CPU smoke checks do not count as GPU runs or research results.
+
+The v0.6.0 execution attempt is blocked by Colab GPU quota and a failed Drive mount. Actual-data freezing and all nine runs remain pending. [Release-pinned Colab template](https://colab.research.google.com/github/chenko-the-sorcerers/ocuweave/blob/v0.6.0/notebooks/OcuWeave_Exploratory_Colab.ipynb).

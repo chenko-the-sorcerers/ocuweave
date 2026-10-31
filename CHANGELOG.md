@@ -16,7 +16,8 @@ No unreleased changes recorded.
 - Explicit positive-image IoU, original-grid validation and source/configuration/hash guards.
 
 ### Validation
-- Validation and execution status are recorded in docs/results/exploratory-training.md; pending GPU runs have no scores.
+- 43 Python tests, CMake/CTest, native parity and synthetic manifest audit passed in CI; local grouping tests and syntax checks passed.
+- Colab T4 allocation was blocked by quota; initial Drive mount and one recovery failed. Actual-data freezing, smoke checks and all nine runs remain pending; see docs/results/exploratory-training.md.
 
 ## [0.5.0] — 2026-10-31
 
