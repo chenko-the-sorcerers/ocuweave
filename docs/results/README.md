@@ -12,10 +12,12 @@ novelty, or multimodal training result has been established.
 | Query vs FCN, seed 42, 192 pixels | v0.2.0 | Completed feasibility training and test evaluation | [Pilot metrics and provenance](pilot-and-data.md) |
 | FairVLMed numeric arrays and development-note flags | v0.3.0 | Completed technical audit; semantic leakage review pending | [Quality report](quality-review.md) |
 | OTFID development failure analysis | v0.3.0 | Completed, existing weights only | [Quality report](quality-review.md) |
-| Annotation geometry and 192/384 roundtrip review | v0.4.0 | New executable protocol; results recorded after execution | [Protocol](../protocols/resolution_detail.md) |
-| Query 192 vs query 384, seeds 42/123/2026 | v0.4.0 | Registered; no improvement claimed before execution | [Protocol](../protocols/resolution_detail.md) |
+| Annotation geometry and 192/384 roundtrip review | v0.4.0 | Completed technical review of 238 development pairs; no clinical adjudication | [Executed review](annotation-review.md) |
+| Query 192 vs query 384, seeds 42/123/2026 | v0.4.0 | Nine-run suite registered; training pending due to Colab GPU limits | [Protocol](../protocols/resolution_detail.md) |
 | Query 384 vs local-detail query 384, same seeds | v0.4.0 | Experimental implementation; no improvement claimed | [Architecture and controls](../protocols/resolution_detail.md) |
 | FairVLMed original-note multimodal glaucoma study | Not trained | Blocked on semantic/temporal leakage review | [EMR entry criteria](../protocols/emr_leakage_gate.md) |
+
+See the [executed geometry review and current status](annotation-review.md) for the new measurements and the GPU execution limitation.
 
 ## Complete private evidence
 

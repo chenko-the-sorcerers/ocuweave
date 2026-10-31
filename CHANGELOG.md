@@ -7,6 +7,18 @@ Dates use ISO 8601. Research hypotheses are not software capabilities.
 
 No unreleased changes recorded.
 
+## [0.4.1] — 2026-10-31
+
+### Documented
+- Executed review of 238 development image/mask pairs, zero geometry/foreground-count mismatches, and original/192/384 reference-boundary panels.
+- Measured mask roundtrip, boundary and area-distortion results across all positive, small-lesion and train/validation strata; explicitly separate from model accuracy.
+- Completed CPU notebook execution and the subsequent T4 allocation failure due to Colab usage limits. All nine new training runs remain pending, with no invented performance or resource measurements.
+- Consolidated result records, source hashes and separate semantic/temporal EMR review requirements.
+
+### Validation
+- Documentation values reconciled to saved Colab JSON outputs. v0.4.0 passed 32 Python tests, CMake/CTest, packaging and CI; no model, training or metric logic changed in this patch.
+- Original test-result hashes remain unchanged; clinical boundary correctness and EMR leakage clearance remain unverified.
+
 ## [0.4.0] — 2026-10-31
 
 ### Added

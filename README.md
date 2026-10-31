@@ -134,7 +134,7 @@ and appropriate privacy review. This software is for research, not patient care.
 
 ## Versioning
 
-The current software version is **0.4.0**. Changes are recorded in [CHANGELOG.md](CHANGELOG.md), and releases use annotated Git tags (`vMAJOR.MINOR.PATCH`). During `0.x`, interfaces may evolve; pin a tag or commit for reproducible experiments.
+The current software version is **0.4.1**. Changes are recorded in [CHANGELOG.md](CHANGELOG.md), and releases use annotated Git tags (`vMAJOR.MINOR.PATCH`). During `0.x`, interfaces may evolve; pin a tag or commit for reproducible experiments.
 
 Software versions describe implementation changes, not clinical validation or model quality. Dataset versions, configurations, and future checkpoint versions must be recorded independently. See [the release procedure](docs/protocols/releases.md).
 
