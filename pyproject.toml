@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "ocuweave"
-version = "0.9.0"
+version = "0.10.0"
 description = "Research toolkit for evidence-grounded ophthalmic segmentation"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -13,7 +13,7 @@ authors = [{name = "Marchel Andrian Shevchenko"}]
 dependencies = []
 
 [project.optional-dependencies]
-research = ["torch>=2.6,<3", "numpy>=1.24,<3", "Pillow>=10,<13", "matplotlib>=3.7,<4"]
+research = ["torch>=2.6,<3", "numpy>=1.24,<3", "Pillow>=10,<13", "matplotlib>=3.7,<4", "scipy>=1.10,<2", "scikit-image>=0.22,<1"]
 
 [project.scripts]
 ocuweave = "ocuweave.cli:main"

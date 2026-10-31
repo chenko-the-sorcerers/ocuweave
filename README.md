@@ -10,7 +10,7 @@
 
 [![Checks](https://github.com/chenko-the-sorcerers/ocuweave/actions/workflows/ci.yml/badge.svg)](https://github.com/chenko-the-sorcerers/ocuweave/actions)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Software v0.9.0](https://img.shields.io/badge/software-v0.9.0-334bd3.svg)](https://github.com/chenko-the-sorcerers/ocuweave/tree/v0.9.0)
+[![Software v0.10.0](https://img.shields.io/badge/software-v0.10.0-334bd3.svg)](https://github.com/chenko-the-sorcerers/ocuweave/tree/v0.10.0)
 
 ![OcuWeave research illustration](docs/assets/ocuweave-thumbnail.webp)
 
@@ -18,7 +18,7 @@
 
 *Educational AI-generated fundus illustration and lesion overlay. This artwork is not patient data, a reference annotation, or a model prediction.*
 
-OcuWeave is an open research toolkit for ophthalmic segmentation, with ocular toxoplasmosis as its first experimental task. **OcuWeave–LQNet** adds a local-detail residual branch to our compact query segmenter. Both networks are independently implemented and initialized from random weights, without a U-Net backbone or mirrored decoder. PyTorch supplies tensor operations and automatic differentiation.
+OcuWeave is an open research toolkit for ophthalmic segmentation, with ocular toxoplasmosis as its first experimental task. **OcuWeave–LQNet** adds a local-detail residual branch to our compact query segmenter. Both networks are independently implemented and initialized from random weights. PyTorch supplies tensor operations and automatic differentiation.
 
 The current release provides a runnable **image-only** pipeline. The title describes the broader research direction; LLM–EMR fusion and longitudinal prediction are not implemented. The manuscript is in preparation; no conference acceptance or state-of-the-art result is claimed.
 
@@ -34,7 +34,7 @@ The current release provides a runnable **image-only** pipeline. The title descr
 Python **3.10+**. Start with CPU; CUDA is optional. C++ tooling is required only for the separate native example. Installation from source is supported; this release is not published to PyPI.
 
 ```bash
-git clone --branch v0.9.0 https://github.com/chenko-the-sorcerers/ocuweave.git
+git clone --branch v0.10.0 https://github.com/chenko-the-sorcerers/ocuweave.git
 cd ocuweave
 python -m venv .venv
 source .venv/bin/activate  # Windows: .venv\Scripts\activate
@@ -106,7 +106,7 @@ ocuweave predict --checkpoint outputs/lqnet-384-seed42/best.pt \
 | `query_detail` | [LocalDetailSegmenter](src/ocuweave/models/local_detail.py) | 111,411 | LQNet local-detail ablation |
 | `fcn` | [CompactFCN](src/ocuweave/baselines/compact_fcn.py) | Reported per run | Encoder/pixel-feature matched baseline |
 
-The local branch starts with a zero output projection. It refines logits at half input resolution; it is not a symmetric U-Net decoder. All variants use masked BCE + soft Dice, AdamW, and explicit seed/configuration records. The [model card](docs/model_cards/ocuweave.md) describes scope and limitations.
+The local branch starts with a zero output projection. It refines logits at half input resolution.. All variants use masked BCE + soft Dice, AdamW, and explicit seed/configuration records. The [model card](docs/model_cards/ocuweave.md) describes scope and limitations.
 
 ## Evidence and reproducibility
 
@@ -169,6 +169,17 @@ Set `OCUWEAVE_NATIVE_LIBRARY` to the absolute shared-library path to include Pyt
 
 Contributions should include a reproducible issue, a small scoped change and relevant checks. Describe the data license and provenance for any proposed dataset integration; do not submit patient data or checkpoints in a pull request. See [CONTRIBUTING](CONTRIBUTING.md) and [release procedure](docs/protocols/releases.md).
 
+## FIVES vessel experiments
+
+Prepare the official extracted FIVES release and run a supplementary feasibility comparison:
+
+```bash
+python scripts/run_fives.py prepare --root /path/to/fives --manifest /path/to/new-manifest.json
+python scripts/run_fives.py pilot --root /path/to/fives --manifest /path/to/new-manifest.json --output /path/to/new-run --device cpu --steps 100
+```
+
+This compares Query 192, Query 384 and LQNet 384 using seed 42 and equal budgets. It saves final checkpoints, original-grid validation masks, Dice/IoU, centerline metrics and selected examples. It does not complete the separate 500-step GPU programme. Official test images are not evaluated. Patient identity remains unverified; read the [feasibility protocol](docs/protocols/fives_feasibility.md).
+
 ## Citation and license
 
 Please cite the **software** until a paper is publicly available. GitHub’s “Cite this repository” uses [CITATION.cff](CITATION.cff).
@@ -179,7 +190,7 @@ Please cite the **software** until a paper is publicly available. GitHub’s “
   title = {OcuWeave: Evidence-Grounded Vision--Language Learning with
            Incomplete Clinical Records for Ophthalmic Disease Assessment},
   year = {2026},
-  version = {0.9.0},
+  version = {0.10.0},
   url = {https://github.com/chenko-the-sorcerers/ocuweave}
 }
 ```

@@ -3,6 +3,17 @@
 Notable changes to OcuWeave are recorded here. Versions follow Semantic Versioning.
 Dates use ISO 8601. Research hypotheses are not software capabilities.
 
+## [0.10.0] — 2026-11-01
+
+### Added
+- FIVES official-release pairing, immutable development manifests, file integrity checks and conservative similarity grouping while preserving the official test partition.
+- A separate three-variant feasibility runner with fixed step budgets, random initialization, original-grid vessel metrics, checkpoint reload checks and deterministic example selection.
+- Hand-computed tests for centerline/overlap metrics, split preservation, tampering and image–mask geometry.
+
+### Updated
+- Describe the method directly as OcuWeave–LQNet in the README.
+- Keep the supplementary CPU feasibility protocol separate from the uncompleted core GPU programme; IDRiD and REFUGE2 require dataset access.
+
 ## [0.9.0] — 2026-11-01
 
 ### Added
