@@ -150,4 +150,6 @@ See `CITATION.cff` to cite this research software; no publication acceptance is 
 
 ## Cleaning review
 
-Run the CPU [cleaning notebook](notebooks/OcuWeave_Cleaning_Review_Colab.ipynb) with the acquired datasets in the private project Drive. The [protocol](docs/protocols/cleaning_review.md) distinguishes technical flags, clinical adjudication, patient linkage and original-note leakage review. No automated exclusion or clinical clearance is performed.
+Run the CPU [cleaning notebook](https://colab.research.google.com/github/chenko-the-sorcerers/ocuweave/blob/v0.5.0/notebooks/OcuWeave_Cleaning_Review_Colab.ipynb) with the acquired datasets in the private project Drive. The [protocol](docs/protocols/cleaning_review.md) distinguishes technical flags, clinical adjudication, patient linkage and original-note leakage review. No automated exclusion or clinical clearance is performed.
+
+[Observed cleaning results](docs/results/cleaning-review.md): one OTFID train–validation near-duplicate candidate remains unresolved. Technical screening does not verify patient independence, clinical mask correctness or EMR leakage clearance.

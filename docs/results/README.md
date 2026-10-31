@@ -15,7 +15,10 @@ novelty, or multimodal training result has been established.
 | Annotation geometry and 192/384 roundtrip review | v0.4.0 | Completed technical review of 238 development pairs; no clinical adjudication | [Executed review](annotation-review.md) |
 | Query 192 vs query 384, seeds 42/123/2026 | v0.4.0 | Nine-run suite registered; training pending due to Colab GPU limits | [Protocol](../protocols/resolution_detail.md) |
 | Query 384 vs local-detail query 384, same seeds | v0.4.0 | Experimental implementation; no improvement claimed | [Architecture and controls](../protocols/resolution_detail.md) |
+| Quality, annotation queues, identity and original-note context | v0.5.0 | Technical screening completed; one OTFID train–validation candidate; clinical and identity gates unresolved | [Cleaning findings](cleaning-review.md) |
 | FairVLMed original-note multimodal glaucoma study | Not trained | Blocked on semantic/temporal leakage review | [EMR entry criteria](../protocols/emr_leakage_gate.md) |
+
+See the [new cleaning findings](cleaning-review.md), including quality flags, the train–validation candidate and unresolved patient/EMR evidence.
 
 See the [executed geometry review and current status](annotation-review.md) for the new measurements and the GPU execution limitation.
 
@@ -26,6 +29,8 @@ The authorized Drive project is `OcuWeave — Datasets and experiments`:
 - `01 — Raw datasets/`: original archives, source metadata, license and download receipts.
 - `02 — Audits/otfid-v3-binary-v2-seed42-v0.2.0/`: frozen manifest, exclusions, duplicate checks and warnings.
 - `02 — Audits/quality-review-v0.3.0/`: FairVLMed per-image checks, note flags, four OTFID diagnostic reports, figures and `provenance.json`.
+- `02 — Audits/cleaning-review-v0.5.0/`: immutable quality/context audits, adjudication queues, linkage evidence and hash guards.
+- `05 — Research documentation/v0.5.0/`: cleaning documentation, consolidated results and SHA-256 inventory snapshots.
 - `03 — Notebooks/`: executed notebooks and separate launcher logs.
 - `04 — Runs/v0.2.0/pilot-seed42-20epochs/`: per-epoch training history, configurations, provenance, best weights, checkpoint receipts, and saved test JSON.
 - `02 — Audits/development-v0.4.0/` and `04 — Runs/v0.4.0/resolution-detail-seeds/`: new review and experiment artifacts, when generated.

@@ -72,3 +72,19 @@ class CleaningReviewTests(unittest.TestCase):
             for path in (root/'review').glob('*.json'):
                 self.assertNotIn('PRIVATE TEST SENTINEL',path.read_text())
             self.assertEqual(hashes,{name:sha256(root/name) for name in hashes})
+
+    def test_archive_includes_nested_cleaning_evidence_without_pair_rows(self):
+        import json,tempfile
+        from pathlib import Path
+        from scripts.archive_research_record import measured_reports
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);audit=root/'02 — Audits/cleaning-review-v0.5.0/run/review'
+            (audit/'otfid').mkdir(parents=True)
+            (audit/'summary.json').write_text(json.dumps({'automatic_exclusions':0}))
+            (audit/'otfid/near-duplicates.json').write_text(json.dumps({'pairs':[{'a':'private-id'}],'truncated':False}))
+            reports=measured_reports(root)
+            self.assertEqual(len(reports),2)
+            self.assertNotIn('private-id',json.dumps(reports))
+            pair=next(r for r in reports if r['source'].endswith('near-duplicates.json'))
+            self.assertEqual(pair['result']['pairs']['rows'],1)
+            self.assertFalse(pair['result']['truncated'])

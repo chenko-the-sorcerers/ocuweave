@@ -16,7 +16,9 @@ No unreleased changes recorded.
 - Reproducible cleaning notebook, source/test/checkpoint hash guards and private evidence snapshots.
 
 ### Validation
-- Local Python compilation passed. Full CPU tests and real-data execution are pending before tagging this release.
+- 36 Python tests passed in Colab, including transformed duplicate detection, training-only quality thresholds, clause-local context/privacy checks and an end-to-end source-preservation fixture. CMake/CTest, native parity, wheel packaging, synthetic manifest audit, notebook schema/syntax and local compilation passed.
+- Executed all six CPU notebook cells: 104/238 OTFID and 2,574/8,000 FairVLMed development images have technical quality flags; 6,886/8,000 original notes have priority cues. Saved clinical review queues and preserved all eight protected source/evaluation artifacts.
+- One OTFID train–validation near-duplicate candidate requires adjudication. FairVLMed has zero candidates among 9,582 usable descriptors, with 418 low-variance exclusions from this detector. No clinical or patient-independence clearance is implied.
 
 ### Limitations
 - Technical flags do not establish gradability, clinical annotation correctness, patient independence or EMR leakage clearance. No records are automatically removed, corrected or admitted to training.
