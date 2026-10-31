@@ -113,7 +113,7 @@ def train(manifest,archive,output,config,*,allow_unverified=False,device='auto')
             optimizer.zero_grad(set_to_none=True)
             loss=segmentation_loss(model(x),y,valid)
             if not torch.isfinite(loss):raise FloatingPointError('Non-finite training loss')
-            loss.backward();torch.nn.utils.clip_grad_norm_(model.parameters(),1.0);optimizer.step()
+            loss.backward();torch.nn.utils.clip_grad_norm_(model.parameters(),1.0,error_if_nonfinite=True);optimizer.step()
             steps+=1
             running+=loss.item()*len(x);n+=len(x)
         validation,_=evaluate_loader(model,val_loader,dev)

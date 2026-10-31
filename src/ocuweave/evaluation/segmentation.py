@@ -29,6 +29,7 @@ def aggregate(rows,seed=42):
     return {'samples':len(rows),'positive_samples':len(positive),'empty_samples':len(empty),
         'macro_dice':float(np.mean([r['dice'] for r in rows])),
         'positive_macro_dice':float(values.mean()) if len(values) else None,
+        'positive_macro_iou':float(np.mean([r['iou'] for r in positive])) if positive else None,
         'macro_iou':float(np.mean([r['iou'] for r in rows])),
         'global_dice':2*tp/(2*tp+fp+fn) if 2*tp+fp+fn else 1.0,
         'empty_image_false_positive_rate':float(np.mean([r['prediction_positive'] for r in empty])) if empty else None,

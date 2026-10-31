@@ -7,6 +7,17 @@ Dates use ISO 8601. Research hypotheses are not software capabilities.
 
 No unreleased changes recorded.
 
+## [0.6.0] — 2026-10-31
+
+### Added
+- Immutable development manifest revision with provisional near-duplicate family grouping; historical test rows and quality-flagged images are retained.
+- Locked nine-run, paired-seed protocol for Query 192, Query 384 and OcuWeave–LQNet 384 from random initialization.
+- Three-batch smoke checks for finite loss/gradients, paired geometry, checkpoint reload, timing and GPU memory; CPU checks cannot satisfy the CUDA execution gate.
+- Explicit positive-image IoU, original-grid validation and source/configuration/hash guards.
+
+### Validation
+- Validation and execution status are recorded in docs/results/exploratory-training.md; pending GPU runs have no scores.
+
 ## [0.5.0] — 2026-10-31
 
 ### Added

@@ -40,6 +40,9 @@ def summarize(root, configs):
             small=report['by_original_area'].get('small_le_1pct',{})
             row.update(status='completed',positive_dice=report['metrics']['positive_macro_dice'],
                 small_lesion_dice=small.get('positive_macro_dice'),
+                positive_iou=report['metrics']['positive_macro_iou'],macro_iou=report['metrics']['macro_iou'],
+                small_lesion_count=small.get('positive_samples',0),
+                evaluation_seconds=report['elapsed_seconds_including_decode'],
                 healthy_any_pixel_fp=report['metrics']['empty_image_false_positive_rate'],
                 healthy_mean_fp_area=report['mean_healthy_false_positive_area_fraction'],
                 elapsed_seconds=timing['elapsed_seconds'],optimizer_steps=timing['optimizer_steps_completed'],
@@ -66,7 +69,7 @@ def summarize(root, configs):
     for variant in sorted({name.split('-seed')[0] for name in configs}):
         selected=[r for r in rows if r['status']=='completed' and r['run'].split('-seed')[0]==variant]
         groups[variant]={'completed_seeds':len(selected),'metrics':{}}
-        for metric in ('positive_dice','small_lesion_dice','healthy_any_pixel_fp','healthy_mean_fp_area','elapsed_seconds','peak_cuda_allocated_bytes'):
+        for metric in ('positive_dice','positive_iou','macro_iou','small_lesion_dice','healthy_any_pixel_fp','healthy_mean_fp_area','elapsed_seconds','peak_cuda_allocated_bytes'):
             values=[r[metric] for r in selected if r.get(metric) is not None]
             groups[variant]['metrics'][metric]={'n':len(values),'mean':statistics.mean(values) if values else None,
                 'sample_sd':statistics.stdev(values) if len(values)>1 else None}
