@@ -14,7 +14,7 @@ The implemented method is an image-only query segmenter with an optional local-d
 
 `QueryMaskHead` maintains eight learned 48-dimensional queries. Four-head cross-attention conditions them on context tokens. Normalized query embeddings interact with the pixel grid through scaled dot products. Learned softmax query weights combine the eight mask logits into one output, followed by a learned scalar bias and bilinear restoration to the input size. These are soft query mixtures; no instance-level Hungarian matching is used.
 
-`OcuWeaveSegmenter` supplies one binary channel for the OTFID and FIVES tasks. The evidence-token argument is a tested low-level interface, not an implemented clinical-note encoder or demonstrated multimodal capability.
+`OcuWeaveSegmenter` supplies one binary channel for the OTFID and FIVES tasks. The evidence-token argument also supports the experimental composition described below; no clinical multimodal performance has been established.
 
 ## Local-detail residual
 
@@ -34,8 +34,12 @@ The IDRiD loss selects only annotated image–class pairs before computing maske
 - Evaluation restores probabilities to each original image grid before a fixed 0.5 threshold. Report empty-reference conventions and positive-image denominators.
 - File hashes, source revision, seed, actual step count, checkpoint hash and resource scope accompany each run. Provisional similarity groups do not verify patient identity.
 
-## Native code and future modules
+## Experimental evidence conditioning
 
-The C++ library currently provides a tested weighted-mean interoperability example with an exception-safe C ABI. It is not the segmentation network and has no autograd support. Neural-network training uses Python/PyTorch. Custom CUDA operators are not implemented.
+`OcuWeave` composes LQNet with `NoteEncoder`, `ClinicalEncoder` and `EvidenceFusion`. Notes are UTF-8 byte IDs processed by a randomly initialized Transformer and masked mean pooling. Structured features use training-only mean/scale buffers, explicit observed-feature indicators and an MLP. Two availability-masked tokens condition the visual queries through the existing attention interface. Missing payloads are removed before arithmetic and attention. All-missing inputs reduce to image-only segmentation.
 
-Language encoders, structured clinical encoders, evidence fusion, longitudinal comparison and prognosis remain research directions. They require genuinely paired records, temporal and target-leakage review, appropriate supervision and independent evaluation. A clinical note may contain information not visible in a photograph; missing visual confirmation alone does not establish contradiction.
+This implementation supports synthetic forward/backward tests. It is not an LLM, a trained clinical model, a longitudinal system or validated evidence attribution. Real paired data require separate temporal and target-leakage review. A note can contain information not visible in a photograph.
+
+## Native operations
+
+The optional C++17 library supplies weighted pooling and binary confusion counts through an exception-safe C ABI. Python bindings derive Dice and IoU from native counts. There is no autograd or custom CUDA operator. Neural-network training uses Python/PyTorch; no native performance advantage is asserted.

@@ -1,5 +1,5 @@
 # data/splitting
 
-Group by patient across both eyes and visits. Unknown patient grouping blocks patient-independent claims.
+Patient-aware and development grouping helpers preserve frozen split assignments. Similarity groups are provisional and do not establish patient identity.
 
-Status: planned module boundary.
+See [the repository documentation](https://github.com/chenko-the-sorcerers/ocuweave/tree/main/docs) for contracts and tested scope.

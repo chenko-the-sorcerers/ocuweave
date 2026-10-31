@@ -1,1 +1,1 @@
-"""Training and checkpoint infrastructure is planned. Do not report completed runs until implemented."""
+"""Training loops, locked task configurations and resumable checkpoints."""

@@ -28,3 +28,7 @@ For each diagnostic, retain configuration and hashes, selected training IDs, lab
 The diagnostic subset is training data only. Validation supports later development under its declared budget; old test results and protected test assignments remain unchanged. FIVES cross-official-partition similarity candidates still bar official-test claims until adjudicated; patient identity is unverified. REFUGE2 requires legitimate dataset access before its task can be implemented or trained. FairVLMed/EMR remains a separate glaucoma track pending leakage and timing review.
 
 After the gate, follow the [cross-task programme](cross_task_experiments.md) and the [original OTFID continuation protocol](exploratory_training.md). Any protocol amendment receives a new configuration/version; it must not overwrite frozen runs or masquerade as completion of the earlier design.
+
+## Executable implementation (software 0.11.0)
+
+`ocuweave diagnose` now records train-only fixed-subset fitting, observed-label loss components, foreground/background probabilities, module gradients and parameter updates, original-grid masks, timing/memory and checkpoint reload. See [task commands](../task-workflows.md#diagnose-before-main-training). Synthetic CPU tests verify the plumbing; no medical-data GPU readiness result is claimed. The resulting `executed_requires_review` status still requires the review described above. Patch-training and alternate-loss comparisons remain separately planned.

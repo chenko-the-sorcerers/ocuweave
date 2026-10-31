@@ -1,5 +1,5 @@
 # data/augmentation
 
-Image and lesion-mask transforms must share geometry. Clinical text augmentation is not implemented.
+`paired.horizontal_flip` applies reproducible, step-seeded flips to images, targets and valid regions together.
 
-Status: planned module boundary.
+See [the repository documentation](https://github.com/chenko-the-sorcerers/ocuweave/tree/main/docs) for contracts and tested scope.

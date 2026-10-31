@@ -1,5 +1,5 @@
 # models/heads
 
-Future task-specific prediction, lesion segmentation, and uncertainty heads.
+`query_mask.py` implements learned query masks with explicit missing-evidence attention masking.
 
-Status: planned module boundary.
+See [the repository documentation](https://github.com/chenko-the-sorcerers/ocuweave/tree/main/docs) for contracts and tested scope.

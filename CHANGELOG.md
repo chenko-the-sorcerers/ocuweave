@@ -3,6 +3,26 @@
 Notable changes to OcuWeave are recorded here. Versions follow Semantic Versioning.
 Dates use ISO 8601. Research hypotheses are not software capabilities.
 
+## [0.11.0] — 2026-11-01
+
+### Added
+- Installed task commands for OTFID, FIVES and IDRiD: preparation, exact configuration generation, fixed-step training, interrupted-session continuation, validation and per-class inference.
+- Periodic atomic model/optimizer/scheduler/RNG checkpoints, immutable session outputs, manifest binding, completion receipts and strict task/configuration/version/device resume guards.
+- Executable training-only diagnostics: fixed-subset fitting, observed-label BCE/Dice, foreground/background probabilities, per-module gradients/updates, original-grid masks, checkpoint reload and resource records.
+- Paired step-seeded augmentation and full-coverage overlapping tiled inference. Patch-based training remains pending.
+- Experimental byte-Transformer note encoder, train-only structured-feature normalization, availability-aware evidence fusion and an OcuWeave tensor composition. Synthetic tests only; no pretrained LLM or clinical EMR training.
+- C++ binary confusion counts with Python Dice/IoU bindings and analytical/randomized parity checks.
+- Environment doctor and self-contained task/multimodal demos; installed-wheel CI exercises public commands without a source checkout.
+
+### Updated
+- Replace stale placeholder module documentation, add executable task recipes and a workflow guide, and refresh architecture/API/model-card scope.
+- The compatibility `scripts/evaluate.py` launcher now defaults to original-grid validation through the public CLI. Historical input-grid test evaluation requires explicit flags.
+- Preserve all historical results, source pins and frozen experiment protocols. No medical-data training, GPU readiness completion or accuracy improvement is claimed by this release.
+
+### Validation
+- Python regression and synthetic integration suite; exact CPU interrupted-run equivalence, missing-label gradients, train-only normalization, modality masking, original-grid geometry and CLI paths.
+- CMake/CTest, Python/native parity, synthetic manifest audit, release metadata checks and installed-wheel CPU demos outside the checkout.
+
 ## [0.10.1] — 2026-11-01
 
 ### Documentation

@@ -1,5 +1,5 @@
 # evaluation
 
-Future AUROC/AUPRC, segmentation, calibration, and patient-level confidence intervals; no metrics fabricated.
+Overlap metrics, original-grid restoration, vessel centerline metrics, image-level summaries and task validation are implemented. Image bootstrap intervals are not patient-level intervals.
 
-Status: planned module boundary.
+See [the repository documentation](https://github.com/chenko-the-sorcerers/ocuweave/tree/main/docs) for contracts and tested scope.

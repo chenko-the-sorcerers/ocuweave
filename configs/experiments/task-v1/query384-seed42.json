@@ -1,0 +1,15 @@
+{
+  "architecture": "query",
+  "width": 24,
+  "dim": 48,
+  "queries": 8,
+  "size": 384,
+  "batch_size": 8,
+  "steps": 500,
+  "seed": 42,
+  "learning_rate": 0.001,
+  "weight_decay": 0.0001,
+  "gradient_clip": 1.0,
+  "flip_probability": 0.5,
+  "save_every": 50
+}

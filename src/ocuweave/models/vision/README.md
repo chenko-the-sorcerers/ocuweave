@@ -1,5 +1,5 @@
 # models/vision
 
-Visual encoder interfaces and future lesion-region representations. No pretrained weights bundled.
+`compact.py` implements the compact visual encoder and multiscale pixel projection. Weights initialize randomly.
 
-Status: planned module boundary.
+See [the repository documentation](https://github.com/chenko-the-sorcerers/ocuweave/tree/main/docs) for contracts and tested scope.

@@ -66,3 +66,7 @@ Runs checkpoint the best validation model and write history after each epoch. Th
 | Unknown patient guard | Verify a patient map, or explicitly label the run exploratory using the flag. |
 | Zero Dice / IoU | Inspect the original/reference/prediction pairs and TP/FP/FN; do not replace the score. |
 | No GPU / quota exhausted | Run CPU audits and the synthetic smoke test; leave research runs pending. |
+
+## Unified task workflows
+
+For installed-package FIVES/IDRiD/OTFID commands, interrupted-run resume, training-only diagnostics and optional tiled inference, use [Task workflows](task-workflows.md). The new fixed-step protocol is separate from the historical epoch-based examples above.

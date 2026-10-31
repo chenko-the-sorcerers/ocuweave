@@ -12,6 +12,7 @@ jobs:
           python-version: '3.12'
       - run: python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
       - run: python -m pip install -e ".[research]"
+      - run: python scripts/check_release.py
       - run: cmake -S . -B build -DBUILD_TESTING=ON
       - run: cmake --build build
       - run: ctest --test-dir build --output-on-failure
@@ -30,3 +31,6 @@ jobs:
           "$RUNNER_TEMP/ocuweave-wheel/bin/ocuweave" --version
           "$RUNNER_TEMP/ocuweave-wheel/bin/ocuweave" demo --output "$RUNNER_TEMP/ocuweave-demo" --device cpu
           "$RUNNER_TEMP/ocuweave-wheel/bin/python" -c "import ocuweave; assert 'site-packages' in ocuweave.__file__, ocuweave.__file__"
+          "$RUNNER_TEMP/ocuweave-wheel/bin/ocuweave" doctor
+          "$RUNNER_TEMP/ocuweave-wheel/bin/ocuweave" demo-tasks --output "$RUNNER_TEMP/ocuweave-task-demo" --device cpu
+          "$RUNNER_TEMP/ocuweave-wheel/bin/ocuweave" demo-multimodal --output "$RUNNER_TEMP/ocuweave-evidence-demo"

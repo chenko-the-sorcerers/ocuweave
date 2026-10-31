@@ -1,5 +1,5 @@
 # models/clinical
 
-Structured clinical feature encoding with explicit missingness. Fit transformations on training data only.
+`structured.ClinicalEncoder` normalizes observed features using training-only statistics and encodes values plus availability indicators. Synthetic verification only; feature units/order are caller-defined.
 
-Status: planned module boundary.
+See [the repository documentation](https://github.com/chenko-the-sorcerers/ocuweave/tree/main/docs) for contracts and tested scope.

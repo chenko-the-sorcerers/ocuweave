@@ -1,5 +1,5 @@
 # models/fusion
 
-Proposed evidence alignment and reliability-aware fusion. Novelty and implementation remain unverified.
+`evidence.EvidenceFusion` adds modality identity and normalization to observed conditioning tokens, zeroing unavailable payloads. Integrated in `models.ocuweave.OcuWeave`; synthetic tests only.
 
-Status: planned module boundary.
+See [the repository documentation](https://github.com/chenko-the-sorcerers/ocuweave/tree/main/docs) for contracts and tested scope.

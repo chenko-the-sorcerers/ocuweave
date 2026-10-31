@@ -1,5 +1,5 @@
 # losses
 
-Future objectives require mathematical definitions, numerical tests, and ablations before inclusion.
+Binary masked BCE + soft Dice and multi-channel observed-only components are implemented. Unknown annotations and letterbox padding do not contribute gradients.
 
-Status: planned module boundary.
+See [the repository documentation](https://github.com/chenko-the-sorcerers/ocuweave/tree/main/docs) for contracts and tested scope.

@@ -1,5 +1,5 @@
 # utils
 
-Future seed, logging, configuration, and provenance utilities. Do not log patient text or identifiers.
+`provenance.py` supplies content hashes, atomic JSON outputs and software/source provenance. Installed wheels do not borrow a caller repository revision.
 
-Status: planned module boundary.
+See [the repository documentation](https://github.com/chenko-the-sorcerers/ocuweave/tree/main/docs) for contracts and tested scope.

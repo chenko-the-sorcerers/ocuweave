@@ -10,7 +10,7 @@
 
 [![Checks](https://github.com/chenko-the-sorcerers/ocuweave/actions/workflows/ci.yml/badge.svg)](https://github.com/chenko-the-sorcerers/ocuweave/actions)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Software v0.10.1](https://img.shields.io/badge/software-v0.10.1-334bd3.svg)](https://github.com/chenko-the-sorcerers/ocuweave/tree/v0.10.1)
+[![Software v0.11.0](https://img.shields.io/badge/software-v0.11.0-334bd3.svg)](https://github.com/chenko-the-sorcerers/ocuweave/tree/v0.11.0)
 
 ![FIVES validation: photograph, reference vessel mask and LQNet prediction](docs/assets/fives-lqnet-feasibility.webp)
 
@@ -20,7 +20,7 @@
 
 OcuWeave is an open research toolkit for ophthalmic segmentation, with ocular toxoplasmosis as its first experimental task. **OcuWeave–LQNet** adds a local-detail residual branch to our compact query segmenter. Both networks are independently implemented and initialized from random weights. PyTorch supplies tensor operations and automatic differentiation.
 
-The current release provides a runnable **image-only** pipeline. The title describes the broader research direction; LLM–EMR fusion and longitudinal prediction are not implemented. The manuscript is in preparation; no conference acceptance or state-of-the-art result is claimed.
+The release provides runnable segmentation workflows for **OTFID, FIVES and IDRiD**, including resumable training, validation and inference. Experimental note/structured-data conditioning modules are implemented and tested on synthetic inputs. They are not a trained LLM–EMR system; longitudinal prediction remains a research direction. The manuscript is in preparation; no conference acceptance or state-of-the-art result is claimed.
 
 ## Start here
 
@@ -31,10 +31,10 @@ The current release provides a runnable **image-only** pipeline. The title descr
 
 ## Install
 
-Python **3.10+**. Start with CPU; CUDA is optional. C++ tooling is required only for the separate native example. Installation from source is supported; this release is not published to PyPI.
+Python **3.10+**. Start with CPU; CUDA is optional. C++ tooling is optional, for native confusion counts and weighted pooling. Installation from source is supported; this release is not published to PyPI.
 
 ```bash
-git clone --branch v0.10.1 https://github.com/chenko-the-sorcerers/ocuweave.git
+git clone --branch v0.11.0 https://github.com/chenko-the-sorcerers/ocuweave.git
 cd ocuweave
 python -m venv .venv
 source .venv/bin/activate  # Windows: .venv\Scripts\activate
@@ -74,7 +74,31 @@ outputs/demo/
 
 Run directories are immutable: choose another output path to repeat a run. `python -m ocuweave` is equivalent to `ocuweave`, including after installation from a wheel outside the source checkout.
 
-## Train, evaluate, predict
+## Task workflows and diagnostics
+
+```bash
+ocuweave doctor
+ocuweave demo-tasks --output outputs/task-demo --device cpu
+ocuweave demo-multimodal --output outputs/evidence-demo
+```
+
+`demo-tasks` generates fixtures in FIVES and IDRiD layouts and exercises preparation, fixed-step training, checkpoint reload, original-grid validation, prediction and training-only diagnostics. `demo-multimodal` checks forward/backward behavior with synthetic notes, structured features and missing modalities. Neither command produces medical evidence.
+
+For real data, follow the [task workflow](docs/task-workflows.md):
+
+| Command | Purpose |
+|---|---|
+| `prepare-otfid`, `prepare-fives`, `prepare-idrid` | Audit authorized local data and freeze manifests |
+| `task-config` | Write an explicit fixed-step configuration |
+| `diagnose` | Inspect train-only probability, loss, gradient and parameter-update traces |
+| `fit` | Train a task; periodically save model, optimizer, scheduler and RNG states |
+| `fit --resume` | Continue an interrupted run into a new output directory |
+| `score` | Evaluate validation at original dimensions; preserve the test split |
+| `infer` | Export per-class probabilities and masks, optionally with overlapping tiles |
+
+These fixed-step commands form a new protocol. Historical epoch-based commands and frozen feasibility runners remain available. Their configurations and results are not interchangeable.
+
+## Historical OTFID workflow
 
 The following commands assume an **audited local archive and manifest**. Acquisition, patient-identity constraints, cleaning and split review are documented in [Getting started](docs/getting-started.md). They must precede claims about model performance.
 
@@ -115,7 +139,7 @@ The local branch starts with a zero output projection. It refines logits at half
 - The new development manifest is frozen at **197 training / 41 validation**, with all **104 quality-flagged images retained** and all 42 historical test rows preserved. CPU smoke checks passed for all three variants; GPU training remains blocked by Colab usage limits. See the [execution record](docs/experiments/2026-10-31-development-freeze.md) and [continuation protocol](docs/protocols/exploratory_training.md).
 - Supplementary FIVES vessel and IDRiD four-lesion CPU experiments are documented in the [cross-task feasibility report](docs/results/cross-task-feasibility-v0100/README.md). These use 100 steps and one seed; they do not complete the core GPU matrix.
 - Clinical annotation correctness and patient linkage remain unresolved. Vessel segmentation does not establish hypertension diagnosis. REFUGE2 disc/cup training remains blocked on dataset access.
-- Native C++ currently provides a tested weighted-mean interoperability example. Neural-network training is Python/PyTorch; custom CUDA kernels and C++ autograd are not implemented.
+- Native C++ provides tested binary confusion counts, Dice/IoU through the Python binding, and weighted pooling. Neural-network training is Python/PyTorch; custom CUDA kernels and C++ autograd are not implemented.
 
 Training saves configuration, software version, source revision when available, working-tree state, archive/manifest hashes, optimizer-step counts, timing and memory. A wheel without Git metadata records the source revision as unavailable instead of borrowing the caller’s repository. CPU/GPU numerical equality is not guaranteed; preserve the environment and hardware record.
 
@@ -128,7 +152,7 @@ Training saves configuration, software version, source revision when available, 
 
 Each is a separate 100-step CPU run, seed 42, evaluated at original image dimensions. FIVES includes one empty reference among 120 validation images; positive-only scores and centerline metrics are in the report. IDRiD predicts background on all annotated validation channels at threshold 0.5. This is an observed failure, not a missing result. The small FIVES Dice difference does not establish superiority; thin-centerline recall did not improve. [Protocols, denominators, time, memory and per-image results](docs/results/cross-task-feasibility-v0100/README.md).
 
-Before the next GPU session, complete the [GPU readiness checklist](docs/protocols/gpu_pretraining_diagnostics.md): tensor review, CUDA smoke checks, fixed-subset fitting and background-prediction diagnostics. Patch sampling and loss changes require separate registered comparisons. These checks are planned and have not run.
+Before the next GPU session, complete the [GPU readiness checklist](docs/protocols/gpu_pretraining_diagnostics.md): tensor review, CUDA smoke checks, fixed-subset fitting and background-prediction diagnostics. Patch sampling and loss changes require separate registered comparisons. The `diagnose` command now implements the small-subset diagnostics. Synthetic CPU verification is complete; the medical-data GPU readiness checks have not run.
 
 ## Cross-task experiment programme
 
@@ -163,12 +187,12 @@ Never combine unrelated patients across datasets. Dataset licenses and access co
 | `src/ocuweave/training/` | Training/checkpoints and controlled experiment runners |
 | `src/ocuweave/evaluation/` | Metrics, original-grid restoration and diagnostics |
 | `src/ocuweave/inference/` | Checkpoint-to-image prediction and artifact export |
-| `native/` | Optional C++17 numerical interoperability example |
+| `native/` | Optional C++17 confusion counts and numerical pooling |
 | `configs/`, `scripts/`, `notebooks/` | Research recipes, advanced entry points and Colab launchers |
 | `tests/` | Geometry, metrics, gradients, CLI round trips and native parity |
 | `docs/`, `paper/` | Protocols, results, model cards and manuscript source |
 
-Clinical/language/fusion folders currently describe future interfaces. Their presence is not a completed multimodal model. See [API and extension boundaries](docs/api.md).
+Clinical/language/fusion modules implement train-only feature normalization, a randomly initialized byte Transformer and availability-masked conditioning. They have synthetic contract tests, not clinical training or evaluation. See [API and extension boundaries](docs/api.md).
 
 ## Development
 
@@ -212,7 +236,7 @@ python scripts/predict_idrid.py --checkpoint /path/to/run/lqnet384/final.pt \
   --image /path/to/fundus.jpg --output /path/to/new-prediction --device cpu
 ```
 
-This saves four original-size binary masks and a provenance receipt. Add `--save-probabilities` for the float probability array. Use this task-specific command for IDRiD; the generic `ocuweave predict` command is for binary checkpoints.
+This saves four original-size binary masks and a provenance receipt. Add `--save-probabilities` for the float probability array. The installed `ocuweave infer` command also handles IDRiD and FIVES checkpoints; legacy `ocuweave predict` remains binary-only.
 
 ## Citation and license
 
@@ -224,7 +248,7 @@ Please cite the **software** until a paper is publicly available. GitHub’s “
   title = {OcuWeave: Evidence-Grounded Vision--Language Learning with
            Incomplete Clinical Records for Ophthalmic Disease Assessment},
   year = {2026},
-  version = {0.10.1},
+  version = {0.11.0},
   url = {https://github.com/chenko-the-sorcerers/ocuweave}
 }
 ```
