@@ -37,6 +37,11 @@ class FivesChecks(unittest.TestCase):
             root=Path(tmp);self.fixture(root)
             (root/'test/Original/0_N.png').write_bytes((root/'train/Original/0_N.png').read_bytes())
             with self.assertRaises(ValueError):prepare_fives(root,root/'manifest.json')
+            self.assertTrue((root/'manifest-cross-official-review.json').exists())
+            result=prepare_fives(root,root/'manifest.json',provisional_development=True)
+            self.assertFalse(result['official_test_eligible'])
+            self.assertTrue(all(r['split']=='test' for r in result['records'] if r['official_split']=='test'))
+            verify_fives(root,result)
 
     def test_wrong_mask_geometry_rejected(self):
         with tempfile.TemporaryDirectory() as tmp:

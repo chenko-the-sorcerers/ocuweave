@@ -27,7 +27,7 @@ def read_pair(root, row):
     return image, values > 0
 
 
-def prepare_fives(root, output, *, seed=42):
+def prepare_fives(root, output, *, seed=42, provisional_development=False):
     root, output = Path(root).resolve(), Path(output)
     if output.exists():
         raise FileExistsError('Preserve previous manifests')
@@ -58,25 +58,29 @@ def prepare_fives(root, output, *, seed=42):
                    dhash=f'{sum(int(b)<<i for i,b in enumerate((small[:,1:]>small[:,:-1]).flat)):016x}')
         thumbs[row['sample_id']] = np.asarray(image.resize((64,64), Image.Resampling.BILINEAR),dtype=np.float32)/255
         rows.append(row)
+        if len(rows)%100==0:print('Audited FIVES pairs',len(rows),flush=True)
     if not rows or len({r['sample_id'] for r in rows}) != len(rows):
         raise ValueError('Missing data or duplicate sample identifiers')
     candidates = group_similar(rows, thumbs)
     groups = defaultdict(list)
     for row in rows:
         groups[row['similarity_group']].append(row)
-    # Never repair an official train/test overlap silently.
-    for group in groups.values():
-        if len({r['official_split'] for r in group}) != 1:
+    cross_groups=[g for g in groups.values() if len({r['official_split'] for r in g})>1]
+    if cross_groups:
+        write_json(output.with_name(output.stem+'-cross-official-review.json'),
+                   {'groups':cross_groups,'candidates':candidates,'official_test_eligible':False})
+        if not provisional_development:
             raise ValueError('Cross-official-split similarity group requires adjudication')
     exact = defaultdict(set)
     for row in rows:
         exact[row['pixel_sha256']].add(row['official_split'])
-    if any(len(s)>1 for s in exact.values()):
+    if any(len(s)>1 for s in exact.values()) and not provisional_development:
         raise ValueError('Exact duplicate crosses official partitions')
     strata = defaultdict(list)
     for group_id, group in groups.items():
-        if group[0]['official_split']=='train':
-            strata[group[0]['disease_stratum']].append(group_id)
+        training_rows=[r for r in group if r['official_split']=='train']
+        if training_rows:
+            strata[training_rows[0]['disease_stratum']].append(group_id)
     validation_groups = set()
     rng = random.Random(seed)
     for stratum in sorted(strata):
@@ -90,9 +94,11 @@ def prepare_fives(root, output, *, seed=42):
     result = {'protocol':'fives-development-v1','seed':seed,'dataset':'FIVES',
               'source':'https://doi.org/10.6084/m9.figshare.19688169.v1','license':'CC-BY-4.0',
               'patient_identity_verified':False,'split_unit':'provisional_similarity_group',
+              'official_test_eligible':not bool(cross_groups),
+              'cross_official_group_count':len(cross_groups),'provisional_development':provisional_development,
               'records':rows,'counts':dict(Counter(r['split'] for r in rows)),
               'similarity_candidates':candidates,
-              'policy':'Official test preserved; 20% of training groups per disease stratum used for validation; no quality exclusions.',
+              'policy':'Official test preserved and never evaluated here; 20% of training groups per disease stratum used for validation; no quality exclusions. Any cross-official groups bar test-performance claims.',
               'limitations':['Patient/eye identity unavailable; similarity is not identity verification.',
                              'Technical geometry checks do not validate clinical boundaries.']}
     write_json(output, result)
@@ -123,6 +129,8 @@ def verify_fives(root, manifest):
     groups={}; pixels={}
     for row in manifest['records']:
         for field, mapping in [('similarity_group',groups),('pixel_sha256',pixels)]:
+            if row['split']=='test' and manifest.get('provisional_development') and not manifest.get('official_test_eligible',True):
+                continue
             value=row[field]
             if value in mapping and mapping[value]!=row['split']:
                 raise ValueError('Cross-split group or duplicate')

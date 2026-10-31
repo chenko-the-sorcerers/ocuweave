@@ -1,0 +1,13 @@
+# IDRiD four-channel feasibility protocol
+
+Prespecified 2026-11-01 before IDRiD training. This is a supplementary single-seed CPU feasibility study, separate from the core programme.
+
+Source: the original IDRiD segmentation ZIP redistributed at Zenodo record 17219542 under CC BY 4.0, with attribution to Porwal et al. The uploader is not the dataset creator. Verify 584,315,841 bytes and MD5 `bdf5cd10b8b14d62e1178dda245cff60`. This checksum verifies the mirror transfer, not byte equivalence to an authenticated IEEE download. Do not use the different Refined IDRiD dataset without a new protocol.
+
+Pair exact image stems with MA, HE, EX and SE TIFF masks; omit optic disc from lesion channels. An absent mask means unknown supervision pending review, not an empty negative target. Verify geometry, encodings and image/mask hashes. Preserve official train/test partitions. Use seed 42 and approximately 20% of training similarity groups for validation; patient identity remains unverified. Do not infer relationships from consecutive filename numbers.
+
+Query 192, Query 384 and LQNet 384 use a shared compact encoder with four independent query heads. The LQNet variant adds a shared local branch with four residual outputs. Fix width 24, embedding 48 and eight queries per channel. Seed 42; random initialization; batch 8; 100 steps; AdamW learning rate .001, decay .0001; step-wise cosine scheduler; clip norm 1; float32; two CPU threads. RGB/255, aspect-preserving bilinear image / nearest-mask letterbox, paired horizontal flips .5. Compute BCE plus soft Dice only over available image-class pairs and valid pixels. Zero gradients from unavailable annotations are unit-tested.
+
+Retain the final checkpoint chosen in advance. Verify finite losses/gradients and checkpoint reload equivalence. Evaluate validation once on original image grids after bilinear probability restoration and fixed threshold .5. Report per-class Dice/IoU, positive-image denominators, confusion counts and false-positive area. Average class-positive Dice only over defined class results. PR-AUC and component sensitivity are not implemented in this pilot and must not be inferred from overlap scores. No official test evaluation.
+
+Display the first two validation IDs in sorted order, fixed across variants, with a separate reference/prediction panel for each class. Mark unavailable annotation explicitly. Record CPU elapsed time, process memory high-water mark, checkpoint/data/source hashes. No clinical or superiority claim is supported by this short single-seed experiment. Small lesions can disappear during full-image downsampling; inspect preservation before considering a separate patch-based protocol.

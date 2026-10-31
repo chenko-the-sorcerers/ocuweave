@@ -11,9 +11,10 @@ if __name__=='__main__':
     parser.add_argument('--output')
     parser.add_argument('--steps',type=int,default=100)
     parser.add_argument('--device',choices=['cpu','cuda'],default='cpu')
+    parser.add_argument('--provisional-development',action='store_true',help='Keep official test untouched but bar its evaluation when cross-official candidates exist')
     args=parser.parse_args()
     if args.action=='prepare':
-        result=prepare_fives(args.root,args.manifest);print(result['counts'])
+        result=prepare_fives(args.root,args.manifest,provisional_development=args.provisional_development);print(result['counts'])
     else:
         if not args.output:parser.error('--output required for pilot')
         run_pilot(args.root,args.manifest,args.output,steps=args.steps,device=args.device)
