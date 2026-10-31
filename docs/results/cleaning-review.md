@@ -12,7 +12,7 @@ Private evidence root: `02 — Audits/cleaning-review-v0.5.0/20261031T061228Z/` 
 
 All six protocol code cells completed. Supplemental cells inspect development examples and the train–validation candidate. A supplemental main-kernel import initially failed; the retry used the pinned source directory and is recorded separately. The acquired-data audit had already succeeded in fresh subprocesses.
 
-Validation: 36 Python tests, CMake/CTest, native parity, wheel packaging, synthetic manifest checks, notebook schema/syntax and branch CI passed. Eight protected artifacts have identical pre/post SHA-256 values: source archives/CSV, frozen manifest, two checkpoints and two historical test-result JSON files.
+Validation: 37 Python tests, CMake/CTest, native parity, wheel packaging, synthetic manifest checks, notebook schema/syntax and branch CI passed. Eight protected artifacts have identical pre/post SHA-256 values: source archives/CSV, frozen manifest, two checkpoints and two historical test-result JSON files.
 
 ## Image quality priorities
 
