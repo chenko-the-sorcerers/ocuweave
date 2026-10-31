@@ -13,4 +13,4 @@ Prespecified on 2026-11-01 before FIVES model training. This supplementary CPU s
 - Gallery: lowest, median and highest validation Dice, plus greatest false-positive area, deduplicated. Display original image, reference and prediction separately. These are illustrative feasibility outputs, not evidence of diagnosis or clinical readiness.
 - Interpretation: one seed and a short CPU budget cannot establish superiority. Resolution and local-detail contrasts must retain their paired budgets. Full-resolution/patch alternatives require a separate protocol because aggressive resizing may discard narrow vessels.
 
-IDRiD and REFUGE2 are not replaced with FIVES disease strata: FIVES vessel labels cannot train DR lesion classes or disc/cup segmentation. Those cohorts remain blocked on their official access workflow.
+IDRiD and REFUGE2 are not replaced with FIVES disease strata: FIVES vessel labels cannot train DR lesion classes or disc/cup segmentation. IDRiD uses a separately documented CC BY 4.0 redistribution; REFUGE2 remains blocked on its official access workflow.

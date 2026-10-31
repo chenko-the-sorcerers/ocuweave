@@ -106,7 +106,7 @@ ocuweave predict --checkpoint outputs/lqnet-384-seed42/best.pt \
 | `query_detail` | [LocalDetailSegmenter](src/ocuweave/models/local_detail.py) | 111,411 | LQNet local-detail ablation |
 | `fcn` | [CompactFCN](src/ocuweave/baselines/compact_fcn.py) | Reported per run | Encoder/pixel-feature matched baseline |
 
-The local branch starts with a zero output projection. It refines logits at half input resolution.. All variants use masked BCE + soft Dice, AdamW, and explicit seed/configuration records. The [model card](docs/model_cards/ocuweave.md) describes scope and limitations.
+The local branch starts with a zero output projection. It refines logits at half input resolution. All variants use masked BCE + soft Dice, AdamW, and explicit seed/configuration records. The [model card](docs/model_cards/ocuweave.md) describes scope and limitations.
 
 ## Evidence and reproducibility
 
@@ -120,7 +120,7 @@ Training saves configuration, software version, source revision when available, 
 
 ## Cross-task experiment programme
 
-A [prespecified programme](docs/protocols/cross_task_experiments.md) covers OTFID, FIVES vessels, IDRiD lesions and REFUGE2 disc/cup: 36 core designs (including the existing nine OTFID runs) plus nine conditional objective ablations. Seven clean/corrupted evaluation conditions reuse each core checkpoint. These are plans, not additional trained capabilities; new datasets, adapters, multi-output training and objectives remain pending.
+A [prespecified programme](docs/protocols/cross_task_experiments.md) covers OTFID, FIVES vessels, IDRiD lesions and REFUGE2 disc/cup: 36 core designs (including the existing nine OTFID runs) plus nine conditional objective ablations. Seven clean/corrupted evaluation conditions reuse each core checkpoint. These are plans, not additional trained capabilities; FIVES and IDRiD now have separate adapters and feasibility runners. REFUGE2 access and task-specific objective ablations remain pending.
 
 ```bash
 PYTHONPATH=src python scripts/prepare_cross_task_experiments.py --output outputs/cross-task-design-v1
@@ -179,6 +179,17 @@ python scripts/run_fives.py pilot --root /path/to/fives --manifest /path/to/new-
 ```
 
 This compares Query 192, Query 384 and LQNet 384 using seed 42 and equal budgets. It saves final checkpoints, original-grid validation masks, Dice/IoU, centerline metrics and selected examples. It does not complete the separate 500-step GPU programme. Official test images are not evaluated. Patient identity remains unverified; read the [feasibility protocol](docs/protocols/fives_feasibility.md).
+
+## IDRiD lesion experiments
+
+Use the original segmentation subset, keeping the four lesion annotations separate:
+
+```bash
+python scripts/run_idrid.py prepare --root /path/to/idrid --manifest /path/to/new-idrid-manifest.json
+python scripts/run_idrid.py pilot --root /path/to/idrid --manifest /path/to/new-idrid-manifest.json --output /path/to/new-idrid-run --device cpu --steps 100
+```
+
+The four heads predict microaneurysms, haemorrhages, hard exudates and soft exudates. Unavailable masks are excluded from supervision and evaluation. Read the [source and missing-annotation policy](docs/protocols/idrid_feasibility.md) before use. Both feasibility runners require the research dependencies and an extracted dataset; they do not download data implicitly.
 
 ## Citation and license
 
