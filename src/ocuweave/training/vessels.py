@@ -1,5 +1,8 @@
 """FIVES feasibility experiments, distinct from the prespecified GPU programme."""
 import json
+import platform
+import resource
+import sys
 import time
 from pathlib import Path
 
@@ -102,7 +105,8 @@ def run_pilot(root, manifest_path, output, *, steps=100, device='cpu', seed=42):
               'steps':steps,'batch_size':8,'seed':seed,'learning_rate':.001,'weight_decay':.0001,
               'loss':'valid-region BCE + soft Dice','augmentation':'paired horizontal flip p=0.5',
               'precision':'float32','checkpoint_selection':'fixed final step; validation evaluated once after training',
-              'device':device,'torch':str(torch.__version__),'manifest_sha256':sha256(manifest_path),
+              'device':device,'device_name':torch.cuda.get_device_name() if device=='cuda' else platform.processor(),
+              'torch':str(torch.__version__),'manifest_sha256':sha256(manifest_path),
               'initialization':'random, reset after smoke','test_evaluated':False,**software_provenance()}
     write_json(output/'protocol.json',protocol)
     results=[]
@@ -111,6 +115,7 @@ def run_pilot(root, manifest_path, output, *, steps=100, device='cpu', seed=42):
         run_dir=output/name;run_dir.mkdir()
         seed_everything(seed)
         ds=FivesDataset(root,manifest,'train',size,True)
+        if len(ds)<8:raise ValueError('At least eight training images required')
         loader=DataLoader(ds,batch_size=8,shuffle=True,drop_last=True,num_workers=0,
                           generator=torch.Generator().manual_seed(seed))
         model=make_model(cfg).to(dev)
@@ -152,6 +157,8 @@ def run_pilot(root, manifest_path, output, *, steps=100, device='cpu', seed=42):
         evidence={'run':name,'steps_completed':steps,'checkpoint_sha256':sha256(checkpoint),
                   'checkpoint_reload_matches':True,'parameters':sum(p.numel() for p in model.parameters()),
                   'training_elapsed_seconds':elapsed,'peak_cuda_allocated_bytes':torch.cuda.max_memory_allocated() if device=='cuda' else None,
+                  'peak_process_rss_bytes':resource.getrusage(resource.RUSAGE_SELF).ru_maxrss*(1 if sys.platform=='darwin' else 1024),
+                  'rss_scope':'Process lifetime high-water mark; includes preceding variants',
                   'device':device,'seed':seed,'config':cfg}
         write_json(run_dir/'training-complete.json',evidence)
         metrics=evaluate_vessels(model,root,manifest,size,run_dir/'validation',dev)
