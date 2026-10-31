@@ -10,7 +10,7 @@
 
 [![Checks](https://github.com/chenko-the-sorcerers/ocuweave/actions/workflows/ci.yml/badge.svg)](https://github.com/chenko-the-sorcerers/ocuweave/actions)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Software v0.8.0](https://img.shields.io/badge/software-v0.8.0-334bd3.svg)](https://github.com/chenko-the-sorcerers/ocuweave/tree/v0.8.0)
+[![Software v0.8.1](https://img.shields.io/badge/software-v0.8.1-334bd3.svg)](https://github.com/chenko-the-sorcerers/ocuweave/tree/v0.8.1)
 
 ![OcuWeave research illustration](docs/assets/ocuweave-thumbnail.webp)
 
@@ -34,7 +34,7 @@ The current release provides a runnable **image-only** pipeline. The title descr
 Python **3.10+**. Start with CPU; CUDA is optional. C++ tooling is required only for the separate native example. Installation from source is supported; this release is not published to PyPI.
 
 ```bash
-git clone --branch v0.8.0 https://github.com/chenko-the-sorcerers/ocuweave.git
+git clone --branch v0.8.1 https://github.com/chenko-the-sorcerers/ocuweave.git
 cd ocuweave
 python -m venv .venv
 source .venv/bin/activate  # Windows: .venv\Scripts\activate
@@ -98,19 +98,7 @@ ocuweave predict --checkpoint outputs/lqnet-384-seed42/best.pt \
 
 ## Method at a glance
 
-```mermaid
-flowchart LR
-    I[RGB image] --> E[Compact multiscale encoder]
-    E --> P[Shared pixel features]
-    E --> Q[Learned queries and cross-attention]
-    P --> M[Weighted query mask logits]
-    Q --> M
-    I --> D[Local-detail branch]
-    M --> D
-    M --> A[Additive refinement]
-    D --> A
-    A --> O[Restore original geometry]
-```
+![OcuWeave–LQNet: query-mask logits with an additive local-detail residual and original-grid restoration](docs/assets/lqnet-architecture.svg)
 
 | Configuration key | Implementation | Parameters at default dimensions | Experimental role |
 |---|---|---:|---|
@@ -181,7 +169,7 @@ Please cite the **software** until a paper is publicly available. GitHub’s “
   title = {OcuWeave: Evidence-Grounded Vision--Language Learning with
            Incomplete Clinical Records for Ophthalmic Disease Assessment},
   year = {2026},
-  version = {0.8.0},
+  version = {0.8.1},
   url = {https://github.com/chenko-the-sorcerers/ocuweave}
 }
 ```

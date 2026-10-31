@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="460" viewBox="0 0 1120 460" role="img" aria-labelledby="title desc">
+<title id="title">OcuWeave–LQNet image-only architecture</title>
+<desc id="desc">An RGB image enters a multiscale encoder and query mask head to produce coarse logits. A local-detail branch combines image features with resized coarse logits and predicts a residual through a zero-initialized projection. The residual is added to coarse logits, followed by probability restoration to original image dimensions.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#61738a"/></marker></defs>
+<rect width="1120" height="460" fill="#ffffff" rx="10"/>
+<g font-family="Arial,Helvetica,sans-serif" fill="#1b2c45">
+<text x="36" y="43" font-size="24" font-weight="700">OcuWeave–LQNet</text>
+<text x="36" y="69" font-size="14" fill="#52657d">Image-only query segmentation with additive local-detail refinement</text>
+<g stroke="#61738a" stroke-width="1.8" fill="none" marker-end="url(#arrow)">
+<path d="M151 218 H168 V147 H190"/><path d="M151 218 H168 V323 H190"/>
+<path d="M360 147 H390"/><path d="M580 147 H610"/>
+<path d="M360 323 H390"/><path d="M580 323 H610"/>
+<path d="M780 147 H841 V218"/><path d="M780 323 H841 V260"/>
+<path d="M695 184 V218 H485 V283"/><path d="M862 239 H904"/>
+</g>
+<g stroke="#c8d4e5" fill="#f6f8fc" stroke-width="1.2">
+<rect x="36" y="180" width="115" height="76" rx="8"/>
+<rect x="190" y="110" width="170" height="74" rx="8"/>
+<rect x="390" y="110" width="190" height="74" rx="8"/>
+<rect x="610" y="110" width="170" height="74" rx="8"/>
+<rect x="190" y="283" width="170" height="80" rx="8"/>
+<rect x="390" y="283" width="190" height="80" rx="8"/>
+<rect x="610" y="283" width="170" height="80" rx="8"/>
+<circle cx="841" cy="239" r="21" fill="#e9edff" stroke="#354fca"/>
+<rect x="904" y="196" width="180" height="86" rx="8" fill="#e9edff" stroke="#354fca"/>
+</g>
+<g text-anchor="middle" font-size="15" font-weight="600">
+<text x="94" y="213">RGB image</text><text x="94" y="235" font-size="12" font-weight="400">Letterboxed input</text>
+<text x="275" y="141">Multiscale encoder</text><text x="275" y="163" font-size="12" font-weight="400">Strides 4, 8 and 16</text>
+<text x="485" y="141">Pixel features + queries</text><text x="485" y="163" font-size="12" font-weight="400">Cross-attention mask head</text>
+<text x="695" y="141">Coarse mask logits</text><text x="695" y="163" font-size="12" font-weight="400">Weighted query masks</text>
+<text x="275" y="315">Local image features</text><text x="275" y="339" font-size="12" font-weight="400">Half-resolution conv branch</text>
+<text x="485" y="315">Concatenate + refine</text><text x="485" y="339" font-size="12" font-weight="400">Local features + resized logits</text>
+<text x="695" y="315">Residual projection</text><text x="695" y="339" font-size="12" font-weight="400">Final layer initialized to zero</text>
+<text x="841" y="246" font-size="24" font-weight="400">+</text>
+<text x="994" y="226">Restore probabilities</text><text x="994" y="250" font-size="12" font-weight="400">Original image dimensions</text><text x="994" y="269" font-size="12" font-weight="400">Threshold after restoration</text>
+</g>
+<text x="36" y="411" font-size="13" fill="#52657d">Trained from scratch without pretrained weights. The local residual initially vanishes.</text>
+<text x="36" y="435" font-size="13" fill="#52657d">No U-Net backbone. No clinical record input in this implementation. Controlled LQNet comparisons remain pending.</text>
+</g></svg>

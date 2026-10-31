@@ -3,6 +3,15 @@
 Notable changes to OcuWeave are recorded here. Versions follow Semantic Versioning.
 Dates use ISO 8601. Research hypotheses are not software capabilities.
 
+## [0.8.1] — 2026-10-31
+
+### Fixed
+- Replace the README Mermaid embed, which failed to render in the GitHub review, with an accessible self-contained SVG architecture diagram.
+- Keep public installation instructions, citation and package/native version metadata aligned with the patch release.
+
+### Validation
+- GitHub README visual inspection, Python regression suite, native CTest, packaging and installed-wheel smoke checks.
+
 ## [0.8.0] — 2026-10-31
 
 ### Added
