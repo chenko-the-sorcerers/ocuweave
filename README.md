@@ -10,7 +10,7 @@
 
 [![Checks](https://github.com/chenko-the-sorcerers/ocuweave/actions/workflows/ci.yml/badge.svg)](https://github.com/chenko-the-sorcerers/ocuweave/actions)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Software v0.8.2](https://img.shields.io/badge/software-v0.8.2-334bd3.svg)](https://github.com/chenko-the-sorcerers/ocuweave/tree/v0.8.2)
+[![Software v0.9.0](https://img.shields.io/badge/software-v0.9.0-334bd3.svg)](https://github.com/chenko-the-sorcerers/ocuweave/tree/v0.9.0)
 
 ![OcuWeave research illustration](docs/assets/ocuweave-thumbnail.webp)
 
@@ -34,7 +34,7 @@ The current release provides a runnable **image-only** pipeline. The title descr
 Python **3.10+**. Start with CPU; CUDA is optional. C++ tooling is required only for the separate native example. Installation from source is supported; this release is not published to PyPI.
 
 ```bash
-git clone --branch v0.8.2 https://github.com/chenko-the-sorcerers/ocuweave.git
+git clone --branch v0.9.0 https://github.com/chenko-the-sorcerers/ocuweave.git
 cd ocuweave
 python -m venv .venv
 source .venv/bin/activate  # Windows: .venv\Scripts\activate
@@ -118,6 +118,16 @@ The local branch starts with a zero output projection. It refines logits at half
 
 Training saves configuration, software version, source revision when available, working-tree state, archive/manifest hashes, optimizer-step counts, timing and memory. A wheel without Git metadata records the source revision as unavailable instead of borrowing the caller’s repository. CPU/GPU numerical equality is not guaranteed; preserve the environment and hardware record.
 
+## Cross-task experiment programme
+
+A [prespecified programme](docs/protocols/cross_task_experiments.md) covers OTFID, FIVES vessels, IDRiD lesions and REFUGE2 disc/cup: 36 core designs (including the existing nine OTFID runs) plus nine conditional objective ablations. Seven clean/corrupted evaluation conditions reuse each core checkpoint. These are plans, not additional trained capabilities; new datasets, adapters, multi-output training and objectives remain pending.
+
+```bash
+PYTHONPATH=src python scripts/prepare_cross_task_experiments.py --output outputs/cross-task-design-v1
+```
+
+The generator writes a non-executable JSON/CSV register with missing metrics as null and preserves existing output directories. It never starts training.
+
 ## Data boundaries
 
 | Dataset | Current or intended role | Constraint |
@@ -169,7 +179,7 @@ Please cite the **software** until a paper is publicly available. GitHub’s “
   title = {OcuWeave: Evidence-Grounded Vision--Language Learning with
            Incomplete Clinical Records for Ophthalmic Disease Assessment},
   year = {2026},
-  version = {0.8.2},
+  version = {0.9.0},
   url = {https://github.com/chenko-the-sorcerers/ocuweave}
 }
 ```

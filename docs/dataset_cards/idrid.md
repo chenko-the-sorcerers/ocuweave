@@ -1,0 +1,7 @@
+# IDRiD — candidate lesion-specific segmentation cohort
+
+[Official data page](https://idrid.grand-challenge.org/Data/); [original descriptor](https://doi.org/10.3390/data3030025). The pixel-annotated subset has 81 fundus images and lesion masks for microaneurysms, haemorrhages, hard exudates and soft exudates. It differs from the larger disease-grading dataset. The source lists unequal mask availability across classes; missing files must not silently become negative targets.
+
+Use four independent output channels, preserve each class mask, and record supervision availability per image/class. Audit actual release filenames, mask encodings, patient/eye linkage, duplicate candidates and official partitions before freezing development data. Do not collapse all lesion types into a binary union and call the result multi-class performance. Pixel-level masks do not constitute paired narrative EMR.
+
+The official page identifies CC BY 4.0; verify the acquired release and retain attribution. Workspace acquisition, class availability semantics, the adapter and four-channel trainer remain pending. [Planned experiments](../protocols/cross_task_experiments.md) have no measured results. The 2018 descriptor is an explicit dataset-definition exception to the recent-literature preference.

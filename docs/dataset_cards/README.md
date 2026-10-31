@@ -3,3 +3,11 @@
 These cards summarize public documentation, not a completed file-level audit.
 Access is not equivalent to unrestricted redistribution. Keep licensed data out of Git.
 A medical-image caption, diagnosis label, or synthetic note is not a complete EMR.
+
+## Additional segmentation tracks
+
+- [FIVES vessels](fives.md)
+- [IDRiD lesion classes](idrid.md)
+- [REFUGE2 disc/cup](refuge2.md)
+
+These cards describe prospective cohorts; acquisition and training are not claimed.

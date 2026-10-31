@@ -3,6 +3,17 @@
 Notable changes to OcuWeave are recorded here. Versions follow Semantic Versioning.
 Dates use ISO 8601. Research hypotheses are not software capabilities.
 
+## [0.9.0] — 2026-11-01
+
+### Added
+- Deterministic cross-task experiment design generator: 36 core and nine conditional rows, paired controls, explicit acquisition/implementation gates, seven evaluation conditions and null unmeasured metrics. This does not execute training.
+- FIVES, IDRiD and REFUGE2 dataset cards and a staged protocol for per-class targets, missing-mask handling, task-specific evaluation, robustness, compute budgets and publication of verified results.
+- Register tests for paired comparisons, absent-result semantics, conditional controls and preservation of existing outputs.
+
+### Validation
+- 61 Python tests, native CTest/parity, synthetic manifest audit and installed-wheel demo. Experiment register JSON/CSV generated and checked; no new patient-data training performed.
+- The frozen v0.8.1 OTFID suite remains unchanged at 0/9 completed; new-task adapters, multi-output trainers and objective terms are not claimed implemented.
+
 ## [0.8.2] — 2026-11-01
 
 ### Research record

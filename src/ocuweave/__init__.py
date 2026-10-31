@@ -1,2 +1,2 @@
 """OcuWeave research infrastructure; no trained model is bundled."""
-__version__ = "0.8.2"
+__version__ = "0.9.0"
