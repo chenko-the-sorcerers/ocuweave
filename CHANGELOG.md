@@ -14,6 +14,9 @@ Dates use ISO 8601. Research hypotheses are not software capabilities.
   hashes, configuration, metrics, timing, memory and status; unmeasured values stay null.
 - Add a LaTeX introduction and methodology with equations matching the implementation,
   six verified IEEE-style references, and explicit image-only/current versus future-EMR scope.
+- Document the executed 238-pair CPU audit, eight preliminary technical visual reviews,
+  and three deterministically selected historical-query validation visualizations.
+  No new training, exclusions, or clinical adjudication were performed.
 - Synchronize CMake project metadata with the Python software version.
 - Validation: 52 Python tests passed (the two native tests initially skipped in the
   full run passed in a separate native-parity run); CMake/CTest and synthetic audit passed.

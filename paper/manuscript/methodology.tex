@@ -10,11 +10,11 @@ Each run records the source revision, dataset archive checksum, manifest checksu
 Technical review verifies decoded image dimensions, corresponding mask dimensions, and foreground counts against the manifest. A private reviewer sheet separates visual alignment, boundary completeness, blur, illumination, artifacts, retinal-field truncation, and clinical lesion correctness. Automatic quality proxies rank review priorities using training-derived thresholds. They neither establish clinical gradability nor authorize exclusion. All quality-flagged eligible images remain retained pending documented adjudication.
 
 For square input size $S\in\{192,384\}$, define
-\begin{equation}
- s_i=\min(S/W_i,S/H_i),\quad
- (w_i,h_i)=\bigl(\max(1,\operatorname{round}(s_iW_i)),
- \max(1,\operatorname{round}(s_iH_i))\bigr).
-\end{equation}
+\begin{align}
+ s_i&=\min(S/W_i,S/H_i),\\
+ w_i&=\max(1,\operatorname{round}(s_iW_i)),\\
+ h_i&=\max(1,\operatorname{round}(s_iH_i)).
+\end{align}
 The resized content is centered with integer offsets $a_i=\lfloor(S-w_i)/2\rfloor$ and $b_i=\lfloor(S-h_i)/2\rfloor$. RGB intensities are resized bilinearly and divided by 255; masks use nearest-neighbor interpolation. The binary validity map $v_i$ marks the content rectangle, excluding zero padding from training loss. A paired horizontal flip with probability $0.5$ is the only stochastic augmentation. No adaptive preprocessing change is introduced between comparison arms.
 
 Before training, the resized reference is cropped to its content rectangle and restored to $(H_i,W_i)$ using nearest-neighbor interpolation. If $\widetilde y_i^{(S)}$ is this roundtrip mask, we measure overlap with $y_i$, signed relative area error
@@ -60,7 +60,7 @@ For the detail variant, a $3\times3$ stride-two convolution followed by normaliz
  z_{\mathrm{LQ}}=z_{\mathrm q}+\mathcal U_S\!\left(
  R_2\GELU\!\left(R_1[D(x);\mathcal U_{1/2}(z_{\mathrm q})]\right)\right).
 \end{equation}
-Both $R_1$ and $R_2$ are pointwise convolutions. The final projection $R_2$, including its bias, is initialized to zero so that the detail model initially reproduces its base query prediction. The extra parameter count, time, and memory are reported; the comparison has equal optimizer-step budgets, not equal computational cost.
+Both $R_1$ and $R_2$ are pointwise convolutions. The final projection $R_2$, including its bias, is initialized to zero so that the detail model initially reproduces its base query prediction. The default query network has 109,754 trainable parameters; the detail variant has 111,411 (1,657 additional parameters). Parameter counts are computed directly from the implementation without training. Time and memory are reported separately; the comparison has equal optimizer-step budgets, not equal computational cost.
 
 \subsection{Objective and controlled optimization}
 For batch size $B$, probabilities $p_{iu}=\sigma(z_{iu})$, targets $y_{iu}$, and binary validity $v_{iu}$, we minimize
@@ -93,11 +93,11 @@ For model evaluation, unlike reference-mask roundtrip analysis, probabilities ar
  \operatorname{Bilinear}_{H_i,W_i}\bigl(\operatorname{Crop}_{v_i}\sigma(z_i)\bigr)(u)\geq0.5\right].
 \end{equation}
 Bilinear interpolation uses \texttt{align\_corners=False}. Thresholding precedes neither cropping nor interpolation. We calculate
-\begin{equation}
- \operatorname{Dice}=\frac{2TP}{2TP+FP+FN},\quad
- \operatorname{IoU}=\frac{TP}{TP+FP+FN},\quad
- A_{\mathrm{FP},i}=\frac{FP_i}{H_iW_i}.
-\end{equation}
+\begin{align}
+ \operatorname{Dice}&=\frac{2TP}{2TP+FP+FN},\\
+ \operatorname{IoU}&=\frac{TP}{TP+FP+FN},\\
+ A_{\mathrm{FP},i}&=\frac{FP_i}{H_iW_i}.
+\end{align}
 If both prediction and target are empty, Dice and IoU are defined as one; if only one is empty they are zero. Positive-image macro Dice and IoU exclude empty targets. ``Small-lesion Dice'' denotes mean image-level Dice over images with original \emph{union} foreground fraction in $(0,0.01]$, not a lesion-instance detection metric. The sample count accompanies this value. Healthy-image false-positive reporting includes both the mean $A_{\mathrm{FP},i}$ and the fraction of healthy images with any predicted foreground. Full-image area fractions are not physical areas or fractions of a segmented retinal field.
 
 We report all seeds, descriptive means and sample standard deviations, and paired seed differences for resolution and detail contrasts. Seed variability does not establish patient-level uncertainty. Any existing image bootstrap is explicitly labeled exploratory. Training time includes the epoch loop, validation, and checkpoint I/O; original-grid evaluation time includes decoding. CUDA peak allocated and reserved bytes and process peak resident memory use distinct scopes and are labeled separately. Hand-computed synthetic cases verify overlap arithmetic, empty-mask conventions, padding removal, interpolation, and threshold ordering. No model-performance result is asserted by passing these checks.

@@ -37,3 +37,5 @@ Clinical claims are limited to motivation supported by the cited clinical study.
 The dataset record displays a 2021 publication date while the version-3 record was
 created in 2024; the bibliography preserves that distinction. Other cited works are
 2022–2024. This focused manuscript bibliography does not replace the broader literature review.
+
+Compiled and visually reviewed on 2026-10-31 with Tectonic 0.17.0: four pages, no overfull boxes; minor bibliography/paragraph underfull warnings remain. This is a working protocol draft, not a submitted or accepted paper.
