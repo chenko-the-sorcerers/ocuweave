@@ -23,10 +23,15 @@ def read_idrid(root,row):
         with Image.open(Path(root)/path) as f:
             # IDRiD TIFF uses palette indices 0/1; grayscale conversion would
             # replace class index 1 with the luminance of its red display color.
-            if f.mode not in {'P','L','1'}:raise ValueError('Expected indexed or scalar binary annotation')
-            mask=np.asarray(f)
+            if f.mode=='RGBA':
+                rgba=np.asarray(f)
+                if not (rgba[:,:,3]==255).all() or rgba[:,:,1:3].any():
+                    raise ValueError('Expected opaque red/black RGBA annotation')
+                mask=rgba[:,:,0]
+            elif f.mode in {'P','L','1'}:mask=np.asarray(f)
+            else:raise ValueError('Expected indexed or scalar binary annotation')
         if mask.shape!=(image.height,image.width):raise ValueError('Mask geometry mismatch')
-        if not set(np.unique(mask)).issubset({0,1,255}):raise ValueError('Unexpected annotation values')
+        if not ((mask==0)|(mask==1)|(mask==255)).all():raise ValueError('Unexpected annotation values')
         targets.append(mask>0)
     return image,np.stack(targets),np.asarray(available,dtype=bool)
 
@@ -55,6 +60,7 @@ def prepare_idrid(root,output,seed=42):
         row['dhash']=f'{sum(int(b)<<i for i,b in enumerate((small[:,1:]>small[:,:-1]).flat)):016x}'
         thumbs[path.stem]=np.asarray(image.resize((64,64),Image.Resampling.BILINEAR),dtype=np.float32)/255
         rows.append(row)
+        if len(rows)%10==0:print('Audited IDRiD pairs',len(rows),flush=True)
     if not rows or len({r['sample_id'] for r in rows})!=len(rows):raise ValueError('Missing or ambiguous images')
     candidates=group_similar(rows,thumbs);groups=defaultdict(list)
     for row in rows:groups[row['similarity_group']].append(row)

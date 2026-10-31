@@ -13,7 +13,7 @@ Dates use ISO 8601. Research hypotheses are not software capabilities.
 - Explicit FIVES provisional-development opt-in after the initial audit detected cross-official-split similarity candidates; the official test remains ineligible for performance claims.
 
 ### Fixed
-- Decode IDRiD indexed TIFF labels directly; do not interpret palette display colors as label values. Add a regression fixture matching the acquired 0/1 red palette.
+- Decode IDRiD indexed TIFF labels directly; do not interpret palette display colors as label values. Support the single opaque red/black RGBA mask with strict color/alpha checks. Regression fixtures cover both acquired formats and reject ambiguous values.
 
 ### Updated
 - Describe the method directly as OcuWeave–LQNet in the README.

@@ -42,6 +42,18 @@ class IdridChecks(unittest.TestCase):
             Image.new('RGB',(8,6),'red').save(root/'mask.tif')
             with self.assertRaisesRegex(ValueError,'indexed or scalar'):read_idrid(root,row)
 
+    def test_opaque_rgba_red_annotation_and_reject_ambiguous_colors(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);Image.new('RGB',(8,6)).save(root/'photo.jpg')
+            rgba=np.zeros((6,8,4),dtype=np.uint8);rgba[:,:,3]=255;rgba[2:4,3:6,0]=255
+            Image.fromarray(rgba).save(root/'mask.tif')
+            row={'image':'photo.jpg','masks':{c:'mask.tif' if c=='EX' else None for c in CLASSES}}
+            _,targets,_=read_idrid(root,row);self.assertEqual(int(targets[2].sum()),6)
+            rgba[0,0,3]=0;Image.fromarray(rgba).save(root/'mask.tif')
+            with self.assertRaisesRegex(ValueError,'opaque red/black'):read_idrid(root,row)
+            rgba[0,0,3]=255;rgba[0,0,1]=255;Image.fromarray(rgba).save(root/'mask.tif')
+            with self.assertRaisesRegex(ValueError,'opaque red/black'):read_idrid(root,row)
+
     def test_original_partitions_and_missing_masks(self):
         with tempfile.TemporaryDirectory() as tmp:
             root=Path(tmp);rng=np.random.default_rng(1)
