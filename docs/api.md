@@ -35,9 +35,29 @@ with Image.open(image_path) as image:
 
 Use `save_prediction(checkpoint, image_path, output, device="cpu")` to save the same artifacts as the CLI. Inference and original-grid evaluation share `restore_probabilities`, so padding removal/interpolation stay consistent. Standard PyTorch state dictionaries are saved with config and provenance; no TorchScript, ONNX or C++ inference export is provided.
 
+## Vessel and four-channel lesion workflows
+
+`prepare_fives` / `prepare_idrid` in `ocuweave.data.adapters` parse extracted releases into immutable manifests. Use `scripts/run_fives.py` and `scripts/run_idrid.py` for the separately specified preparation and three-variant feasibility studies. They preserve official test partitions and evaluate only the development validation split. Read the task protocols before enabling provisional grouping.
+
+For IDRiD, `MultiLabelLQNet` in `ocuweave.models.multilabel` returns **B × 4 × H × W** logits, ordered MA, HE, EX, SE. `observed_loss` in `ocuweave.training.lesions` accepts a **B × 4** boolean annotation-availability mask; absent annotations do not contribute gradients.
+
+```python
+from ocuweave.inference.multilabel import predict_lesions, save_lesion_prediction
+from PIL import Image
+
+with Image.open("fundus.jpg") as image:
+    probabilities = predict_lesions("final.pt", image, device="cpu")
+# Float NumPy array: 4 × original height × original width.
+
+save_lesion_prediction("final.pt", "fundus.jpg", "outputs/lesion-prediction")
+# MA.png, HE.png, EX.png, SE.png and prediction.json; threshold 0.5.
+```
+
+The IDRiD checkpoint schema is distinct from the generic binary CLI. Use `scripts/predict_idrid.py` or the API above; an incompatible binary checkpoint is rejected. `save_probabilities=True` additionally writes the original-grid float array as `probabilities.npy`. It is omitted by default. Empty output masks are valid predictions, not evidence that a photograph is disease-free.
+
 ## Extending the project
 
-A new image-only architecture should implement `forward(images) -> logits` with the same shape contract, register explicitly in the factory, validate its config and include gradient/checkpoint tests. The current loss and dataset are binary. Multi-class vessel/artery-vein or disc/cup segmentation requires a new target schema, class-aware head/loss, dataset adapter and per-class evaluation; changing the display label is insufficient.
+A new image-only architecture should implement `forward(images) -> logits` with the same shape contract, register explicitly in the factory, validate its config and include gradient/checkpoint tests. The OTFID/FIVES paths are binary; the IDRiD path has four independent lesion channels. Artery/vein or disc/cup segmentation still requires its own target schema, adapter and per-structure evaluation; changing the display label is insufficient.
 
 Clinical, language and fusion packages remain design boundaries. Do not pass generated notes or unrelated patient records to the image-only model. Native `evidence_weighted_mean` is an optional numerical example without autograd; it is not the neural network or the proposed evidence-aware fusion method.
 

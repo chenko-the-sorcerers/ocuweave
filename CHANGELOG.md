@@ -9,7 +9,8 @@ Dates use ISO 8601. Research hypotheses are not software capabilities.
 - FIVES official-release pairing, immutable development manifests, file integrity checks and conservative similarity grouping while preserving the official test partition.
 - A separate three-variant feasibility runner with fixed step budgets, random initialization, original-grid vessel metrics, checkpoint reload checks and deterministic example selection.
 - Hand-computed tests for centerline/overlap metrics, split preservation, tampering and image–mask geometry.
-- Four-channel IDRiD adapter, shared-encoder query/LQNet models, annotation-availability-aware loss and per-class original-grid evaluation.
+- Four-channel IDRiD adapter, shared-encoder query/LQNet models, annotation-availability-aware loss, per-class original-grid evaluation and a dedicated checkpoint inference API/command.
+- Data-derived publication bundles with completion receipts, full per-image metrics and licensed display overlays; architecture/API documentation now reflects implemented modules.
 - Explicit FIVES provisional-development opt-in after the initial audit detected cross-official-split similarity candidates; the official test remains ineligible for performance claims.
 
 ### Fixed

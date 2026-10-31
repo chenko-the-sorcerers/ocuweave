@@ -191,6 +191,15 @@ python scripts/run_idrid.py pilot --root /path/to/idrid --manifest /path/to/new-
 
 The four heads predict microaneurysms, haemorrhages, hard exudates and soft exudates. Unavailable masks are excluded from supervision and evaluation. Read the [source and missing-annotation policy](docs/protocols/idrid_feasibility.md) before use. Both feasibility runners require the research dependencies and an extracted dataset; they do not download data implicitly.
 
+Predict four lesion channels from a trained IDRiD checkpoint:
+
+```bash
+python scripts/predict_idrid.py --checkpoint /path/to/run/lqnet384/final.pt \
+  --image /path/to/fundus.jpg --output /path/to/new-prediction --device cpu
+```
+
+This saves four original-size binary masks and a provenance receipt. Add `--save-probabilities` for the float probability array. Use this task-specific command for IDRiD; the generic `ocuweave predict` command is for binary checkpoints.
+
 ## Citation and license
 
 Please cite the **software** until a paper is publicly available. GitHub’s “Cite this repository” uses [CITATION.cff](CITATION.cff).
