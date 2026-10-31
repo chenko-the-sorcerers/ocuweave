@@ -16,6 +16,8 @@ def measured_reports(project):
         '02 — Audits/quality-review-v0.3.0/fairvlmed/note_review.json',
         '02 — Audits/quality-review-v0.3.0/otfid-*/diagnostics.json',
         '02 — Audits/development-v0.4.0/annotation-geometry/summary.json',
+        '02 — Audits/cleaning-review-v0.5.0/*/summary.json',
+        '02 — Audits/cleaning-review-v0.5.0/*/*/*.json',
         '04 — Runs/v0.2.0/pilot-seed42-20epochs/*-test.json',
         '04 — Runs/v0.2.0/pilot-seed42-20epochs/*/provenance.json',
         '04 — Runs/v0.2.0/pilot-seed42-20epochs/*/checkpoint.json',
@@ -27,7 +29,7 @@ def measured_reports(project):
             data=json.loads(path.read_text())
             if isinstance(data,dict):
                 data={k:({'rows':len(v),'details':'See source artifact and its recorded SHA-256'}
-                         if k in {'per_image','records','review_queue','normalized_duplicate_groups','exclusions','warnings'} else v)
+                         if k in {'per_image','records','pairs','review_queue','normalized_duplicate_groups','exclusions','warnings'} else v)
                       for k,v in data.items()}
             reports.append({'source':str(path.relative_to(project)),'sha256':sha256(path),'result':data})
     return reports

@@ -147,3 +147,7 @@ Software versions describe implementation changes, not clinical validation or mo
 
 These are research references; no upstream implementation or checkpoint is vendored.
 See `CITATION.cff` to cite this research software; no publication acceptance is claimed.
+
+## Cleaning review
+
+Run the CPU [cleaning notebook](notebooks/OcuWeave_Cleaning_Review_Colab.ipynb) with the acquired datasets in the private project Drive. The [protocol](docs/protocols/cleaning_review.md) distinguishes technical flags, clinical adjudication, patient linkage and original-note leakage review. No automated exclusion or clinical clearance is performed.

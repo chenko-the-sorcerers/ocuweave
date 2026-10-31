@@ -7,6 +7,20 @@ Dates use ISO 8601. Research hypotheses are not software capabilities.
 
 No unreleased changes recorded.
 
+## [0.5.0] — 2026-10-31
+
+### Added
+- CPU-only cohort-specific quality flags with training-only thresholds and non-destructive review queues.
+- Development annotation adjudication forms, exported patient-linkage evidence, and grayscale transformed near-duplicate screening across frozen splits for integrity only.
+- Separate clause-local FairVLMed diagnosis/context flags and semantic/temporal review forms; no raw notes exported or test-note analysis.
+- Reproducible cleaning notebook, source/test/checkpoint hash guards and private evidence snapshots.
+
+### Validation
+- Local Python compilation passed. Full CPU tests and real-data execution are pending before tagging this release.
+
+### Limitations
+- Technical flags do not establish gradability, clinical annotation correctness, patient independence or EMR leakage clearance. No records are automatically removed, corrected or admitted to training.
+
 ## [0.4.1] — 2026-10-31
 
 ### Documented
