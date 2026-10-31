@@ -63,3 +63,9 @@ class DeepAuditTests(unittest.TestCase):
             self.assertEqual(report["label_mismatches"], 1)
             with self.assertRaises(FileExistsError):
                 audit_images(root, root / "audit")
+            (root / "download_manifest.json").write_text(json.dumps({"files": [
+                {"path": "Dataset/dataset.zip", "sha256": "incorrect"},
+                {"path": "ReadMe/data_summary.csv", "sha256": "incorrect"}]}))
+            with self.assertRaisesRegex(ValueError, "differ from acquisition receipt"):
+                audit_images(root, root / "changed-input")
+            self.assertFalse((root / "changed-input").exists())
