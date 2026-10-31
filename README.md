@@ -10,7 +10,7 @@
 
 [![Checks](https://github.com/chenko-the-sorcerers/ocuweave/actions/workflows/ci.yml/badge.svg)](https://github.com/chenko-the-sorcerers/ocuweave/actions)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Software v0.8.1](https://img.shields.io/badge/software-v0.8.1-334bd3.svg)](https://github.com/chenko-the-sorcerers/ocuweave/tree/v0.8.1)
+[![Software v0.8.2](https://img.shields.io/badge/software-v0.8.2-334bd3.svg)](https://github.com/chenko-the-sorcerers/ocuweave/tree/v0.8.2)
 
 ![OcuWeave research illustration](docs/assets/ocuweave-thumbnail.webp)
 
@@ -34,7 +34,7 @@ The current release provides a runnable **image-only** pipeline. The title descr
 Python **3.10+**. Start with CPU; CUDA is optional. C++ tooling is required only for the separate native example. Installation from source is supported; this release is not published to PyPI.
 
 ```bash
-git clone --branch v0.8.1 https://github.com/chenko-the-sorcerers/ocuweave.git
+git clone --branch v0.8.2 https://github.com/chenko-the-sorcerers/ocuweave.git
 cd ocuweave
 python -m venv .venv
 source .venv/bin/activate  # Windows: .venv\Scripts\activate
@@ -112,7 +112,7 @@ The local branch starts with a zero output projection. It refines logits at half
 
 - One historical OTFID query-network feasibility pilot is documented. Some validation examples have **zero overlap**. These remain reported failures.
 - The controlled matrix—query 192, query 384, LQNet 384; seeds 42, 123 and 2026—has **0/9 completed runs** in the recorded research status. This software release does not complete those experiments.
-- A potential repeated-view pair crosses the historical training/validation split. Freeze the reviewed development manifest before new comparisons; preserve old test records.
+- The new development manifest is frozen at **197 training / 41 validation**, with all **104 quality-flagged images retained** and all 42 historical test rows preserved. CPU smoke checks passed for all three variants; GPU training remains blocked by Colab usage limits. See the [execution record](docs/experiments/2026-10-31-development-freeze.md) and [continuation protocol](docs/protocols/exploratory_training.md).
 - Clinical annotation correctness and patient linkage remain unresolved. No glaucoma disc/cup, vascular/hypertension or DR-specific segmentation model has been trained in this project.
 - Native C++ currently provides a tested weighted-mean interoperability example. Neural-network training is Python/PyTorch; custom CUDA kernels and C++ autograd are not implemented.
 
@@ -169,7 +169,7 @@ Please cite the **software** until a paper is publicly available. GitHub’s “
   title = {OcuWeave: Evidence-Grounded Vision--Language Learning with
            Incomplete Clinical Records for Ophthalmic Disease Assessment},
   year = {2026},
-  version = {0.8.1},
+  version = {0.8.2},
   url = {https://github.com/chenko-the-sorcerers/ocuweave}
 }
 ```

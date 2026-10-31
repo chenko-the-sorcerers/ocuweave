@@ -1,6 +1,6 @@
 # Exploratory development training v1
 
-Author: Marchel Andrian Shevchenko · 2026. Software v0.6.0. No U-Net, pretrained weights or EMR.
+Author: Marchel Andrian Shevchenko · 2026. Protocol introduced in software v0.6.0; the executed freeze and locked suite use v0.8.1. No U-Net, pretrained weights or EMR.
 
 ## Cohort revision
 
@@ -25,3 +25,24 @@ A passed CUDA smoke receipt must match the frozen manifest, archive, source comm
 Select each checkpoint by validation positive-image Dice on its own input grid, a fixed choice retained from the preceding protocol. Restore probabilities to original image dimensions before thresholding at 0.5 for the cross-resolution comparison. Report positive-image macro Dice and IoU, all-image macro IoU, small-lesion Dice and count (positive reference union area ≤1% of the entire original image), and mean healthy false-positive area fraction. This small-image-area stratum is not a connected-component lesion sensitivity measure. Include any-pixel healthy false-positive rate, time, optimizer steps, parameters, peak CUDA allocated/reserved memory and process RSS. CPU RSS is process lifetime; run time includes validation/checkpoint IO and excludes setup/final evaluation. Validation decode/evaluation time is separate.
 
 Three-seed means, sample standard deviations and paired differences are descriptive initialization variability; image-bootstrap intervals do not establish patient independence. The already-observed historical test is never used for change selection or rerun here. No new independent-test or clinical-validity claim is supported. FairVLMed glaucoma and its original EMR remain outside this pipeline until their separate semantic/temporal review is complete.
+
+## Continue an existing frozen suite after a runtime reset
+
+Use the original private `locked-protocol.json`, `development-manifest/manifest.json`, and source ZIP. Do not rerun freeze/register into a different session just because the runtime restarted. The source commit in the contract is controlling, even when a newer documentation release is available.
+
+1. Mount the same project Drive and load the saved contract. Check out its `source_commit` into a clean checkout; install that checkout and reproduce its software checks. Record the new runtime environment and the continuation timestamp separately.
+2. Verify the manifest and archive SHA-256 values against the contract. Copy only the ZIP into the temporary runtime for faster reads. Keep the immutable manifest and all outputs in Drive.
+3. On an available CUDA runtime, run `scripts/run_exploratory.py smoke` with that manifest/archive and a **new** output directory. Never overwrite the CPU smoke or a failed attempt. Inspect the paired-image overlays and confirm `gpu_gate_passed: true`.
+4. Run `scripts/run_exploratory.py execute` with the **existing suite output directory** and the new CUDA smoke receipt. The implementation verifies source, pipeline and data hashes before execution. A CPU receipt is rejected.
+5. Recheck protected historical hashes and save a continuation status record. Completed runs are reused only after their receipts pass verification. A partial run requires a separately documented recovery decision; optimizer-state resume is not implemented.
+
+Example commands, with the paths supplied from the private session record:
+
+```bash
+python scripts/run_exploratory.py smoke --manifest "$MANIFEST" --archive "$ARCHIVE" \
+  --output "$NEW_CUDA_SMOKE" --device cuda
+python scripts/run_exploratory.py execute --manifest "$MANIFEST" --archive "$ARCHIVE" \
+  --output "$EXISTING_SUITE" --smoke-report "$NEW_CUDA_SMOKE/smoke.json"
+```
+
+See [the observed preparation record](../experiments/2026-10-31-development-freeze.md) for the current suite and its execution boundary. Pending runs do not have Dice or IoU scores.

@@ -3,6 +3,22 @@
 Notable changes to OcuWeave are recorded here. Versions follow Semantic Versioning.
 Dates use ISO 8601. Research hypotheses are not software capabilities.
 
+## [0.8.2] — 2026-11-01
+
+### Research record
+- Document the executed v0.8.1 development freeze: 197 training, 41 validation, all 42 historical test rows preserved and all 104 quality-flagged development images retained.
+- Record the nine locked configurations at 500 optimizer steps per run and the three passed CPU smoke checks, including losses, gradient norms, checkpoint reload checks and timings. Research training remains 0/9 because Colab rejected GPU allocation.
+- Add instructions for continuing the existing frozen suite with its original source/data contract after a runtime reset.
+
+### Fixed
+- Update the clean exploratory launcher from the stale v0.6.0 pin and remove historical GPU/mount failures presented as current template facts.
+- Include newer exploratory and CPU-review sessions in consolidated measured-report selection; retain hashes, row redaction and missing metrics.
+- Synchronize package, native, citation and README version metadata. Training/model mathematics are unchanged; the already locked suite remains pinned to v0.8.1.
+
+### Validation
+- 58 Python checks, native CTest/parity, synthetic manifest audit, notebook syntax/schema, and installed-wheel demo outside the checkout.
+- The actual Colab v0.8.1 preparation separately passed 57 Python checks and native CTest; these are software/pipeline checks, not new segmentation performance results.
+
 ## [0.8.1] — 2026-10-31
 
 ### Fixed
