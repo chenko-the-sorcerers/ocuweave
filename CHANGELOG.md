@@ -12,6 +12,9 @@ Dates use ISO 8601. Research hypotheses are not software capabilities.
 - Four-channel IDRiD adapter, shared-encoder query/LQNet models, annotation-availability-aware loss and per-class original-grid evaluation.
 - Explicit FIVES provisional-development opt-in after the initial audit detected cross-official-split similarity candidates; the official test remains ineligible for performance claims.
 
+### Fixed
+- Decode IDRiD indexed TIFF labels directly; do not interpret palette display colors as label values. Add a regression fixture matching the acquired 0/1 red palette.
+
 ### Updated
 - Describe the method directly as OcuWeave–LQNet in the README.
 - Keep the supplementary CPU feasibility protocol separate from the uncompleted core GPU programme; REFUGE2 requires dataset access; IDRiD uses a provenance-documented CC BY redistribution.

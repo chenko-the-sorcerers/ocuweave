@@ -4,7 +4,7 @@ from pathlib import Path
 import numpy as np
 import torch
 from PIL import Image
-from ocuweave.data.adapters.idrid import CLASSES,prepare_idrid,IdridDataset
+from ocuweave.data.adapters.idrid import CLASSES,prepare_idrid,IdridDataset,read_idrid
 from ocuweave.models.multilabel import MultiLabelLQNet
 from ocuweave.training.lesions import observed_loss
 
@@ -28,6 +28,19 @@ class IdridChecks(unittest.TestCase):
         coarse=torch.cat([h(features,x.shape[-2:]) for h in model.heads],dim=1)
         torch.testing.assert_close(actual,coarse)
         actual.mean().backward();self.assertTrue(torch.isfinite(model.refine[-1].weight.grad).all())
+
+    def test_palette_indices_are_labels_not_display_luminance(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);Image.new('RGB',(8,6)).save(root/'photo.jpg')
+            labels=np.zeros((6,8),dtype=np.uint8);labels[2:4,3:6]=1
+            mask=Image.fromarray(labels).convert('P')
+            mask.putpalette([0,0,0,255,0,0]+[0]*762);mask.save(root/'mask.tif')
+            row={'image':'photo.jpg','masks':{c:'mask.tif' if c=='MA' else None for c in CLASSES}}
+            _,targets,available=read_idrid(root,row)
+            np.testing.assert_array_equal(targets[0],labels>0)
+            self.assertEqual(int(targets[0].sum()),6);self.assertEqual(available.tolist(),[True,False,False,False])
+            Image.new('RGB',(8,6),'red').save(root/'mask.tif')
+            with self.assertRaisesRegex(ValueError,'indexed or scalar'):read_idrid(root,row)
 
     def test_original_partitions_and_missing_masks(self):
         with tempfile.TemporaryDirectory() as tmp:

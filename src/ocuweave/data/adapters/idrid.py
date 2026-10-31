@@ -20,7 +20,11 @@ def read_idrid(root,row):
     for name in CLASSES:
         path=row['masks'][name];available.append(path is not None)
         if path is None:targets.append(np.zeros((image.height,image.width),dtype=bool));continue
-        with Image.open(Path(root)/path) as f:mask=np.asarray(f.convert('L'))
+        with Image.open(Path(root)/path) as f:
+            # IDRiD TIFF uses palette indices 0/1; grayscale conversion would
+            # replace class index 1 with the luminance of its red display color.
+            if f.mode not in {'P','L','1'}:raise ValueError('Expected indexed or scalar binary annotation')
+            mask=np.asarray(f)
         if mask.shape!=(image.height,image.width):raise ValueError('Mask geometry mismatch')
         if not set(np.unique(mask)).issubset({0,1,255}):raise ValueError('Unexpected annotation values')
         targets.append(mask>0)
