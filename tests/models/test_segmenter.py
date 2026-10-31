@@ -47,6 +47,11 @@ class SegmenterTests(unittest.TestCase):
                 self.assertTrue(((probability>=0)&(probability<=1)).all())
                 self.assertEqual(result['split'], 'test')
                 self.assertGreater(result['metrics']['samples'],0)
+                if architecture == 'query':
+                    from ocuweave.evaluation.diagnostics import diagnose
+                    diagnostic = diagnose(manifest, archive, checkpoint, root/'diagnostic', allow_unverified=True)
+                    self.assertEqual(diagnostic['split'], 'validation')
+                    self.assertTrue((root/'diagnostic/review_panel.png').exists())
                 with self.assertRaises(FileExistsError):
                     evaluate(manifest,archive,checkpoint,root/f'{architecture}.json',allow_unverified=True)
             data=json.loads(manifest.read_text());data['records'][1]['sample_id']=data['records'][0]['sample_id']
