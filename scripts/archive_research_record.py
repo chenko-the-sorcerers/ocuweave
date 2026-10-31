@@ -23,7 +23,11 @@ def measured_reports(project):
         '04 — Runs/v0.2.0/pilot-seed42-20epochs/*/provenance.json',
         '04 — Runs/v0.2.0/pilot-seed42-20epochs/*/checkpoint.json',
         '04 — Runs/v0.2.0/pilot-seed42-20epochs/*/history.json',
-        '04 — Runs/v0.4.0/resolution-detail-seeds/summary.json')
+        '04 — Runs/v0.4.0/resolution-detail-seeds/summary.json',
+        '02 — Audits/exploratory-v0.6.0/*/*.json',
+        '02 — Audits/exploratory-v0.6.0/*/*/*.json',
+        '04 — Runs/v0.6.0/*/resolution-detail-seeds/*.json',
+        '04 — Runs/v0.6.0/*/resolution-detail-seeds/*/*.json')
     reports=[]
     for pattern in patterns:
         for path in sorted(project.glob(pattern)):
