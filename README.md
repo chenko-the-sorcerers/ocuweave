@@ -1,170 +1,189 @@
+<div align="center">
+
 # OcuWeave
 
-**Evidence-Grounded Vision–Language Learning with Incomplete Clinical Records for Ophthalmic Disease Assessment**
+### Evidence-Grounded Vision–Language Learning with Incomplete Clinical Records for Ophthalmic Disease Assessment
 
-**Marchel Andrian Shevchenko** · Data Sorcerers · **2026**
+**Marchel Andrian Shevchenko** · Data Sorcerers · 2026
 
-[Project page](https://data-sorcerers.com/ocuweave/) · [Architecture](docs/architecture.md) · [Dataset cards](docs/dataset_cards/README.md) · [Changelog](CHANGELOG.md) · [Citation](CITATION.cff)
+[Research page](https://data-sorcerers.com/ocuweave/) · [Getting started](docs/getting-started.md) · [Method](docs/architecture.md) · [Results](docs/results/README.md) · [Changelog](CHANGELOG.md)
 
-![Synthetic retinal fundus illustration and corresponding lesion segmentation overlay](docs/assets/ocuweave-thumbnail.webp)
+[![Checks](https://github.com/chenko-the-sorcerers/ocuweave/actions/workflows/ci.yml/badge.svg)](https://github.com/chenko-the-sorcerers/ocuweave/actions)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Software v0.8.0](https://img.shields.io/badge/software-v0.8.0-334bd3.svg)](https://github.com/chenko-the-sorcerers/ocuweave/tree/v0.8.0)
 
-*Left: synthetic fundus image. Right: illustrative lesion segmentation. AI-generated educational artwork, not patient data, ground-truth annotation, or an OcuWeave prediction.*
+![OcuWeave research illustration](docs/assets/ocuweave-thumbnail.webp)
 
-An open research project by **Data Sorcerers**, investigating how retinal images,
-clinical notes, and structured clinical information can be combined when evidence
-is incomplete or inconsistent. Ocular toxoplasmosis is a focus of the research agenda.
+</div>
 
-## Paper
+*Educational AI-generated fundus illustration and lesion overlay. This artwork is not patient data, a reference annotation, or a model prediction.*
 
-**Manuscript in preparation.** The project page reserves a Download paper button; it will become active when a public PDF is available. No paper, DOI, submission, or conference acceptance is claimed.
+OcuWeave is an open research toolkit for ophthalmic segmentation, with ocular toxoplasmosis as its first experimental task. **OcuWeave–LQNet** adds a local-detail residual branch to our compact query segmenter. Both networks are independently implemented and initialized from random weights, without a U-Net backbone or mirrored decoder. PyTorch supplies tensor operations and automatic differentiation.
 
-## Current status
+The current release provides a runnable **image-only** pipeline. The title describes the broader research direction; LLM–EMR fusion and longitudinal prediction are not implemented. The manuscript is in preparation; no conference acceptance or state-of-the-art result is claimed.
 
-**Experimental segmentation implementation.** OTFID acquisition, source auditing,
-conservative duplicate grouping, frozen exploratory splits, a compact non-U-Net
-query segmenter, and an encoder/pixel-decoder matched FCN ablation are implemented.
-Training, held-out evaluation, and image inference use explicit provenance.
-Paired EMR fusion, longitudinal prognosis, and clinical validation remain future work.
-No pretrained weights are bundled and no state-of-the-art performance is claimed.
+## Start here
 
-[Open the Colab pilot](https://colab.research.google.com/github/chenko-the-sorcerers/ocuweave/blob/v0.2.0/notebooks/OcuWeave_OTFID_Colab.ipynb)
-· [Pilot protocol](docs/protocols/otfid_pilot.md)
+- **Try the software:** run the synthetic end-to-end demo below; no dataset access or GPU is needed.
+- **Reproduce an experiment:** use the [real-data workflow](docs/getting-started.md#real-data-workflow) and [locked development protocol](docs/protocols/exploratory_training.md).
+- **Inspect the method:** see [architecture](docs/architecture.md), [equations on the project page](https://data-sorcerers.com/ocuweave/#mathematical-formulation), and the [Python API](docs/api.md).
+- **Assess the evidence:** read the [results register](docs/results/README.md), including unsuccessful predictions and unresolved data-quality questions.
 
-The [quality-review notebook](https://colab.research.google.com/github/chenko-the-sorcerers/ocuweave/blob/v0.3.0/notebooks/OcuWeave_Quality_Review_Colab.ipynb)
-runs on CPU and audits FairVLMed numeric images and development-note flags, then
-diagnoses frozen OTFID checkpoints on training/validation only.
-See the [quality-review protocol](docs/protocols/quality_review.md) for scope and limitations.
+## Install
 
-## Results and controlled development
+Python **3.10+**. Start with CPU; CUDA is optional. C++ tooling is required only for the separate native example. Installation from source is supported; this release is not published to PyPI.
 
-The [results register](docs/results/README.md) documents completed data audits,
-pilot training, validation/test metrics, known failures and unresolved questions.
-The [resolution/detail protocol](docs/protocols/resolution_detail.md) separates
-resolution changes from the experimental local-detail branch across three seeds.
-Original-grid evaluation keeps the comparison geometry fixed. Implementation is
-not evidence that the new branch improves performance.
-
-[Open the development notebook](https://colab.research.google.com/github/chenko-the-sorcerers/ocuweave/blob/v0.4.0/notebooks/OcuWeave_Development_Colab.ipynb).
-The notebook archives all reports in Drive and records pending runs explicitly
-when GPU resources are unavailable. The [EMR gate](docs/protocols/emr_leakage_gate.md)
-keeps FairVLMed glaucoma research separate from OTFID toxoplasmosis.
-
-## Quick start
-
-Python 3.10+; CMake 3.20+ and a C++17 compiler for the optional native example.
-
-```sh
+```bash
+git clone --branch v0.8.0 https://github.com/chenko-the-sorcerers/ocuweave.git
+cd ocuweave
 python -m venv .venv
-# Activate the virtual environment for your operating system.
+source .venv/bin/activate  # Windows: .venv\Scripts\activate
+python -m pip install --upgrade pip
 python -m pip install -e ".[research]"
-python scripts/audit_data.py examples/synthetic_manifest.json
-python scripts/prepare_data.py examples/synthetic_manifest.json --output outputs/audited_manifest.json
-python -m unittest discover -s tests -v
+ocuweave --version
 ```
 
-The example manifest contains fabricated identifiers and placeholder image paths;
-it contains no patient data. For real data, use `audit_data.py --check-files` with
-`--data-root` pointing to the authorized local dataset directory.
+For a CUDA-specific PyTorch build, install the appropriate PyTorch distribution for your machine before installing the research extra. Google Colab can run these same commands after cloning; mount your own Drive and put persistent outputs there. Hosted notebooks remain optional launchers.
 
-```sh
+## A complete CPU smoke test
+
+```bash
+ocuweave demo --output outputs/demo --device cpu
+```
+
+This command generates **24 geometric-shape images**, audits image–mask pairs, trains the small LQNet variant for two epochs, evaluates validation predictions at original dimensions, and saves a checkpoint and prediction. It does not download medical images, access Drive, or evaluate the test split. The synthetic scores are installation checks, not research results.
+
+```text
+outputs/demo/
+├── shapes.zip                 # Generated fixture, not OTFID data
+├── audit/manifest.json        # Frozen fixture split and archive hash
+├── config.json
+├── example.png / reference.png
+├── run/
+│   ├── best.pt                # Validation-selected synthetic checkpoint
+│   ├── history.json
+│   ├── provenance.json
+│   └── checkpoint.json
+├── validation.json            # Original-grid Dice, IoU and FP analysis
+├── prediction/
+│   ├── probability.npy        # Float probabilities at original dimensions
+│   ├── mask.png               # Threshold 0.5; values 0/255
+│   └── prediction.json        # Input/checkpoint hashes and geometry
+└── demo.json
+```
+
+Run directories are immutable: choose another output path to repeat a run. `python -m ocuweave` is equivalent to `ocuweave`, including after installation from a wheel outside the source checkout.
+
+## Train, evaluate, predict
+
+The following commands assume an **audited local archive and manifest**. Acquisition, patient-identity constraints, cleaning and split review are documented in [Getting started](docs/getting-started.md). They must precede claims about model performance.
+
+```bash
+ocuweave init-config --architecture query_detail --size 384 --seed 42 \
+  --output outputs/lqnet-384-seed42.json
+
+ocuweave train --manifest data/audit/manifest.json --archive data/otfid.zip \
+  --config outputs/lqnet-384-seed42.json --output outputs/lqnet-384-seed42 \
+  --device cuda --allow-unverified-patients
+
+ocuweave evaluate --manifest data/audit/manifest.json --archive data/otfid.zip \
+  --checkpoint outputs/lqnet-384-seed42/best.pt --output outputs/validation-384.json \
+  --device cuda --allow-unverified-patients
+
+ocuweave predict --checkpoint outputs/lqnet-384-seed42/best.pt \
+  --image /path/to/fundus.png --output outputs/prediction --device cpu
+```
+
+`--allow-unverified-patients` explicitly permits exploratory image grouping; it does **not** verify independence. Omit the flag for a verified patient-group manifest. Evaluation defaults to **validation on the original image grid**. Prediction requires your own checkpoint: no validated pretrained weights are bundled.
+
+## Method at a glance
+
+```mermaid
+flowchart LR
+    I[RGB image] --> E[Compact multiscale encoder]
+    E --> P[Shared pixel features]
+    E --> Q[Learned queries and cross-attention]
+    P --> M[Weighted query mask logits]
+    Q --> M
+    I --> D[Local-detail branch]
+    M --> D
+    M --> A[Additive refinement]
+    D --> A
+    A --> O[Restore original geometry]
+```
+
+| Configuration key | Implementation | Parameters at default dimensions | Experimental role |
+|---|---|---:|---|
+| `query` | [OcuWeaveSegmenter](src/ocuweave/models/segmenter.py) | 109,754 | Query baseline |
+| `query_detail` | [LocalDetailSegmenter](src/ocuweave/models/local_detail.py) | 111,411 | LQNet local-detail ablation |
+| `fcn` | [CompactFCN](src/ocuweave/baselines/compact_fcn.py) | Reported per run | Encoder/pixel-feature matched baseline |
+
+The local branch starts with a zero output projection. It refines logits at half input resolution; it is not a symmetric U-Net decoder. All variants use masked BCE + soft Dice, AdamW, and explicit seed/configuration records. The [model card](docs/model_cards/ocuweave.md) describes scope and limitations.
+
+## Evidence and reproducibility
+
+- One historical OTFID query-network feasibility pilot is documented. Some validation examples have **zero overlap**. These remain reported failures.
+- The controlled matrix—query 192, query 384, LQNet 384; seeds 42, 123 and 2026—has **0/9 completed runs** in the recorded research status. This software release does not complete those experiments.
+- A potential repeated-view pair crosses the historical training/validation split. Freeze the reviewed development manifest before new comparisons; preserve old test records.
+- Clinical annotation correctness and patient linkage remain unresolved. No glaucoma disc/cup, vascular/hypertension or DR-specific segmentation model has been trained in this project.
+- Native C++ currently provides a tested weighted-mean interoperability example. Neural-network training is Python/PyTorch; custom CUDA kernels and C++ autograd are not implemented.
+
+Training saves configuration, software version, source revision when available, working-tree state, archive/manifest hashes, optimizer-step counts, timing and memory. A wheel without Git metadata records the source revision as unavailable instead of borrowing the caller’s repository. CPU/GPU numerical equality is not guaranteed; preserve the environment and hardware record.
+
+## Data boundaries
+
+| Dataset | Current or intended role | Constraint |
+|---|---|---|
+| OTFID v3 | Binary toxoplasmosis lesion pilot | No verified paired narrative EMR; patient identities unresolved |
+| FairVLMed | Separate glaucoma image–text research | Original-note diagnosis and temporal leakage review required |
+| BRSET | Fundus and structured clinical variables | Credentialed access; metadata are not complete narrative records |
+| OLIVES / GRAPE | Compatible longitudinal ophthalmic tasks | Different cohorts and endpoints; no automatic time-to-blindness target |
+| FIVES / RETA / PAPILA | Candidate vessel or disc/cup extensions | Separate annotations, access review and experiments required |
+
+Never combine unrelated patients across datasets. Dataset licenses and access conditions are independent of the code license. Public code contains no patient images, notes or third-party model weights. See [dataset cards](docs/dataset_cards/README.md).
+
+## Repository guide
+
+| Directory | Responsibility |
+|---|---|
+| `src/ocuweave/data/` | Adapters, paired geometry, grouping and audit modules |
+| `src/ocuweave/models/` | Encoder, query head, LQNet and architecture registry |
+| `src/ocuweave/training/` | Training/checkpoints and controlled experiment runners |
+| `src/ocuweave/evaluation/` | Metrics, original-grid restoration and diagnostics |
+| `src/ocuweave/inference/` | Checkpoint-to-image prediction and artifact export |
+| `native/` | Optional C++17 numerical interoperability example |
+| `configs/`, `scripts/`, `notebooks/` | Research recipes, advanced entry points and Colab launchers |
+| `tests/` | Geometry, metrics, gradients, CLI round trips and native parity |
+| `docs/`, `paper/` | Protocols, results, model cards and manuscript source |
+
+Clinical/language/fusion folders currently describe future interfaces. Their presence is not a completed multimodal model. See [API and extension boundaries](docs/api.md).
+
+## Development
+
+```bash
+python -m unittest discover -s tests -v
 cmake -S . -B build -DBUILD_TESTING=ON
 cmake --build build
 ctest --test-dir build --output-on-failure
-python scripts/benchmark_ops.py --library build/libocuweave_native.dylib
 ```
 
-On Linux use `build/libocuweave_native.so`; on Windows locate
-`ocuweave_native.dll` in the build output. For Python/native parity tests, set
-`OCUWEAVE_NATIVE_LIBRARY` to the absolute library path before running unittest.
-The CPU operator is a numerical interoperability example, not the proposed fusion
-algorithm. It has no autograd integration and must not be used as a differentiable
-training operator. CUDA kernels are not implemented yet.
+Set `OCUWEAVE_NATIVE_LIBRARY` to the absolute shared-library path to include Python/native parity checks (`build/libocuweave_native.so` on Linux; `.dylib` on macOS). The [CI workflow](.github/workflows/ci.yml) checks native/Python behavior and runs the public CLI from an installed wheel outside the checkout.
 
-For the full image-only experiment, run the version-pinned Colab notebook above.
-It downloads the archive directly to Drive, runs tests, creates an audit, and saves
-checkpoints and evaluation JSON to Drive. No local Mac GPU or dataset copy is needed.
-Use `scripts/train.py --help`, `scripts/evaluate.py --help`, and
-`scripts/predict.py --help` for local command-line equivalents. Python uses PyTorch
-for autograd; the original model code is in `src/ocuweave/models`.
+Contributions should include a reproducible issue, a small scoped change and relevant checks. Describe the data license and provenance for any proposed dataset integration; do not submit patient data or checkpoints in a pull request. See [CONTRIBUTING](CONTRIBUTING.md) and [release procedure](docs/protocols/releases.md).
 
-## Research direction
+## Citation and license
 
-- Visual representations for full retinal images and lesion regions.
-- Clinical representations that preserve text evidence and missingness.
-- A proposed evidence-alignment and reliability-aware fusion method.
-- Evaluation against image-only, text-only, tabular, and late-fusion baselines.
-- Separate evaluation of prediction, localization, calibration, and robustness.
+Please cite the **software** until a paper is publicly available. GitHub’s “Cite this repository” uses [CITATION.cff](CITATION.cff).
 
-See [architecture](docs/architecture.md), [evaluation protocol](docs/protocols/evaluation.md),
-[dataset cards](docs/dataset_cards/README.md), and [model card](docs/model_cards/ocuweave.md).
+```bibtex
+@software{shevchenko2026ocuweave,
+  author = {Shevchenko, Marchel Andrian},
+  title = {OcuWeave: Evidence-Grounded Vision--Language Learning with
+           Incomplete Clinical Records for Ophthalmic Disease Assessment},
+  year = {2026},
+  version = {0.8.0},
+  url = {https://github.com/chenko-the-sorcerers/ocuweave}
+}
+```
 
-## Dataset plan
-
-| Dataset | Intended role | Important boundary |
-|---|---|---|
-| Harvard-FairVLMed | Paired SLO images and original clinical notes | Glaucoma; notes can contain the target diagnosis. Audit leakage first. |
-| BRSET | Color fundus + limited EMR-derived metadata | Scar (toxoplasmosis) labels do not establish active infection. Credentialed access. |
-| OTFID v3 | Toxoplasmosis lesion classification/segmentation | No paired narrative EMR verified; patient grouping requires inspection. |
-| OLIVES | OCT/near-IR imaging and longitudinal clinical measurements | Not a full narrative EMR or a toxoplasmosis cohort. |
-| mBRSET | External evaluation on compatible DR endpoints | Different camera/cohort; not an active-toxoplasmosis benchmark. |
-
-Never pair an image with another dataset's patient record. Text generated from
-metadata is synthetic/serialized metadata, not an original clinical note.
-
-## Repository map
-
-- `configs/`: dataset, model, experiment, and ablation TOML specifications and JSON pilot configurations.
-- `src/ocuweave/`: Python data/model contracts, reference operators, and audit logic.
-- `native/`: C++17 operator, C ABI binding, and optional future CUDA kernels.
-- `scripts/`: explicit research entry points.
-- `tests/`: data integrity, model contracts, and native/reference parity.
-- `paper/`: manuscript, figures, and tables for future research outputs.
-- `data/`, `outputs/`: ignored local data and generated artifacts.
-
-The directory READMEs describe unimplemented modules without pretending that the
-method already exists. Experiments must record patient splits, seed, code revision,
-configuration, data provenance, and checkpoint origin.
-
-## Public release and licensing
-
-Original code in this repository is MIT licensed. Dataset and pretrained-weight
-licenses remain separate. No patient images, clinical notes, or third-party weights
-are redistributed. Public checkpoints are a goal, conditional on upstream terms
-and appropriate privacy review. This software is for research, not patient care.
-
-## Versioning
-
-The current software version is **0.4.1**. Changes are recorded in [CHANGELOG.md](CHANGELOG.md), and releases use annotated Git tags (`vMAJOR.MINOR.PATCH`). During `0.x`, interfaces may evolve; pin a tag or commit for reproducible experiments.
-
-Software versions describe implementation changes, not clinical validation or model quality. Dataset versions, configurations, and future checkpoint versions must be recorded independently. See [the release procedure](docs/protocols/releases.md).
-
-## Reference implementations
-
-- [FairCLIP (CVPR 2024)](https://github.com/Harvard-Ophthalmology-AI-Lab/FairCLIP)
-- [RETFound](https://github.com/rmaphoh/RETFound)
-- [EyeCLIP](https://github.com/Michi-3000/EyeCLIP)
-- [FlashAttention](https://github.com/Dao-AILab/flash-attention)
-
-These are research references; no upstream implementation or checkpoint is vendored.
-See `CITATION.cff` to cite this research software; no publication acceptance is claimed.
-
-## Cleaning review
-
-Run the CPU [cleaning notebook](https://colab.research.google.com/github/chenko-the-sorcerers/ocuweave/blob/v0.5.0/notebooks/OcuWeave_Cleaning_Review_Colab.ipynb) with the acquired datasets in the private project Drive. The [protocol](docs/protocols/cleaning_review.md) distinguishes technical flags, clinical adjudication, patient linkage and original-note leakage review. No automated exclusion or clinical clearance is performed.
-
-[Observed cleaning results](docs/results/cleaning-review.md): one OTFID train–validation near-duplicate candidate remains unresolved. Technical screening does not verify patient independence, clinical mask correctness or EMR leakage clearance.
-
-## Exploratory training with OcuWeave–LQNet
-
-The local-detail query variant is named **OcuWeave–LQNet (Local-detail Query Network)**. See the [locked protocol](docs/protocols/exploratory_training.md) and [execution status](docs/results/exploratory-training.md). Training strategy naming remains future work. CPU smoke checks do not count as GPU runs or research results.
-
-The v0.6.0 execution attempt is blocked by Colab GPU quota and a failed Drive mount. Actual-data freezing and all nine runs remain pending. [Release-pinned Colab template](https://colab.research.google.com/github/chenko-the-sorcerers/ocuweave/blob/v0.6.0/notebooks/OcuWeave_Exploratory_Colab.ipynb).
-
-## CPU review and manuscript draft (v0.7.0)
-
-[CPU review protocol](docs/protocols/cpu_review.md) covers photo-mask reviewer sheets,
-192/384 component survival and padding analysis, and hand-computed evaluator tests.
-[LaTeX introduction and methodology](paper/manuscript/README.md) document the actual
-LQNet implementation, with IEEE numbered references and equation-to-code traceability.
-The [nine-run report template](paper/tables/exploratory-runs-template.csv) contains
-planned configurations and blank result fields; it is not an executed experiment.
+Original code: [MIT](LICENSE). Research use only; the software is not validated for patient care. Version numbers track software changes, not diagnostic quality or clinical approval.

@@ -3,6 +3,22 @@
 Notable changes to OcuWeave are recorded here. Versions follow Semantic Versioning.
 Dates use ISO 8601. Research hypotheses are not software capabilities.
 
+## [0.8.0] — 2026-10-31
+
+### Added
+- Installable `ocuweave` and `python -m ocuweave` commands for config creation, synthetic demo, OTFID preparation, training, validation and prediction.
+- Deterministic geometric-shape fixtures and a complete CPU audit/train/checkpoint/original-grid evaluation/prediction smoke workflow, independent of notebooks and patient data.
+- Public getting-started/API/contribution guides and a reorganized README with runnable commands, architecture map, experiment status and software citation.
+- CLI regression checks and installed-wheel smoke validation outside the source checkout in CI.
+
+### Fixed
+- Share original-grid probability restoration between evaluation and inference; add reusable prediction artifact export.
+- Record package version and dirty-tree state; resolve source commits from the package checkout instead of an unrelated caller's Git directory.
+- Synchronize Python, CMake, citation and README software versions.
+
+### Research status
+- No new medical-data training or clinical result is claimed. Synthetic smoke runs are software checks; the controlled nine-run matrix and multimodal/disease-specific extensions remain pending.
+
 ## [0.7.0] - 2026-10-31
 
 - Add a CPU-only development review bundle with photo-mask reviewer sheets, quality

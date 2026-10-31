@@ -3,7 +3,6 @@ import json
 import os
 import platform
 import random
-import subprocess
 import time
 import sys
 from pathlib import Path
@@ -14,7 +13,7 @@ from ocuweave.data.segmentation import SegmentationDataset
 from ocuweave.models.factory import make_model
 from ocuweave.losses.segmentation import segmentation_loss
 from ocuweave.evaluation.segmentation import binary_metrics,aggregate
-from ocuweave.utils.provenance import sha256,write_json
+from ocuweave.utils.provenance import sha256,write_json,software_provenance
 
 
 def seed_everything(seed):
@@ -95,9 +94,7 @@ def train(manifest,archive,output,config,*,allow_unverified=False,device='auto')
     model=make_model(config).to(dev)
     optimizer=torch.optim.AdamW(model.parameters(),lr=config['learning_rate'],weight_decay=1e-4)
     scheduler=torch.optim.lr_scheduler.CosineAnnealingLR(optimizer,config['epochs'])
-    try:revision=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
-    except (OSError,subprocess.CalledProcessError):revision='unavailable'
-    provenance={'config':config,'source_commit':revision,'manifest_sha256':sha256(manifest),
+    provenance={'config':config,**software_provenance(),'manifest_sha256':sha256(manifest),
         'archive_sha256':data['archive_sha256'],'split_unit':data['split_unit'],
         'device':str(dev),'torch':str(torch.__version__),'python':platform.python_version(),
         'parameters':sum(p.numel() for p in model.parameters()),'pretrained_weights':False,
