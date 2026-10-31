@@ -1,0 +1,25 @@
+{
+  "protocol": "idrid-feasibility-v1",
+  "classes": [
+    "MA",
+    "HE",
+    "EX",
+    "SE"
+  ],
+  "seed": 42,
+  "steps": 100,
+  "batch_size": 8,
+  "learning_rate": 0.001,
+  "weight_decay": 0.0001,
+  "precision": "float32",
+  "device": "cpu",
+  "torch": "2.11.0+cpu",
+  "loss": "BCE + soft Dice over observed image-class pairs only",
+  "pipeline": "RGB/255; letterbox bilinear image, nearest mask; padding excluded; paired horizontal flip p=.5",
+  "checkpoint_selection": "Fixed final step; no validation tuning",
+  "manifest_sha256": "5efcc29e06b6bcb0a4d0a8cfd5a3600951485cbbef17f78ab10e8ed41d66a4d1",
+  "purpose": "Supplementary single-seed feasibility; not core-programme completion",
+  "software_version": "0.10.0",
+  "source_commit": "7e5accc2d2f3cd5db3d79cbeb0fe440cba58772c",
+  "source_dirty": false
+}

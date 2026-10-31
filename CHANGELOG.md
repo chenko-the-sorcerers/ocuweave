@@ -20,6 +20,14 @@ Dates use ISO 8601. Research hypotheses are not software capabilities.
 - Describe the method directly as OcuWeave–LQNet in the README.
 - Keep the supplementary CPU feasibility protocol separate from the uncompleted core GPU programme; REFUGE2 requires dataset access; IDRiD uses a provenance-documented CC BY redistribution.
 
+### Measured research
+- Six supplementary CPU runs completed: three FIVES vessel runs and three IDRiD four-channel lesion runs, each seed 42 and 100 steps. Publish original-grid validation receipts, histories, compute records and attributed overlays; preserve core GPU status at 0/45.
+- FIVES LQNet macro Dice is 0.2022; the thin-centerline measure does not improve over Query 384. IDRiD Dice/IoU remain zero because all annotated validation channels are predicted as background at threshold 0.5. These failures remain visible.
+
+### Validation
+- 73 Python tests, native CTest/parity, installed-wheel inference checks and the complete CLI synthetic demo outside the checkout. GitHub Actions passed for the implemented code.
+- Publication scores checked against original per-image confusion counts; displayed assets checked against recorded SHA-256 values. No test inference or multimodal training performed.
+
 ## [0.9.0] — 2026-11-01
 
 ### Added

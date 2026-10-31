@@ -1,0 +1,13 @@
+{
+  "run": "lqnet384",
+  "steps_completed": 100,
+  "seed": 42,
+  "device": "cpu",
+  "input_size": 384,
+  "training_elapsed_seconds": 418.1761567200001,
+  "checkpoint_sha256": "3c7d5b6cd37bbaf3157e9e80341bab87e1614296662b1ac45e5da63fb1f02607",
+  "checkpoint_reload_matches": true,
+  "peak_process_rss_bytes": 3031556096,
+  "rss_scope": "process lifetime, includes preceding variants",
+  "parameters": 194220
+}

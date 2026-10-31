@@ -1,0 +1,44 @@
+{
+  "run": "lqnet384",
+  "steps_completed": 100,
+  "checkpoint_sha256": "80d0c7247e489aa1728769123085e8f03318dae67b205d48d3d0c3d27255dc3c",
+  "checkpoint_reload_matches": true,
+  "parameters": 111411,
+  "training_elapsed_seconds": 383.41425676900053,
+  "peak_cuda_allocated_bytes": null,
+  "peak_process_rss_bytes": 2253012992,
+  "rss_scope": "Process lifetime high-water mark; includes preceding variants",
+  "device": "cpu",
+  "seed": 42,
+  "config": {
+    "architecture": "query_detail",
+    "width": 24,
+    "dim": 48,
+    "queries": 8,
+    "size": 384,
+    "seed": 42
+  },
+  "metrics": {
+    "samples": 120,
+    "positive_samples": 119,
+    "empty_samples": 1,
+    "macro_dice": 0.2022322548484684,
+    "positive_macro_dice": 0.2039316855614807,
+    "positive_macro_iou": 0.11600654107788735,
+    "macro_iou": 0.11503981990223829,
+    "global_dice": 0.2221289247583383,
+    "empty_image_false_positive_rate": 1.0,
+    "positive_dice_image_bootstrap_95ci": [
+      0.18818477217627239,
+      0.2187234857716321
+    ],
+    "bootstrap_unit": "image (exploratory, not patient)",
+    "threshold": 0.5,
+    "empty_empty_dice": 1.0,
+    "cldice": 0.1792134952942642,
+    "sensitivity": 0.15002737641213892,
+    "precision": 0.5647568699708964,
+    "false_positive_area_fraction": 0.016608220338821412,
+    "thin_centerline_recall": 0.054044503681625104
+  }
+}

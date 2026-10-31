@@ -1,0 +1,305 @@
+{
+  "dataset": "fives",
+  "exporter": {
+    "software_version": "0.10.0",
+    "source_commit": "a0c2d49be0d39caf3f507560e39815eea3c82ede",
+    "source_dirty": false
+  },
+  "environment": {
+    "recorded_at": "2026-10-31T18:35:07.034016+00:00",
+    "python": "3.13.18",
+    "system": "Linux",
+    "machine": "x86_64",
+    "cpu_models": [
+      "Intel(R) Xeon(R) CPU @ 2.20GHz"
+    ],
+    "logical_cpus": 2,
+    "training_torch_threads": 2,
+    "device": "cpu",
+    "precision": "float32",
+    "packages": {
+      "torch": "2.11.0+cpu",
+      "numpy": "2.1.3",
+      "Pillow": "11.3.0",
+      "scipy": "1.16.3",
+      "scikit-image": "0.25.2",
+      "matplotlib": "3.10.0"
+    },
+    "timing_limit": "Some FIVES training overlapped acquisition/audit work; elapsed times include lazy decoding and are not controlled throughput benchmarks."
+  },
+  "protocol": {
+    "protocol": "fives-feasibility-v1",
+    "purpose": "Supplementary feasibility experiment; not a completed core-programme run",
+    "steps": 100,
+    "batch_size": 8,
+    "seed": 42,
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "loss": "valid-region BCE + soft Dice",
+    "augmentation": "paired horizontal flip p=0.5",
+    "precision": "float32",
+    "checkpoint_selection": "fixed final step; validation evaluated once after training",
+    "device": "cpu",
+    "device_name": "x86_64",
+    "torch": "2.11.0+cpu",
+    "manifest_sha256": "632b76bad18375cb824fc18761216a00428310fe806f4170c2f866199f13ad68",
+    "initialization": "random, reset after smoke",
+    "test_evaluated": false,
+    "software_version": "0.10.0",
+    "source_commit": "28db9c803802d3d8438f583d45d89e70b1d891ac",
+    "source_dirty": false
+  },
+  "results": [
+    {
+      "run": "query192",
+      "steps_completed": 100,
+      "checkpoint_sha256": "6d586668ff157ee32ebe5733f294da16ef9a2ac4a948a4384f73423603d11518",
+      "checkpoint_reload_matches": true,
+      "parameters": 109754,
+      "training_elapsed_seconds": 245.0837091100002,
+      "peak_cuda_allocated_bytes": null,
+      "peak_process_rss_bytes": 922955776,
+      "rss_scope": "Process lifetime high-water mark; includes preceding variants",
+      "device": "cpu",
+      "seed": 42,
+      "config": {
+        "architecture": "query",
+        "width": 24,
+        "dim": 48,
+        "queries": 8,
+        "size": 192,
+        "seed": 42
+      },
+      "metrics": {
+        "samples": 120,
+        "positive_samples": 119,
+        "empty_samples": 1,
+        "macro_dice": 0.16104383930361177,
+        "positive_macro_dice": 0.15399378753305384,
+        "positive_macro_iou": 0.08491649898872514,
+        "macro_iou": 0.09254219483048579,
+        "global_dice": 0.16655144152231,
+        "empty_image_false_positive_rate": 0.0,
+        "positive_dice_image_bootstrap_95ci": [
+          0.1417865746078513,
+          0.1667835023307749
+        ],
+        "bootstrap_unit": "image (exploratory, not patient)",
+        "threshold": 0.5,
+        "empty_empty_dice": 1.0,
+        "cldice": 0.1404872128021558,
+        "sensitivity": 0.1115527960724227,
+        "precision": 0.39657068477810636,
+        "false_positive_area_fraction": 0.018399771054585776,
+        "thin_centerline_recall": 0.049596433954073475
+      }
+    },
+    {
+      "run": "query384",
+      "steps_completed": 100,
+      "checkpoint_sha256": "57dd55396d418ec388bf485a5d3323ad8295f3d3ba5b5eb52b6ac168d1248d51",
+      "checkpoint_reload_matches": true,
+      "parameters": 109754,
+      "training_elapsed_seconds": 490.8941611090004,
+      "peak_cuda_allocated_bytes": null,
+      "peak_process_rss_bytes": 1941864448,
+      "rss_scope": "Process lifetime high-water mark; includes preceding variants",
+      "device": "cpu",
+      "seed": 42,
+      "config": {
+        "architecture": "query",
+        "width": 24,
+        "dim": 48,
+        "queries": 8,
+        "size": 384,
+        "seed": 42
+      },
+      "metrics": {
+        "samples": 120,
+        "positive_samples": 119,
+        "empty_samples": 1,
+        "macro_dice": 0.19849365364224314,
+        "positive_macro_dice": 0.20016166753839645,
+        "positive_macro_iou": 0.1136311144510019,
+        "macro_iou": 0.11268418849724354,
+        "global_dice": 0.21866297647152377,
+        "empty_image_false_positive_rate": 1.0,
+        "positive_dice_image_bootstrap_95ci": [
+          0.18440078235309248,
+          0.21481607679548811
+        ],
+        "bootstrap_unit": "image (exploratory, not patient)",
+        "threshold": 0.5,
+        "empty_empty_dice": 1.0,
+        "cldice": 0.17622885833381854,
+        "sensitivity": 0.1485910364122512,
+        "precision": 0.5573278401214022,
+        "false_positive_area_fraction": 0.01731399695078532,
+        "thin_centerline_recall": 0.055032711437926575
+      }
+    },
+    {
+      "run": "lqnet384",
+      "steps_completed": 100,
+      "checkpoint_sha256": "80d0c7247e489aa1728769123085e8f03318dae67b205d48d3d0c3d27255dc3c",
+      "checkpoint_reload_matches": true,
+      "parameters": 111411,
+      "training_elapsed_seconds": 383.41425676900053,
+      "peak_cuda_allocated_bytes": null,
+      "peak_process_rss_bytes": 2253012992,
+      "rss_scope": "Process lifetime high-water mark; includes preceding variants",
+      "device": "cpu",
+      "seed": 42,
+      "config": {
+        "architecture": "query_detail",
+        "width": 24,
+        "dim": 48,
+        "queries": 8,
+        "size": 384,
+        "seed": 42
+      },
+      "metrics": {
+        "samples": 120,
+        "positive_samples": 119,
+        "empty_samples": 1,
+        "macro_dice": 0.2022322548484684,
+        "positive_macro_dice": 0.2039316855614807,
+        "positive_macro_iou": 0.11600654107788735,
+        "macro_iou": 0.11503981990223829,
+        "global_dice": 0.2221289247583383,
+        "empty_image_false_positive_rate": 1.0,
+        "positive_dice_image_bootstrap_95ci": [
+          0.18818477217627239,
+          0.2187234857716321
+        ],
+        "bootstrap_unit": "image (exploratory, not patient)",
+        "threshold": 0.5,
+        "empty_empty_dice": 1.0,
+        "cldice": 0.1792134952942642,
+        "sensitivity": 0.15002737641213892,
+        "precision": 0.5647568699708964,
+        "false_positive_area_fraction": 0.016608220338821412,
+        "thin_centerline_recall": 0.054044503681625104
+      }
+    }
+  ],
+  "examples": [
+    {
+      "sample_id": "train-447_G",
+      "selection": "Lowest Dice in LQNet validation; ties sorted by ID",
+      "prefix": "fives-1",
+      "metrics": {
+        "sample_id": "train-447_G",
+        "disease_stratum": "G",
+        "tp": 0,
+        "fp": 699,
+        "fn": 0,
+        "dice": 0.0,
+        "iou": 0.0,
+        "target_positive": false,
+        "prediction_positive": true,
+        "cldice": 0.0,
+        "sensitivity": null,
+        "precision": 0.0,
+        "false_positive_area_fraction": 0.0001666545867919922,
+        "thin_centerline_reference_pixels": 0,
+        "thin_centerline_recalled_pixels": 0,
+        "thin_centerline_recall": null
+      },
+      "source_image_sha256": "245e39d3e4ee367bce1d1a6771d6d7620aa03e5cc22c721af8625a357f040b3a",
+      "source_mask_sha256": "f57ca1fb2a21ab3c7da1b0ac1ed3859b816a4ed6eb7b09700419e86f0b0e1c8e"
+    },
+    {
+      "sample_id": "train-89_A",
+      "selection": "Median Dice in LQNet validation; ties sorted by ID",
+      "prefix": "fives-2",
+      "metrics": {
+        "sample_id": "train-89_A",
+        "disease_stratum": "A",
+        "tp": 28596,
+        "fp": 12430,
+        "fn": 202520,
+        "dice": 0.21015499261414997,
+        "iou": 0.11741519055948363,
+        "target_positive": true,
+        "prediction_positive": true,
+        "cldice": 0.1578761646580981,
+        "sensitivity": 0.12373007494072241,
+        "precision": 0.6970214010627407,
+        "false_positive_area_fraction": 0.002963542938232422,
+        "thin_centerline_reference_pixels": 1135,
+        "thin_centerline_recalled_pixels": 19,
+        "thin_centerline_recall": 0.016740088105726872
+      },
+      "source_image_sha256": "325607e8f5784d5b1b3ca904946a8d0d72f59ed8aa5ba77718984f24aa3d9558",
+      "source_mask_sha256": "c6d1847765df061cc41e09077a801e4ee926be7fe770aa1bd88f7e294076a7bb"
+    },
+    {
+      "sample_id": "train-475_N",
+      "selection": "Highest Dice in LQNet validation; ties sorted by ID",
+      "prefix": "fives-3",
+      "metrics": {
+        "sample_id": "train-475_N",
+        "disease_stratum": "N",
+        "tp": 89003,
+        "fp": 43809,
+        "fn": 270853,
+        "dice": 0.3613102535581771,
+        "iou": 0.2204872852489069,
+        "target_positive": true,
+        "prediction_positive": true,
+        "cldice": 0.2942140308816401,
+        "sensitivity": 0.24732948735049576,
+        "precision": 0.6701427581845014,
+        "false_positive_area_fraction": 0.010444879531860352,
+        "thin_centerline_reference_pixels": 1058,
+        "thin_centerline_recalled_pixels": 23,
+        "thin_centerline_recall": 0.021739130434782608
+      },
+      "source_image_sha256": "3493a404726974c22279c4775514a4368af1fd0c92a1bd0ce4c556333277a25d",
+      "source_mask_sha256": "ae8c5de707c855fac3d40e77fb67abd0409d4355f16d51f362b3332a78041d1b"
+    }
+  ],
+  "manifest_sha256": "632b76bad18375cb824fc18761216a00428310fe806f4170c2f866199f13ad68",
+  "counts": {
+    "test": 200,
+    "validation": 120,
+    "train": 480
+  },
+  "patient_identity_verified": false,
+  "test_evaluated": false,
+  "source_manifest_fields": {
+    "protocol": "fives-development-v1",
+    "seed": 42,
+    "dataset": "FIVES",
+    "source": "https://doi.org/10.6084/m9.figshare.19688169.v1",
+    "license": "CC-BY-4.0",
+    "patient_identity_verified": false,
+    "split_unit": "provisional_similarity_group",
+    "official_test_eligible": false,
+    "cross_official_group_count": 2,
+    "provisional_development": true,
+    "counts": {
+      "test": 200,
+      "validation": 120,
+      "train": 480
+    },
+    "policy": "Official test preserved and never evaluated here; 20% of training groups per disease stratum used for validation; no quality exclusions. Any cross-official groups bar test-performance claims.",
+    "limitations": [
+      "Patient/eye identity unavailable; similarity is not identity verification.",
+      "Technical geometry checks do not validate clinical boundaries."
+    ]
+  },
+  "display": "Full-field resized photographs; reference green and prediction amber at 65% opacity. Metrics use original binary masks, never display pixels.",
+  "assets": {
+    "fives-1-photo.jpg": "a1d237ebd9aad6729acb984049d47da55967ec52c3e819e9f96d5431cfe459ac",
+    "fives-1-reference.jpg": "a1d237ebd9aad6729acb984049d47da55967ec52c3e819e9f96d5431cfe459ac",
+    "fives-1-prediction.jpg": "9cc5b99faed4db88d751af90916c1ff60e812bf0daa463451d4995c3c675e7b7",
+    "fives-2-photo.jpg": "eb1971277eab3a03a202124b2fda36fe58dc70b573facdb9f0dbaf7ac8a5eba1",
+    "fives-2-reference.jpg": "b6b7ad8c76b9931651142243dd09bc4d02b2a5ddaf809c39b53c325f221f26d4",
+    "fives-2-prediction.jpg": "19454104db6448844002b80f751457941ae542a27b23a5431a86abe429502bb1",
+    "fives-3-photo.jpg": "5965f7cfa9ab9d3393c422414070f53fd92503dad256716526d24c708bded424",
+    "fives-3-reference.jpg": "1532f284de5929204af0bab662d30342f32dfa9ab0c533efb743cee02c813b63",
+    "fives-3-prediction.jpg": "7f772c308e666376bda717cd5bbebfda0dcdeb9b7ba8f11dcc8bbe8639e15864"
+  }
+}

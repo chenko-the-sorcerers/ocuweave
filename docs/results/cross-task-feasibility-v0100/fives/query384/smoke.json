@@ -1,0 +1,6 @@
+{
+  "finite_loss": 1.1847832202911377,
+  "gradient_norm": 0.2509434223175049,
+  "batch_size": 8,
+  "device": "cpu"
+}

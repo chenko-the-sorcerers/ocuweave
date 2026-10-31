@@ -1,0 +1,21 @@
+{
+  "run": "query192",
+  "steps_completed": 100,
+  "checkpoint_sha256": "6d586668ff157ee32ebe5733f294da16ef9a2ac4a948a4384f73423603d11518",
+  "checkpoint_reload_matches": true,
+  "parameters": 109754,
+  "training_elapsed_seconds": 245.0837091100002,
+  "peak_cuda_allocated_bytes": null,
+  "peak_process_rss_bytes": 922955776,
+  "rss_scope": "Process lifetime high-water mark; includes preceding variants",
+  "device": "cpu",
+  "seed": 42,
+  "config": {
+    "architecture": "query",
+    "width": 24,
+    "dim": 48,
+    "queries": 8,
+    "size": 192,
+    "seed": 42
+  }
+}

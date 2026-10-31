@@ -1,0 +1,266 @@
+[
+  {
+    "run": "query192",
+    "steps_completed": 100,
+    "seed": 42,
+    "device": "cpu",
+    "input_size": 192,
+    "training_elapsed_seconds": 135.34238588900007,
+    "checkpoint_sha256": "a599464f249f98a9683a365d450ad9684d58055b914cd8a1587f13ea84f9374f",
+    "checkpoint_reload_matches": true,
+    "peak_process_rss_bytes": 975835136,
+    "rss_scope": "process lifetime, includes preceding variants",
+    "parameters": 192416,
+    "per_class": {
+      "MA": {
+        "samples": 11,
+        "positive_samples": 11,
+        "empty_samples": 0,
+        "macro_dice": 0.0,
+        "positive_macro_dice": 0.0,
+        "positive_macro_iou": 0.0,
+        "macro_iou": 0.0,
+        "global_dice": 0.0,
+        "empty_image_false_positive_rate": null,
+        "positive_dice_image_bootstrap_95ci": [
+          0.0,
+          0.0
+        ],
+        "bootstrap_unit": "image (exploratory, not patient)",
+        "threshold": 0.5,
+        "empty_empty_dice": 1.0
+      },
+      "HE": {
+        "samples": 11,
+        "positive_samples": 11,
+        "empty_samples": 0,
+        "macro_dice": 0.0,
+        "positive_macro_dice": 0.0,
+        "positive_macro_iou": 0.0,
+        "macro_iou": 0.0,
+        "global_dice": 0.0,
+        "empty_image_false_positive_rate": null,
+        "positive_dice_image_bootstrap_95ci": [
+          0.0,
+          0.0
+        ],
+        "bootstrap_unit": "image (exploratory, not patient)",
+        "threshold": 0.5,
+        "empty_empty_dice": 1.0
+      },
+      "EX": {
+        "samples": 11,
+        "positive_samples": 11,
+        "empty_samples": 0,
+        "macro_dice": 0.0,
+        "positive_macro_dice": 0.0,
+        "positive_macro_iou": 0.0,
+        "macro_iou": 0.0,
+        "global_dice": 0.0,
+        "empty_image_false_positive_rate": null,
+        "positive_dice_image_bootstrap_95ci": [
+          0.0,
+          0.0
+        ],
+        "bootstrap_unit": "image (exploratory, not patient)",
+        "threshold": 0.5,
+        "empty_empty_dice": 1.0
+      },
+      "SE": {
+        "samples": 5,
+        "positive_samples": 5,
+        "empty_samples": 0,
+        "macro_dice": 0.0,
+        "positive_macro_dice": 0.0,
+        "positive_macro_iou": 0.0,
+        "macro_iou": 0.0,
+        "global_dice": 0.0,
+        "empty_image_false_positive_rate": null,
+        "positive_dice_image_bootstrap_95ci": [
+          0.0,
+          0.0
+        ],
+        "bootstrap_unit": "image (exploratory, not patient)",
+        "threshold": 0.5,
+        "empty_empty_dice": 1.0
+      }
+    },
+    "mean_class_positive_dice": 0.0
+  },
+  {
+    "run": "query384",
+    "steps_completed": 100,
+    "seed": 42,
+    "device": "cpu",
+    "input_size": 384,
+    "training_elapsed_seconds": 356.31374272999983,
+    "checkpoint_sha256": "05887fe9613905cb4472be8acd6a6609d88c572bf5903d09a3b91b74235a66a9",
+    "checkpoint_reload_matches": true,
+    "peak_process_rss_bytes": 2126323712,
+    "rss_scope": "process lifetime, includes preceding variants",
+    "parameters": 192416,
+    "per_class": {
+      "MA": {
+        "samples": 11,
+        "positive_samples": 11,
+        "empty_samples": 0,
+        "macro_dice": 0.0,
+        "positive_macro_dice": 0.0,
+        "positive_macro_iou": 0.0,
+        "macro_iou": 0.0,
+        "global_dice": 0.0,
+        "empty_image_false_positive_rate": null,
+        "positive_dice_image_bootstrap_95ci": [
+          0.0,
+          0.0
+        ],
+        "bootstrap_unit": "image (exploratory, not patient)",
+        "threshold": 0.5,
+        "empty_empty_dice": 1.0
+      },
+      "HE": {
+        "samples": 11,
+        "positive_samples": 11,
+        "empty_samples": 0,
+        "macro_dice": 0.0,
+        "positive_macro_dice": 0.0,
+        "positive_macro_iou": 0.0,
+        "macro_iou": 0.0,
+        "global_dice": 0.0,
+        "empty_image_false_positive_rate": null,
+        "positive_dice_image_bootstrap_95ci": [
+          0.0,
+          0.0
+        ],
+        "bootstrap_unit": "image (exploratory, not patient)",
+        "threshold": 0.5,
+        "empty_empty_dice": 1.0
+      },
+      "EX": {
+        "samples": 11,
+        "positive_samples": 11,
+        "empty_samples": 0,
+        "macro_dice": 0.0,
+        "positive_macro_dice": 0.0,
+        "positive_macro_iou": 0.0,
+        "macro_iou": 0.0,
+        "global_dice": 0.0,
+        "empty_image_false_positive_rate": null,
+        "positive_dice_image_bootstrap_95ci": [
+          0.0,
+          0.0
+        ],
+        "bootstrap_unit": "image (exploratory, not patient)",
+        "threshold": 0.5,
+        "empty_empty_dice": 1.0
+      },
+      "SE": {
+        "samples": 5,
+        "positive_samples": 5,
+        "empty_samples": 0,
+        "macro_dice": 0.0,
+        "positive_macro_dice": 0.0,
+        "positive_macro_iou": 0.0,
+        "macro_iou": 0.0,
+        "global_dice": 0.0,
+        "empty_image_false_positive_rate": null,
+        "positive_dice_image_bootstrap_95ci": [
+          0.0,
+          0.0
+        ],
+        "bootstrap_unit": "image (exploratory, not patient)",
+        "threshold": 0.5,
+        "empty_empty_dice": 1.0
+      }
+    },
+    "mean_class_positive_dice": 0.0
+  },
+  {
+    "run": "lqnet384",
+    "steps_completed": 100,
+    "seed": 42,
+    "device": "cpu",
+    "input_size": 384,
+    "training_elapsed_seconds": 418.1761567200001,
+    "checkpoint_sha256": "3c7d5b6cd37bbaf3157e9e80341bab87e1614296662b1ac45e5da63fb1f02607",
+    "checkpoint_reload_matches": true,
+    "peak_process_rss_bytes": 3031556096,
+    "rss_scope": "process lifetime, includes preceding variants",
+    "parameters": 194220,
+    "per_class": {
+      "MA": {
+        "samples": 11,
+        "positive_samples": 11,
+        "empty_samples": 0,
+        "macro_dice": 0.0,
+        "positive_macro_dice": 0.0,
+        "positive_macro_iou": 0.0,
+        "macro_iou": 0.0,
+        "global_dice": 0.0,
+        "empty_image_false_positive_rate": null,
+        "positive_dice_image_bootstrap_95ci": [
+          0.0,
+          0.0
+        ],
+        "bootstrap_unit": "image (exploratory, not patient)",
+        "threshold": 0.5,
+        "empty_empty_dice": 1.0
+      },
+      "HE": {
+        "samples": 11,
+        "positive_samples": 11,
+        "empty_samples": 0,
+        "macro_dice": 0.0,
+        "positive_macro_dice": 0.0,
+        "positive_macro_iou": 0.0,
+        "macro_iou": 0.0,
+        "global_dice": 0.0,
+        "empty_image_false_positive_rate": null,
+        "positive_dice_image_bootstrap_95ci": [
+          0.0,
+          0.0
+        ],
+        "bootstrap_unit": "image (exploratory, not patient)",
+        "threshold": 0.5,
+        "empty_empty_dice": 1.0
+      },
+      "EX": {
+        "samples": 11,
+        "positive_samples": 11,
+        "empty_samples": 0,
+        "macro_dice": 0.0,
+        "positive_macro_dice": 0.0,
+        "positive_macro_iou": 0.0,
+        "macro_iou": 0.0,
+        "global_dice": 0.0,
+        "empty_image_false_positive_rate": null,
+        "positive_dice_image_bootstrap_95ci": [
+          0.0,
+          0.0
+        ],
+        "bootstrap_unit": "image (exploratory, not patient)",
+        "threshold": 0.5,
+        "empty_empty_dice": 1.0
+      },
+      "SE": {
+        "samples": 5,
+        "positive_samples": 5,
+        "empty_samples": 0,
+        "macro_dice": 0.0,
+        "positive_macro_dice": 0.0,
+        "positive_macro_iou": 0.0,
+        "macro_iou": 0.0,
+        "global_dice": 0.0,
+        "empty_image_false_positive_rate": null,
+        "positive_dice_image_bootstrap_95ci": [
+          0.0,
+          0.0
+        ],
+        "bootstrap_unit": "image (exploratory, not patient)",
+        "threshold": 0.5,
+        "empty_empty_dice": 1.0
+      }
+    },
+    "mean_class_positive_dice": 0.0
+  }
+]

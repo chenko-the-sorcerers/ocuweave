@@ -1,0 +1,516 @@
+{
+  "protocol": "idrid-original-grid-v1",
+  "split": "validation",
+  "threshold": 0.5,
+  "per_class": {
+    "MA": {
+      "samples": 11,
+      "positive_samples": 11,
+      "empty_samples": 0,
+      "macro_dice": 0.0,
+      "positive_macro_dice": 0.0,
+      "positive_macro_iou": 0.0,
+      "macro_iou": 0.0,
+      "global_dice": 0.0,
+      "empty_image_false_positive_rate": null,
+      "positive_dice_image_bootstrap_95ci": [
+        0.0,
+        0.0
+      ],
+      "bootstrap_unit": "image (exploratory, not patient)",
+      "threshold": 0.5,
+      "empty_empty_dice": 1.0
+    },
+    "HE": {
+      "samples": 11,
+      "positive_samples": 11,
+      "empty_samples": 0,
+      "macro_dice": 0.0,
+      "positive_macro_dice": 0.0,
+      "positive_macro_iou": 0.0,
+      "macro_iou": 0.0,
+      "global_dice": 0.0,
+      "empty_image_false_positive_rate": null,
+      "positive_dice_image_bootstrap_95ci": [
+        0.0,
+        0.0
+      ],
+      "bootstrap_unit": "image (exploratory, not patient)",
+      "threshold": 0.5,
+      "empty_empty_dice": 1.0
+    },
+    "EX": {
+      "samples": 11,
+      "positive_samples": 11,
+      "empty_samples": 0,
+      "macro_dice": 0.0,
+      "positive_macro_dice": 0.0,
+      "positive_macro_iou": 0.0,
+      "macro_iou": 0.0,
+      "global_dice": 0.0,
+      "empty_image_false_positive_rate": null,
+      "positive_dice_image_bootstrap_95ci": [
+        0.0,
+        0.0
+      ],
+      "bootstrap_unit": "image (exploratory, not patient)",
+      "threshold": 0.5,
+      "empty_empty_dice": 1.0
+    },
+    "SE": {
+      "samples": 5,
+      "positive_samples": 5,
+      "empty_samples": 0,
+      "macro_dice": 0.0,
+      "positive_macro_dice": 0.0,
+      "positive_macro_iou": 0.0,
+      "macro_iou": 0.0,
+      "global_dice": 0.0,
+      "empty_image_false_positive_rate": null,
+      "positive_dice_image_bootstrap_95ci": [
+        0.0,
+        0.0
+      ],
+      "bootstrap_unit": "image (exploratory, not patient)",
+      "threshold": 0.5,
+      "empty_empty_dice": 1.0
+    }
+  },
+  "mean_class_positive_dice": 0.0,
+  "per_image_class": {
+    "MA": [
+      {
+        "sample_id": "IDRiD_10",
+        "tp": 0,
+        "fp": 0,
+        "fn": 33484,
+        "dice": 0.0,
+        "iou": 0.0,
+        "target_positive": true,
+        "prediction_positive": false,
+        "false_positive_area_fraction": 0.0
+      },
+      {
+        "sample_id": "IDRiD_12",
+        "tp": 0,
+        "fp": 0,
+        "fn": 3952,
+        "dice": 0.0,
+        "iou": 0.0,
+        "target_positive": true,
+        "prediction_positive": false,
+        "false_positive_area_fraction": 0.0
+      },
+      {
+        "sample_id": "IDRiD_17",
+        "tp": 0,
+        "fp": 0,
+        "fn": 14207,
+        "dice": 0.0,
+        "iou": 0.0,
+        "target_positive": true,
+        "prediction_positive": false,
+        "false_positive_area_fraction": 0.0
+      },
+      {
+        "sample_id": "IDRiD_20",
+        "tp": 0,
+        "fp": 0,
+        "fn": 26027,
+        "dice": 0.0,
+        "iou": 0.0,
+        "target_positive": true,
+        "prediction_positive": false,
+        "false_positive_area_fraction": 0.0
+      },
+      {
+        "sample_id": "IDRiD_22",
+        "tp": 0,
+        "fp": 0,
+        "fn": 10367,
+        "dice": 0.0,
+        "iou": 0.0,
+        "target_positive": true,
+        "prediction_positive": false,
+        "false_positive_area_fraction": 0.0
+      },
+      {
+        "sample_id": "IDRiD_29",
+        "tp": 0,
+        "fp": 0,
+        "fn": 4525,
+        "dice": 0.0,
+        "iou": 0.0,
+        "target_positive": true,
+        "prediction_positive": false,
+        "false_positive_area_fraction": 0.0
+      },
+      {
+        "sample_id": "IDRiD_31",
+        "tp": 0,
+        "fp": 0,
+        "fn": 8156,
+        "dice": 0.0,
+        "iou": 0.0,
+        "target_positive": true,
+        "prediction_positive": false,
+        "false_positive_area_fraction": 0.0
+      },
+      {
+        "sample_id": "IDRiD_32",
+        "tp": 0,
+        "fp": 0,
+        "fn": 6068,
+        "dice": 0.0,
+        "iou": 0.0,
+        "target_positive": true,
+        "prediction_positive": false,
+        "false_positive_area_fraction": 0.0
+      },
+      {
+        "sample_id": "IDRiD_40",
+        "tp": 0,
+        "fp": 0,
+        "fn": 6592,
+        "dice": 0.0,
+        "iou": 0.0,
+        "target_positive": true,
+        "prediction_positive": false,
+        "false_positive_area_fraction": 0.0
+      },
+      {
+        "sample_id": "IDRiD_45",
+        "tp": 0,
+        "fp": 0,
+        "fn": 2548,
+        "dice": 0.0,
+        "iou": 0.0,
+        "target_positive": true,
+        "prediction_positive": false,
+        "false_positive_area_fraction": 0.0
+      },
+      {
+        "sample_id": "IDRiD_49",
+        "tp": 0,
+        "fp": 0,
+        "fn": 16520,
+        "dice": 0.0,
+        "iou": 0.0,
+        "target_positive": true,
+        "prediction_positive": false,
+        "false_positive_area_fraction": 0.0
+      }
+    ],
+    "HE": [
+      {
+        "sample_id": "IDRiD_10",
+        "tp": 0,
+        "fp": 0,
+        "fn": 92658,
+        "dice": 0.0,
+        "iou": 0.0,
+        "target_positive": true,
+        "prediction_positive": false,
+        "false_positive_area_fraction": 0.0
+      },
+      {
+        "sample_id": "IDRiD_12",
+        "tp": 0,
+        "fp": 0,
+        "fn": 26843,
+        "dice": 0.0,
+        "iou": 0.0,
+        "target_positive": true,
+        "prediction_positive": false,
+        "false_positive_area_fraction": 0.0
+      },
+      {
+        "sample_id": "IDRiD_17",
+        "tp": 0,
+        "fp": 0,
+        "fn": 1821322,
+        "dice": 0.0,
+        "iou": 0.0,
+        "target_positive": true,
+        "prediction_positive": false,
+        "false_positive_area_fraction": 0.0
+      },
+      {
+        "sample_id": "IDRiD_20",
+        "tp": 0,
+        "fp": 0,
+        "fn": 66672,
+        "dice": 0.0,
+        "iou": 0.0,
+        "target_positive": true,
+        "prediction_positive": false,
+        "false_positive_area_fraction": 0.0
+      },
+      {
+        "sample_id": "IDRiD_22",
+        "tp": 0,
+        "fp": 0,
+        "fn": 254991,
+        "dice": 0.0,
+        "iou": 0.0,
+        "target_positive": true,
+        "prediction_positive": false,
+        "false_positive_area_fraction": 0.0
+      },
+      {
+        "sample_id": "IDRiD_29",
+        "tp": 0,
+        "fp": 0,
+        "fn": 2149,
+        "dice": 0.0,
+        "iou": 0.0,
+        "target_positive": true,
+        "prediction_positive": false,
+        "false_positive_area_fraction": 0.0
+      },
+      {
+        "sample_id": "IDRiD_31",
+        "tp": 0,
+        "fp": 0,
+        "fn": 216935,
+        "dice": 0.0,
+        "iou": 0.0,
+        "target_positive": true,
+        "prediction_positive": false,
+        "false_positive_area_fraction": 0.0
+      },
+      {
+        "sample_id": "IDRiD_32",
+        "tp": 0,
+        "fp": 0,
+        "fn": 86486,
+        "dice": 0.0,
+        "iou": 0.0,
+        "target_positive": true,
+        "prediction_positive": false,
+        "false_positive_area_fraction": 0.0
+      },
+      {
+        "sample_id": "IDRiD_40",
+        "tp": 0,
+        "fp": 0,
+        "fn": 3642,
+        "dice": 0.0,
+        "iou": 0.0,
+        "target_positive": true,
+        "prediction_positive": false,
+        "false_positive_area_fraction": 0.0
+      },
+      {
+        "sample_id": "IDRiD_45",
+        "tp": 0,
+        "fp": 0,
+        "fn": 13236,
+        "dice": 0.0,
+        "iou": 0.0,
+        "target_positive": true,
+        "prediction_positive": false,
+        "false_positive_area_fraction": 0.0
+      },
+      {
+        "sample_id": "IDRiD_49",
+        "tp": 0,
+        "fp": 0,
+        "fn": 178309,
+        "dice": 0.0,
+        "iou": 0.0,
+        "target_positive": true,
+        "prediction_positive": false,
+        "false_positive_area_fraction": 0.0
+      }
+    ],
+    "EX": [
+      {
+        "sample_id": "IDRiD_10",
+        "tp": 0,
+        "fp": 0,
+        "fn": 805250,
+        "dice": 0.0,
+        "iou": 0.0,
+        "target_positive": true,
+        "prediction_positive": false,
+        "false_positive_area_fraction": 0.0
+      },
+      {
+        "sample_id": "IDRiD_12",
+        "tp": 0,
+        "fp": 0,
+        "fn": 6626,
+        "dice": 0.0,
+        "iou": 0.0,
+        "target_positive": true,
+        "prediction_positive": false,
+        "false_positive_area_fraction": 0.0
+      },
+      {
+        "sample_id": "IDRiD_17",
+        "tp": 0,
+        "fp": 0,
+        "fn": 201316,
+        "dice": 0.0,
+        "iou": 0.0,
+        "target_positive": true,
+        "prediction_positive": false,
+        "false_positive_area_fraction": 0.0
+      },
+      {
+        "sample_id": "IDRiD_20",
+        "tp": 0,
+        "fp": 0,
+        "fn": 183732,
+        "dice": 0.0,
+        "iou": 0.0,
+        "target_positive": true,
+        "prediction_positive": false,
+        "false_positive_area_fraction": 0.0
+      },
+      {
+        "sample_id": "IDRiD_22",
+        "tp": 0,
+        "fp": 0,
+        "fn": 94020,
+        "dice": 0.0,
+        "iou": 0.0,
+        "target_positive": true,
+        "prediction_positive": false,
+        "false_positive_area_fraction": 0.0
+      },
+      {
+        "sample_id": "IDRiD_29",
+        "tp": 0,
+        "fp": 0,
+        "fn": 2343,
+        "dice": 0.0,
+        "iou": 0.0,
+        "target_positive": true,
+        "prediction_positive": false,
+        "false_positive_area_fraction": 0.0
+      },
+      {
+        "sample_id": "IDRiD_31",
+        "tp": 0,
+        "fp": 0,
+        "fn": 48998,
+        "dice": 0.0,
+        "iou": 0.0,
+        "target_positive": true,
+        "prediction_positive": false,
+        "false_positive_area_fraction": 0.0
+      },
+      {
+        "sample_id": "IDRiD_32",
+        "tp": 0,
+        "fp": 0,
+        "fn": 84975,
+        "dice": 0.0,
+        "iou": 0.0,
+        "target_positive": true,
+        "prediction_positive": false,
+        "false_positive_area_fraction": 0.0
+      },
+      {
+        "sample_id": "IDRiD_40",
+        "tp": 0,
+        "fp": 0,
+        "fn": 7779,
+        "dice": 0.0,
+        "iou": 0.0,
+        "target_positive": true,
+        "prediction_positive": false,
+        "false_positive_area_fraction": 0.0
+      },
+      {
+        "sample_id": "IDRiD_45",
+        "tp": 0,
+        "fp": 0,
+        "fn": 47341,
+        "dice": 0.0,
+        "iou": 0.0,
+        "target_positive": true,
+        "prediction_positive": false,
+        "false_positive_area_fraction": 0.0
+      },
+      {
+        "sample_id": "IDRiD_49",
+        "tp": 0,
+        "fp": 0,
+        "fn": 221897,
+        "dice": 0.0,
+        "iou": 0.0,
+        "target_positive": true,
+        "prediction_positive": false,
+        "false_positive_area_fraction": 0.0
+      }
+    ],
+    "SE": [
+      {
+        "sample_id": "IDRiD_17",
+        "tp": 0,
+        "fp": 0,
+        "fn": 48111,
+        "dice": 0.0,
+        "iou": 0.0,
+        "target_positive": true,
+        "prediction_positive": false,
+        "false_positive_area_fraction": 0.0
+      },
+      {
+        "sample_id": "IDRiD_22",
+        "tp": 0,
+        "fp": 0,
+        "fn": 108091,
+        "dice": 0.0,
+        "iou": 0.0,
+        "target_positive": true,
+        "prediction_positive": false,
+        "false_positive_area_fraction": 0.0
+      },
+      {
+        "sample_id": "IDRiD_31",
+        "tp": 0,
+        "fp": 0,
+        "fn": 158077,
+        "dice": 0.0,
+        "iou": 0.0,
+        "target_positive": true,
+        "prediction_positive": false,
+        "false_positive_area_fraction": 0.0
+      },
+      {
+        "sample_id": "IDRiD_32",
+        "tp": 0,
+        "fp": 0,
+        "fn": 39910,
+        "dice": 0.0,
+        "iou": 0.0,
+        "target_positive": true,
+        "prediction_positive": false,
+        "false_positive_area_fraction": 0.0
+      },
+      {
+        "sample_id": "IDRiD_49",
+        "tp": 0,
+        "fp": 0,
+        "fn": 42441,
+        "dice": 0.0,
+        "iou": 0.0,
+        "target_positive": true,
+        "prediction_positive": false,
+        "false_positive_area_fraction": 0.0
+      }
+    ]
+  },
+  "unavailable_annotations": "excluded; never assumed background",
+  "test_evaluated": false,
+  "patient_identity_verified": false,
+  "gallery_sample_ids": [
+    "IDRiD_10",
+    "IDRiD_12"
+  ],
+  "grid": "original pixels; bilinear probability restoration before threshold"
+}

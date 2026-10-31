@@ -1,0 +1,22 @@
+{
+  "protocol": "fives-feasibility-v1",
+  "purpose": "Supplementary feasibility experiment; not a completed core-programme run",
+  "steps": 100,
+  "batch_size": 8,
+  "seed": 42,
+  "learning_rate": 0.001,
+  "weight_decay": 0.0001,
+  "loss": "valid-region BCE + soft Dice",
+  "augmentation": "paired horizontal flip p=0.5",
+  "precision": "float32",
+  "checkpoint_selection": "fixed final step; validation evaluated once after training",
+  "device": "cpu",
+  "device_name": "x86_64",
+  "torch": "2.11.0+cpu",
+  "manifest_sha256": "632b76bad18375cb824fc18761216a00428310fe806f4170c2f866199f13ad68",
+  "initialization": "random, reset after smoke",
+  "test_evaluated": false,
+  "software_version": "0.10.0",
+  "source_commit": "28db9c803802d3d8438f583d45d89e70b1d891ac",
+  "source_dirty": false
+}

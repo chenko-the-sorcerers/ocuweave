@@ -1,0 +1,13 @@
+{
+  "run": "query384",
+  "steps_completed": 100,
+  "seed": 42,
+  "device": "cpu",
+  "input_size": 384,
+  "training_elapsed_seconds": 356.31374272999983,
+  "checkpoint_sha256": "05887fe9613905cb4472be8acd6a6609d88c572bf5903d09a3b91b74235a66a9",
+  "checkpoint_reload_matches": true,
+  "peak_process_rss_bytes": 2126323712,
+  "rss_scope": "process lifetime, includes preceding variants",
+  "parameters": 192416
+}

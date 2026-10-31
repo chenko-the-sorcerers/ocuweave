@@ -1,0 +1,438 @@
+{
+  "dataset": "idrid",
+  "exporter": {
+    "software_version": "0.10.0",
+    "source_commit": "a0c2d49be0d39caf3f507560e39815eea3c82ede",
+    "source_dirty": false
+  },
+  "environment": {
+    "recorded_at": "2026-10-31T18:35:07.034016+00:00",
+    "python": "3.13.18",
+    "system": "Linux",
+    "machine": "x86_64",
+    "cpu_models": [
+      "Intel(R) Xeon(R) CPU @ 2.20GHz"
+    ],
+    "logical_cpus": 2,
+    "training_torch_threads": 2,
+    "device": "cpu",
+    "precision": "float32",
+    "packages": {
+      "torch": "2.11.0+cpu",
+      "numpy": "2.1.3",
+      "Pillow": "11.3.0",
+      "scipy": "1.16.3",
+      "scikit-image": "0.25.2",
+      "matplotlib": "3.10.0"
+    },
+    "timing_limit": "Some FIVES training overlapped acquisition/audit work; elapsed times include lazy decoding and are not controlled throughput benchmarks."
+  },
+  "protocol": {
+    "protocol": "idrid-feasibility-v1",
+    "classes": [
+      "MA",
+      "HE",
+      "EX",
+      "SE"
+    ],
+    "seed": 42,
+    "steps": 100,
+    "batch_size": 8,
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "precision": "float32",
+    "device": "cpu",
+    "torch": "2.11.0+cpu",
+    "loss": "BCE + soft Dice over observed image-class pairs only",
+    "pipeline": "RGB/255; letterbox bilinear image, nearest mask; padding excluded; paired horizontal flip p=.5",
+    "checkpoint_selection": "Fixed final step; no validation tuning",
+    "manifest_sha256": "5efcc29e06b6bcb0a4d0a8cfd5a3600951485cbbef17f78ab10e8ed41d66a4d1",
+    "purpose": "Supplementary single-seed feasibility; not core-programme completion",
+    "software_version": "0.10.0",
+    "source_commit": "7e5accc2d2f3cd5db3d79cbeb0fe440cba58772c",
+    "source_dirty": false
+  },
+  "results": [
+    {
+      "run": "query192",
+      "steps_completed": 100,
+      "seed": 42,
+      "device": "cpu",
+      "input_size": 192,
+      "training_elapsed_seconds": 135.34238588900007,
+      "checkpoint_sha256": "a599464f249f98a9683a365d450ad9684d58055b914cd8a1587f13ea84f9374f",
+      "checkpoint_reload_matches": true,
+      "peak_process_rss_bytes": 975835136,
+      "rss_scope": "process lifetime, includes preceding variants",
+      "parameters": 192416,
+      "per_class": {
+        "MA": {
+          "samples": 11,
+          "positive_samples": 11,
+          "empty_samples": 0,
+          "macro_dice": 0.0,
+          "positive_macro_dice": 0.0,
+          "positive_macro_iou": 0.0,
+          "macro_iou": 0.0,
+          "global_dice": 0.0,
+          "empty_image_false_positive_rate": null,
+          "positive_dice_image_bootstrap_95ci": [
+            0.0,
+            0.0
+          ],
+          "bootstrap_unit": "image (exploratory, not patient)",
+          "threshold": 0.5,
+          "empty_empty_dice": 1.0
+        },
+        "HE": {
+          "samples": 11,
+          "positive_samples": 11,
+          "empty_samples": 0,
+          "macro_dice": 0.0,
+          "positive_macro_dice": 0.0,
+          "positive_macro_iou": 0.0,
+          "macro_iou": 0.0,
+          "global_dice": 0.0,
+          "empty_image_false_positive_rate": null,
+          "positive_dice_image_bootstrap_95ci": [
+            0.0,
+            0.0
+          ],
+          "bootstrap_unit": "image (exploratory, not patient)",
+          "threshold": 0.5,
+          "empty_empty_dice": 1.0
+        },
+        "EX": {
+          "samples": 11,
+          "positive_samples": 11,
+          "empty_samples": 0,
+          "macro_dice": 0.0,
+          "positive_macro_dice": 0.0,
+          "positive_macro_iou": 0.0,
+          "macro_iou": 0.0,
+          "global_dice": 0.0,
+          "empty_image_false_positive_rate": null,
+          "positive_dice_image_bootstrap_95ci": [
+            0.0,
+            0.0
+          ],
+          "bootstrap_unit": "image (exploratory, not patient)",
+          "threshold": 0.5,
+          "empty_empty_dice": 1.0
+        },
+        "SE": {
+          "samples": 5,
+          "positive_samples": 5,
+          "empty_samples": 0,
+          "macro_dice": 0.0,
+          "positive_macro_dice": 0.0,
+          "positive_macro_iou": 0.0,
+          "macro_iou": 0.0,
+          "global_dice": 0.0,
+          "empty_image_false_positive_rate": null,
+          "positive_dice_image_bootstrap_95ci": [
+            0.0,
+            0.0
+          ],
+          "bootstrap_unit": "image (exploratory, not patient)",
+          "threshold": 0.5,
+          "empty_empty_dice": 1.0
+        }
+      },
+      "mean_class_positive_dice": 0.0
+    },
+    {
+      "run": "query384",
+      "steps_completed": 100,
+      "seed": 42,
+      "device": "cpu",
+      "input_size": 384,
+      "training_elapsed_seconds": 356.31374272999983,
+      "checkpoint_sha256": "05887fe9613905cb4472be8acd6a6609d88c572bf5903d09a3b91b74235a66a9",
+      "checkpoint_reload_matches": true,
+      "peak_process_rss_bytes": 2126323712,
+      "rss_scope": "process lifetime, includes preceding variants",
+      "parameters": 192416,
+      "per_class": {
+        "MA": {
+          "samples": 11,
+          "positive_samples": 11,
+          "empty_samples": 0,
+          "macro_dice": 0.0,
+          "positive_macro_dice": 0.0,
+          "positive_macro_iou": 0.0,
+          "macro_iou": 0.0,
+          "global_dice": 0.0,
+          "empty_image_false_positive_rate": null,
+          "positive_dice_image_bootstrap_95ci": [
+            0.0,
+            0.0
+          ],
+          "bootstrap_unit": "image (exploratory, not patient)",
+          "threshold": 0.5,
+          "empty_empty_dice": 1.0
+        },
+        "HE": {
+          "samples": 11,
+          "positive_samples": 11,
+          "empty_samples": 0,
+          "macro_dice": 0.0,
+          "positive_macro_dice": 0.0,
+          "positive_macro_iou": 0.0,
+          "macro_iou": 0.0,
+          "global_dice": 0.0,
+          "empty_image_false_positive_rate": null,
+          "positive_dice_image_bootstrap_95ci": [
+            0.0,
+            0.0
+          ],
+          "bootstrap_unit": "image (exploratory, not patient)",
+          "threshold": 0.5,
+          "empty_empty_dice": 1.0
+        },
+        "EX": {
+          "samples": 11,
+          "positive_samples": 11,
+          "empty_samples": 0,
+          "macro_dice": 0.0,
+          "positive_macro_dice": 0.0,
+          "positive_macro_iou": 0.0,
+          "macro_iou": 0.0,
+          "global_dice": 0.0,
+          "empty_image_false_positive_rate": null,
+          "positive_dice_image_bootstrap_95ci": [
+            0.0,
+            0.0
+          ],
+          "bootstrap_unit": "image (exploratory, not patient)",
+          "threshold": 0.5,
+          "empty_empty_dice": 1.0
+        },
+        "SE": {
+          "samples": 5,
+          "positive_samples": 5,
+          "empty_samples": 0,
+          "macro_dice": 0.0,
+          "positive_macro_dice": 0.0,
+          "positive_macro_iou": 0.0,
+          "macro_iou": 0.0,
+          "global_dice": 0.0,
+          "empty_image_false_positive_rate": null,
+          "positive_dice_image_bootstrap_95ci": [
+            0.0,
+            0.0
+          ],
+          "bootstrap_unit": "image (exploratory, not patient)",
+          "threshold": 0.5,
+          "empty_empty_dice": 1.0
+        }
+      },
+      "mean_class_positive_dice": 0.0
+    },
+    {
+      "run": "lqnet384",
+      "steps_completed": 100,
+      "seed": 42,
+      "device": "cpu",
+      "input_size": 384,
+      "training_elapsed_seconds": 418.1761567200001,
+      "checkpoint_sha256": "3c7d5b6cd37bbaf3157e9e80341bab87e1614296662b1ac45e5da63fb1f02607",
+      "checkpoint_reload_matches": true,
+      "peak_process_rss_bytes": 3031556096,
+      "rss_scope": "process lifetime, includes preceding variants",
+      "parameters": 194220,
+      "per_class": {
+        "MA": {
+          "samples": 11,
+          "positive_samples": 11,
+          "empty_samples": 0,
+          "macro_dice": 0.0,
+          "positive_macro_dice": 0.0,
+          "positive_macro_iou": 0.0,
+          "macro_iou": 0.0,
+          "global_dice": 0.0,
+          "empty_image_false_positive_rate": null,
+          "positive_dice_image_bootstrap_95ci": [
+            0.0,
+            0.0
+          ],
+          "bootstrap_unit": "image (exploratory, not patient)",
+          "threshold": 0.5,
+          "empty_empty_dice": 1.0
+        },
+        "HE": {
+          "samples": 11,
+          "positive_samples": 11,
+          "empty_samples": 0,
+          "macro_dice": 0.0,
+          "positive_macro_dice": 0.0,
+          "positive_macro_iou": 0.0,
+          "macro_iou": 0.0,
+          "global_dice": 0.0,
+          "empty_image_false_positive_rate": null,
+          "positive_dice_image_bootstrap_95ci": [
+            0.0,
+            0.0
+          ],
+          "bootstrap_unit": "image (exploratory, not patient)",
+          "threshold": 0.5,
+          "empty_empty_dice": 1.0
+        },
+        "EX": {
+          "samples": 11,
+          "positive_samples": 11,
+          "empty_samples": 0,
+          "macro_dice": 0.0,
+          "positive_macro_dice": 0.0,
+          "positive_macro_iou": 0.0,
+          "macro_iou": 0.0,
+          "global_dice": 0.0,
+          "empty_image_false_positive_rate": null,
+          "positive_dice_image_bootstrap_95ci": [
+            0.0,
+            0.0
+          ],
+          "bootstrap_unit": "image (exploratory, not patient)",
+          "threshold": 0.5,
+          "empty_empty_dice": 1.0
+        },
+        "SE": {
+          "samples": 5,
+          "positive_samples": 5,
+          "empty_samples": 0,
+          "macro_dice": 0.0,
+          "positive_macro_dice": 0.0,
+          "positive_macro_iou": 0.0,
+          "macro_iou": 0.0,
+          "global_dice": 0.0,
+          "empty_image_false_positive_rate": null,
+          "positive_dice_image_bootstrap_95ci": [
+            0.0,
+            0.0
+          ],
+          "bootstrap_unit": "image (exploratory, not patient)",
+          "threshold": 0.5,
+          "empty_empty_dice": 1.0
+        }
+      },
+      "mean_class_positive_dice": 0.0
+    }
+  ],
+  "examples": [
+    {
+      "sample_id": "IDRiD_10",
+      "class": "MA",
+      "annotation_available": true,
+      "selection": "First validation ID, fixed before training",
+      "prefix": "idrid-ma",
+      "photo": "idrid-photo.jpg",
+      "metrics": {
+        "sample_id": "IDRiD_10",
+        "tp": 0,
+        "fp": 0,
+        "fn": 33484,
+        "dice": 0.0,
+        "iou": 0.0,
+        "target_positive": true,
+        "prediction_positive": false,
+        "false_positive_area_fraction": 0.0
+      },
+      "source_image_sha256": "b4bc1b1242fd9c24c3c1ffa228b0b0811dd43d72bf56be08e16b58f80ded59f3",
+      "source_mask_sha256": "61a3aac6f185e99f9f38c0e3e9576bd3afe889034816c15c6ed7365fa7a2fc55"
+    },
+    {
+      "sample_id": "IDRiD_10",
+      "class": "HE",
+      "annotation_available": true,
+      "selection": "First validation ID, fixed before training",
+      "prefix": "idrid-he",
+      "photo": "idrid-photo.jpg",
+      "metrics": {
+        "sample_id": "IDRiD_10",
+        "tp": 0,
+        "fp": 0,
+        "fn": 92658,
+        "dice": 0.0,
+        "iou": 0.0,
+        "target_positive": true,
+        "prediction_positive": false,
+        "false_positive_area_fraction": 0.0
+      },
+      "source_image_sha256": "b4bc1b1242fd9c24c3c1ffa228b0b0811dd43d72bf56be08e16b58f80ded59f3",
+      "source_mask_sha256": "17ef42a42de2f42e288dfe3628be2e7270b45c54d4dd43b00a332594e2b543d4"
+    },
+    {
+      "sample_id": "IDRiD_10",
+      "class": "EX",
+      "annotation_available": true,
+      "selection": "First validation ID, fixed before training",
+      "prefix": "idrid-ex",
+      "photo": "idrid-photo.jpg",
+      "metrics": {
+        "sample_id": "IDRiD_10",
+        "tp": 0,
+        "fp": 0,
+        "fn": 805250,
+        "dice": 0.0,
+        "iou": 0.0,
+        "target_positive": true,
+        "prediction_positive": false,
+        "false_positive_area_fraction": 0.0
+      },
+      "source_image_sha256": "b4bc1b1242fd9c24c3c1ffa228b0b0811dd43d72bf56be08e16b58f80ded59f3",
+      "source_mask_sha256": "6de62bef6e458923f6aaface0f5605c0b2b6ed080e6d514e038d7d5956e26587"
+    },
+    {
+      "sample_id": "IDRiD_10",
+      "class": "SE",
+      "annotation_available": false,
+      "selection": "First validation ID, fixed before training",
+      "prefix": "idrid-se",
+      "photo": "idrid-photo.jpg",
+      "metrics": null,
+      "source_image_sha256": "b4bc1b1242fd9c24c3c1ffa228b0b0811dd43d72bf56be08e16b58f80ded59f3",
+      "source_mask_sha256": null
+    }
+  ],
+  "manifest_sha256": "5efcc29e06b6bcb0a4d0a8cfd5a3600951485cbbef17f78ab10e8ed41d66a4d1",
+  "counts": {
+    "train": 43,
+    "validation": 11,
+    "test": 27
+  },
+  "patient_identity_verified": false,
+  "test_evaluated": false,
+  "source_manifest_fields": {
+    "protocol": "idrid-four-channel-v1",
+    "dataset": "IDRiD",
+    "classes": [
+      "MA",
+      "HE",
+      "EX",
+      "SE"
+    ],
+    "seed": 42,
+    "source": "https://zenodo.org/records/17219542",
+    "provenance": "Third-party redistribution of the original segmentation ZIP; not byte-compared with authenticated IEEE download",
+    "license": "CC-BY-4.0",
+    "patient_identity_verified": false,
+    "counts": {
+      "train": 43,
+      "validation": 11,
+      "test": 27
+    },
+    "missing_mask_policy": "Unknown class supervision; excluded from loss and class metrics, not treated as negative"
+  },
+  "display": "Full-field resized photographs; reference green and prediction amber at 65% opacity. Metrics use original binary masks, never display pixels.",
+  "assets": {
+    "idrid-photo.jpg": "83c3cd4eb74661ce6610820bd5708c64d7386a4a9cb61d03ac38d6cd3d89f4b8",
+    "idrid-ma-reference.jpg": "0706bf448b72516159b3eba38b4b25d7808d0092f9b0a608550ec30c13fdd1ed",
+    "idrid-ma-prediction.jpg": "83c3cd4eb74661ce6610820bd5708c64d7386a4a9cb61d03ac38d6cd3d89f4b8",
+    "idrid-he-reference.jpg": "7ffaf6c8faa5f3d9da153ec614a61b54b23222bcf01d6bccc7b1a6ec841c6b69",
+    "idrid-he-prediction.jpg": "83c3cd4eb74661ce6610820bd5708c64d7386a4a9cb61d03ac38d6cd3d89f4b8",
+    "idrid-ex-reference.jpg": "e63ee955b22dad23618f6175e989c9872e4b10c39ba2a37b1db1c3e6168f36c2",
+    "idrid-ex-prediction.jpg": "83c3cd4eb74661ce6610820bd5708c64d7386a4a9cb61d03ac38d6cd3d89f4b8",
+    "idrid-se-reference.jpg": "83c3cd4eb74661ce6610820bd5708c64d7386a4a9cb61d03ac38d6cd3d89f4b8",
+    "idrid-se-prediction.jpg": "83c3cd4eb74661ce6610820bd5708c64d7386a4a9cb61d03ac38d6cd3d89f4b8"
+  }
+}

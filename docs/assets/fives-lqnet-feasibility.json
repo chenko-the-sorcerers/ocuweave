@@ -1,0 +1,32 @@
+{
+  "selection": {
+    "sample_id": "train-89_A",
+    "selection": "Median Dice in LQNet validation; ties sorted by ID",
+    "prefix": "fives-2",
+    "metrics": {
+      "sample_id": "train-89_A",
+      "disease_stratum": "A",
+      "tp": 28596,
+      "fp": 12430,
+      "fn": 202520,
+      "dice": 0.21015499261414997,
+      "iou": 0.11741519055948363,
+      "target_positive": true,
+      "prediction_positive": true,
+      "cldice": 0.1578761646580981,
+      "sensitivity": 0.12373007494072241,
+      "precision": 0.6970214010627407,
+      "false_positive_area_fraction": 0.002963542938232422,
+      "thin_centerline_reference_pixels": 1135,
+      "thin_centerline_recalled_pixels": 19,
+      "thin_centerline_recall": 0.016740088105726872
+    },
+    "source_image_sha256": "325607e8f5784d5b1b3ca904946a8d0d72f59ed8aa5ba77718984f24aa3d9558",
+    "source_mask_sha256": "c6d1847765df061cc41e09077a801e4ee926be7fe770aa1bd88f7e294076a7bb"
+  },
+  "source": "https://doi.org/10.6084/m9.figshare.19688169.v1",
+  "license": "CC-BY-4.0",
+  "training_source": "28db9c803802d3d8438f583d45d89e70b1d891ac",
+  "manifest_sha256": "632b76bad18375cb824fc18761216a00428310fe806f4170c2f866199f13ad68",
+  "figure_transformations": "Display resizing, colored overlays and panel labels. Original-grid metrics copied from the completion receipt."
+}

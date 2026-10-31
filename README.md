@@ -12,11 +12,11 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Software v0.10.0](https://img.shields.io/badge/software-v0.10.0-334bd3.svg)](https://github.com/chenko-the-sorcerers/ocuweave/tree/v0.10.0)
 
-![OcuWeave research illustration](docs/assets/ocuweave-thumbnail.webp)
+![FIVES validation: photograph, reference vessel mask and LQNet prediction](docs/assets/fives-lqnet-feasibility.webp)
 
 </div>
 
-*Educational AI-generated fundus illustration and lesion overlay. This artwork is not patient data, a reference annotation, or a model prediction.*
+*A real FIVES validation example selected at the median LQNet Dice. Green: dataset reference; amber: model prediction. The short CPU pilot misses substantial vessel extent. Images and masks: Jin et al., [FIVES v1](https://doi.org/10.6084/m9.figshare.19688169.v1), CC BY 4.0; display resizing and overlays added. [Figure provenance](docs/assets/fives-lqnet-feasibility.json).*
 
 OcuWeave is an open research toolkit for ophthalmic segmentation, with ocular toxoplasmosis as its first experimental task. **OcuWeave–LQNet** adds a local-detail residual branch to our compact query segmenter. Both networks are independently implemented and initialized from random weights. PyTorch supplies tensor operations and automatic differentiation.
 
@@ -113,14 +113,24 @@ The local branch starts with a zero output projection. It refines logits at half
 - One historical OTFID query-network feasibility pilot is documented. Some validation examples have **zero overlap**. These remain reported failures.
 - The controlled matrix—query 192, query 384, LQNet 384; seeds 42, 123 and 2026—has **0/9 completed runs** in the recorded research status. This software release does not complete those experiments.
 - The new development manifest is frozen at **197 training / 41 validation**, with all **104 quality-flagged images retained** and all 42 historical test rows preserved. CPU smoke checks passed for all three variants; GPU training remains blocked by Colab usage limits. See the [execution record](docs/experiments/2026-10-31-development-freeze.md) and [continuation protocol](docs/protocols/exploratory_training.md).
-- Clinical annotation correctness and patient linkage remain unresolved. No glaucoma disc/cup, vascular/hypertension or DR-specific segmentation model has been trained in this project.
+- Supplementary FIVES vessel and IDRiD four-lesion CPU experiments are documented in the [cross-task feasibility report](docs/results/cross-task-feasibility-v0100/README.md). These use 100 steps and one seed; they do not complete the core GPU matrix.
+- Clinical annotation correctness and patient linkage remain unresolved. Vessel segmentation does not establish hypertension diagnosis. REFUGE2 disc/cup training remains blocked on dataset access.
 - Native C++ currently provides a tested weighted-mean interoperability example. Neural-network training is Python/PyTorch; custom CUDA kernels and C++ autograd are not implemented.
 
 Training saves configuration, software version, source revision when available, working-tree state, archive/manifest hashes, optimizer-step counts, timing and memory. A wheel without Git metadata records the source revision as unavailable instead of borrowing the caller’s repository. CPU/GPU numerical equality is not guaranteed; preserve the environment and hardware record.
 
+### Supplementary validation results
+
+| Dataset | Query 192 | Query 384 | LQNet 384 |
+|---|---:|---:|---:|
+| FIVES image-macro Dice | 0.1610 | 0.1985 | 0.2022 |
+| IDRiD mean class-positive Dice | 0.0000 | 0.0000 | 0.0000 |
+
+Each is a separate 100-step CPU run, seed 42, evaluated at original image dimensions. FIVES includes one empty reference among 120 validation images; positive-only scores and centerline metrics are in the report. IDRiD predicts background on all annotated validation channels at threshold 0.5. This is an observed failure, not a missing result. The small FIVES Dice difference does not establish superiority; thin-centerline recall did not improve. [Protocols, denominators, time, memory and per-image results](docs/results/cross-task-feasibility-v0100/README.md).
+
 ## Cross-task experiment programme
 
-A [prespecified programme](docs/protocols/cross_task_experiments.md) covers OTFID, FIVES vessels, IDRiD lesions and REFUGE2 disc/cup: 36 core designs (including the existing nine OTFID runs) plus nine conditional objective ablations. Seven clean/corrupted evaluation conditions reuse each core checkpoint. These are plans, not additional trained capabilities; FIVES and IDRiD now have separate adapters and feasibility runners. REFUGE2 access and task-specific objective ablations remain pending.
+A [prespecified programme](docs/protocols/cross_task_experiments.md) covers OTFID, FIVES vessels, IDRiD lesions and REFUGE2 disc/cup: 36 core designs (including the existing nine OTFID runs) plus nine conditional objective ablations. Seven clean/corrupted evaluation conditions reuse each core checkpoint. The core designs remain unexecuted; FIVES and IDRiD have separately measured supplementary feasibility runs, adapters and inference workflows. REFUGE2 access and task-specific objective ablations remain pending.
 
 ```bash
 PYTHONPATH=src python scripts/prepare_cross_task_experiments.py --output outputs/cross-task-design-v1
@@ -136,9 +146,11 @@ The generator writes a non-executable JSON/CSV register with missing metrics as 
 | FairVLMed | Separate glaucoma image–text research | Original-note diagnosis and temporal leakage review required |
 | BRSET | Fundus and structured clinical variables | Credentialed access; metadata are not complete narrative records |
 | OLIVES / GRAPE | Compatible longitudinal ophthalmic tasks | Different cohorts and endpoints; no automatic time-to-blindness target |
-| FIVES / RETA / PAPILA | Candidate vessel or disc/cup extensions | Separate annotations, access review and experiments required |
+| FIVES | Vessel segmentation feasibility | Provisional similarity groups; test claims barred |
+| IDRiD | Four lesion channels | Missing masks excluded; mirror provenance documented |
+| REFUGE2 / RETA / PAPILA | Planned or candidate anatomical extensions | Separate annotations, access review and experiments required |
 
-Never combine unrelated patients across datasets. Dataset licenses and access conditions are independent of the code license. Public code contains no patient images, notes or third-party model weights. See [dataset cards](docs/dataset_cards/README.md).
+Never combine unrelated patients across datasets. Dataset licenses and access conditions are independent of the code license. The README includes one explicitly attributed CC BY FIVES display figure. Raw dataset archives, clinical notes and third-party model weights are not committed. See [dataset cards](docs/dataset_cards/README.md).
 
 ## Repository guide
 

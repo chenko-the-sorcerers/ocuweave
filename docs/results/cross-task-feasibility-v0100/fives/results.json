@@ -1,0 +1,134 @@
+[
+  {
+    "run": "query192",
+    "steps_completed": 100,
+    "checkpoint_sha256": "6d586668ff157ee32ebe5733f294da16ef9a2ac4a948a4384f73423603d11518",
+    "checkpoint_reload_matches": true,
+    "parameters": 109754,
+    "training_elapsed_seconds": 245.0837091100002,
+    "peak_cuda_allocated_bytes": null,
+    "peak_process_rss_bytes": 922955776,
+    "rss_scope": "Process lifetime high-water mark; includes preceding variants",
+    "device": "cpu",
+    "seed": 42,
+    "config": {
+      "architecture": "query",
+      "width": 24,
+      "dim": 48,
+      "queries": 8,
+      "size": 192,
+      "seed": 42
+    },
+    "metrics": {
+      "samples": 120,
+      "positive_samples": 119,
+      "empty_samples": 1,
+      "macro_dice": 0.16104383930361177,
+      "positive_macro_dice": 0.15399378753305384,
+      "positive_macro_iou": 0.08491649898872514,
+      "macro_iou": 0.09254219483048579,
+      "global_dice": 0.16655144152231,
+      "empty_image_false_positive_rate": 0.0,
+      "positive_dice_image_bootstrap_95ci": [
+        0.1417865746078513,
+        0.1667835023307749
+      ],
+      "bootstrap_unit": "image (exploratory, not patient)",
+      "threshold": 0.5,
+      "empty_empty_dice": 1.0,
+      "cldice": 0.1404872128021558,
+      "sensitivity": 0.1115527960724227,
+      "precision": 0.39657068477810636,
+      "false_positive_area_fraction": 0.018399771054585776,
+      "thin_centerline_recall": 0.049596433954073475
+    }
+  },
+  {
+    "run": "query384",
+    "steps_completed": 100,
+    "checkpoint_sha256": "57dd55396d418ec388bf485a5d3323ad8295f3d3ba5b5eb52b6ac168d1248d51",
+    "checkpoint_reload_matches": true,
+    "parameters": 109754,
+    "training_elapsed_seconds": 490.8941611090004,
+    "peak_cuda_allocated_bytes": null,
+    "peak_process_rss_bytes": 1941864448,
+    "rss_scope": "Process lifetime high-water mark; includes preceding variants",
+    "device": "cpu",
+    "seed": 42,
+    "config": {
+      "architecture": "query",
+      "width": 24,
+      "dim": 48,
+      "queries": 8,
+      "size": 384,
+      "seed": 42
+    },
+    "metrics": {
+      "samples": 120,
+      "positive_samples": 119,
+      "empty_samples": 1,
+      "macro_dice": 0.19849365364224314,
+      "positive_macro_dice": 0.20016166753839645,
+      "positive_macro_iou": 0.1136311144510019,
+      "macro_iou": 0.11268418849724354,
+      "global_dice": 0.21866297647152377,
+      "empty_image_false_positive_rate": 1.0,
+      "positive_dice_image_bootstrap_95ci": [
+        0.18440078235309248,
+        0.21481607679548811
+      ],
+      "bootstrap_unit": "image (exploratory, not patient)",
+      "threshold": 0.5,
+      "empty_empty_dice": 1.0,
+      "cldice": 0.17622885833381854,
+      "sensitivity": 0.1485910364122512,
+      "precision": 0.5573278401214022,
+      "false_positive_area_fraction": 0.01731399695078532,
+      "thin_centerline_recall": 0.055032711437926575
+    }
+  },
+  {
+    "run": "lqnet384",
+    "steps_completed": 100,
+    "checkpoint_sha256": "80d0c7247e489aa1728769123085e8f03318dae67b205d48d3d0c3d27255dc3c",
+    "checkpoint_reload_matches": true,
+    "parameters": 111411,
+    "training_elapsed_seconds": 383.41425676900053,
+    "peak_cuda_allocated_bytes": null,
+    "peak_process_rss_bytes": 2253012992,
+    "rss_scope": "Process lifetime high-water mark; includes preceding variants",
+    "device": "cpu",
+    "seed": 42,
+    "config": {
+      "architecture": "query_detail",
+      "width": 24,
+      "dim": 48,
+      "queries": 8,
+      "size": 384,
+      "seed": 42
+    },
+    "metrics": {
+      "samples": 120,
+      "positive_samples": 119,
+      "empty_samples": 1,
+      "macro_dice": 0.2022322548484684,
+      "positive_macro_dice": 0.2039316855614807,
+      "positive_macro_iou": 0.11600654107788735,
+      "macro_iou": 0.11503981990223829,
+      "global_dice": 0.2221289247583383,
+      "empty_image_false_positive_rate": 1.0,
+      "positive_dice_image_bootstrap_95ci": [
+        0.18818477217627239,
+        0.2187234857716321
+      ],
+      "bootstrap_unit": "image (exploratory, not patient)",
+      "threshold": 0.5,
+      "empty_empty_dice": 1.0,
+      "cldice": 0.1792134952942642,
+      "sensitivity": 0.15002737641213892,
+      "precision": 0.5647568699708964,
+      "false_positive_area_fraction": 0.016608220338821412,
+      "thin_centerline_recall": 0.054044503681625104
+    }
+  }
+]

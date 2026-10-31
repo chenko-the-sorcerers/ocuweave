@@ -1,0 +1,21 @@
+{
+  "run": "lqnet384",
+  "steps_completed": 100,
+  "checkpoint_sha256": "80d0c7247e489aa1728769123085e8f03318dae67b205d48d3d0c3d27255dc3c",
+  "checkpoint_reload_matches": true,
+  "parameters": 111411,
+  "training_elapsed_seconds": 383.41425676900053,
+  "peak_cuda_allocated_bytes": null,
+  "peak_process_rss_bytes": 2253012992,
+  "rss_scope": "Process lifetime high-water mark; includes preceding variants",
+  "device": "cpu",
+  "seed": 42,
+  "config": {
+    "architecture": "query_detail",
+    "width": 24,
+    "dim": 48,
+    "queries": 8,
+    "size": 384,
+    "seed": 42
+  }
+}
