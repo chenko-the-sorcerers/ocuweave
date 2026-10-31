@@ -5,6 +5,7 @@ import platform
 import random
 import subprocess
 import time
+import sys
 from pathlib import Path
 import numpy as np
 import torch
@@ -68,7 +69,7 @@ def evaluate_loader(model,loader,device):
 def validate_config(config):
     required={'architecture','width','dim','queries','size','batch_size','epochs','learning_rate','seed'}
     if set(config)!=required:raise ValueError(f'Config requires exactly: {sorted(required)}')
-    if config['architecture'] not in {'query','fcn'}:raise ValueError('Unknown architecture')
+    if config['architecture'] not in {'query','fcn','query_detail'}:raise ValueError('Unknown architecture')
     for key in ('width','dim','queries','size','batch_size','epochs'):
         if type(config[key]) is not int or config[key]<1:raise ValueError(f'{key} must be a positive integer')
     if config['width']<4 or config['dim']%4 or config['size']<16 or config['size']%16:
@@ -83,6 +84,9 @@ def train(manifest,archive,output,config,*,allow_unverified=False,device='auto')
     if output.exists():raise FileExistsError('Use a new run directory; never overwrite previous results')
     data=checked_manifest(manifest,archive,allow_unverified)
     seed_everything(config['seed']);dev=select_device(device)
+    if dev.type == 'cuda':
+        torch.cuda.synchronize(dev)
+        torch.cuda.reset_peak_memory_stats(dev)
     train_set=SegmentationDataset(manifest,archive,'train',config['size'],True)
     val_set=SegmentationDataset(manifest,archive,'validation',config['size'],False)
     generator=torch.Generator().manual_seed(config['seed'])
@@ -97,9 +101,11 @@ def train(manifest,archive,output,config,*,allow_unverified=False,device='auto')
         'archive_sha256':data['archive_sha256'],'split_unit':data['split_unit'],
         'device':str(dev),'torch':str(torch.__version__),'python':platform.python_version(),
         'parameters':sum(p.numel() for p in model.parameters()),'pretrained_weights':False,
+        'device_name':torch.cuda.get_device_name(dev) if dev.type == 'cuda' else platform.processor(),
+        'optimizer_steps_planned':len(train_loader)*config['epochs'],
         'clinical_inputs_used':False,'claim':'Exploratory image-only binary lesion segmentation'}
     output.mkdir(parents=True);write_json(output/'provenance.json',provenance)
-    best=-1;history=[];start=time.monotonic()
+    best=-1;history=[];start=time.monotonic();steps=0
     for epoch in range(1,config['epochs']+1):
         model.train();running=0;n=0
         for batch in train_loader:
@@ -108,6 +114,7 @@ def train(manifest,archive,output,config,*,allow_unverified=False,device='auto')
             loss=segmentation_loss(model(x),y,valid)
             if not torch.isfinite(loss):raise FloatingPointError('Non-finite training loss')
             loss.backward();torch.nn.utils.clip_grad_norm_(model.parameters(),1.0);optimizer.step()
+            steps+=1
             running+=loss.item()*len(x);n+=len(x)
         validation,_=evaluate_loader(model,val_loader,dev)
         score=validation['positive_macro_dice']
@@ -121,8 +128,19 @@ def train(manifest,archive,output,config,*,allow_unverified=False,device='auto')
                 'config':config,'epoch':epoch,'validation_score':score,'provenance':provenance},temporary)
             os.replace(temporary,output/'best.pt')
         scheduler.step()
+    if dev.type == 'cuda':torch.cuda.synchronize(dev)
+    try:
+        import resource
+        peak_rss=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss*(1 if sys.platform=='darwin' else 1024)
+    except (ImportError, AttributeError):
+        peak_rss=None
     write_json(output/'checkpoint.json',{'sha256':sha256(output/'best.pt'),'best_validation_positive_dice':best,
-        'elapsed_seconds':time.monotonic()-start,'test_set_used_in_training':False})
+        'elapsed_seconds':time.monotonic()-start,'test_set_used_in_training':False,
+        'optimizer_steps_completed':steps,'peak_process_rss_bytes':peak_rss,
+        'peak_cuda_allocated_bytes':torch.cuda.max_memory_allocated(dev) if dev.type=='cuda' else None,
+        'peak_cuda_reserved_bytes':torch.cuda.max_memory_reserved(dev) if dev.type=='cuda' else None,
+        'timing_scope':'Epoch loop including validation and checkpoint IO; excludes setup and final evaluation',
+        'memory_scope':'CUDA since reset before model creation; CPU RSS is process lifetime high-water mark'})
     return output/'best.pt'
 
 

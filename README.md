@@ -35,6 +35,20 @@ runs on CPU and audits FairVLMed numeric images and development-note flags, then
 diagnoses frozen OTFID checkpoints on training/validation only.
 See the [quality-review protocol](docs/protocols/quality_review.md) for scope and limitations.
 
+## Results and controlled development
+
+The [results register](docs/results/README.md) documents completed data audits,
+pilot training, validation/test metrics, known failures and unresolved questions.
+The [resolution/detail protocol](docs/protocols/resolution_detail.md) separates
+resolution changes from the experimental local-detail branch across three seeds.
+Original-grid evaluation keeps the comparison geometry fixed. Implementation is
+not evidence that the new branch improves performance.
+
+[Open the development notebook](https://colab.research.google.com/github/chenko-the-sorcerers/ocuweave/blob/v0.4.0/notebooks/OcuWeave_Development_Colab.ipynb).
+The notebook archives all reports in Drive and records pending runs explicitly
+when GPU resources are unavailable. The [EMR gate](docs/protocols/emr_leakage_gate.md)
+keeps FairVLMed glaucoma research separate from OTFID toxoplasmosis.
+
 ## Quick start
 
 Python 3.10+; CMake 3.20+ and a C++17 compiler for the optional native example.
@@ -120,7 +134,7 @@ and appropriate privacy review. This software is for research, not patient care.
 
 ## Versioning
 
-The current software version is **0.2.0**. Changes are recorded in [CHANGELOG.md](CHANGELOG.md), and releases use annotated Git tags (`vMAJOR.MINOR.PATCH`). During `0.x`, interfaces may evolve; pin a tag or commit for reproducible experiments.
+The current software version is **0.4.0**. Changes are recorded in [CHANGELOG.md](CHANGELOG.md), and releases use annotated Git tags (`vMAJOR.MINOR.PATCH`). During `0.x`, interfaces may evolve; pin a tag or commit for reproducible experiments.
 
 Software versions describe implementation changes, not clinical validation or model quality. Dataset versions, configurations, and future checkpoint versions must be recorded independently. See [the release procedure](docs/protocols/releases.md).
 

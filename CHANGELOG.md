@@ -7,6 +7,23 @@ Dates use ISO 8601. Research hypotheses are not software capabilities.
 
 No unreleased changes recorded.
 
+## [0.4.0] — 2026-10-31
+
+### Added
+- Results register covering acquisition/cleaning, frozen pilot results, development diagnostics, provenance, limitations, and private evidence locations.
+- Development-only image/mask geometry review with original/192/384 boundary overlays and roundtrip distortion measures.
+- Experimental local residual-detail branch on the independently implemented query model; no U-Net or pretrained parameters.
+- Controlled 192/384 and local-detail ablations with three paired seeds, unchanged optimizer budgets, original-grid validation, per-run resource telemetry and hash-verified completion receipts.
+- Colab development notebook, explicit pending/incomplete status, documentation snapshots and private artifact inventories.
+- Separate original-note glaucoma protocol and semantic/temporal leakage review form; no cross-dataset patient pairing.
+
+### Validation
+- Source compilation and notebook-cell syntax checks passed locally. Runtime and packaging checks are recorded before tagging this release.
+
+### Limitations
+- New architecture implementation is not evidence of improvement, novelty, or clinical validation. Unexecuted experiments remain pending.
+- No clinical boundary adjudication or cleared multimodal EMR training is claimed; test results remain frozen.
+
 ## [0.3.0] — 2026-10-31
 
 ### Added
