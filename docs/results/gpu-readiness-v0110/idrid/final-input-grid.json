@@ -1,0 +1,475 @@
+[
+  {
+    "sample_id": "IDRiD_01",
+    "class": "MA",
+    "annotation_available": true,
+    "reference_pixels": 54,
+    "foreground_probability": {
+      "pixels": 54,
+      "mean": 3.3107539820775855e-06,
+      "min": 5.789373744846671e-07,
+      "max": 1.6911008060560562e-05,
+      "p05": 6.716201710332825e-07,
+      "median": 2.323368789802771e-06,
+      "p95": 1.1679581803036854e-05,
+      "fraction_at_or_above_0_5": 0.0
+    },
+    "background_probability": {
+      "pixels": 97866,
+      "mean": 1.949249735844205e-06,
+      "min": 2.5121487112755858e-08,
+      "max": 5.202092506806366e-05,
+      "p05": 1.0019928708970838e-07,
+      "median": 1.215902557305526e-06,
+      "p95": 5.538128334592329e-06,
+      "fraction_at_or_above_0_5": 0.0
+    },
+    "metrics": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 54,
+      "dice": 0.0,
+      "iou": 0.0,
+      "target_positive": true,
+      "prediction_positive": false
+    }
+  },
+  {
+    "sample_id": "IDRiD_01",
+    "class": "HE",
+    "annotation_available": true,
+    "reference_pixels": 283,
+    "foreground_probability": {
+      "pixels": 283,
+      "mean": 0.35581111907958984,
+      "min": 2.0021788671442664e-09,
+      "max": 0.998404324054718,
+      "p05": 7.575567906314973e-08,
+      "median": 0.08589781075716019,
+      "p95": 0.9948592782020569,
+      "fraction_at_or_above_0_5": 0.3568904593639576
+    },
+    "background_probability": {
+      "pixels": 97637,
+      "mean": 5.4687952797394246e-05,
+      "min": 1.0003858906624391e-14,
+      "max": 0.5960102081298828,
+      "p05": 9.034502590488103e-10,
+      "median": 3.3665165233287553e-07,
+      "p95": 2.147704435628839e-05,
+      "fraction_at_or_above_0_5": 2.0484037813533804e-05
+    },
+    "metrics": {
+      "tp": 101,
+      "fp": 2,
+      "fn": 182,
+      "dice": 0.5233160621761658,
+      "iou": 0.3543859649122807,
+      "target_positive": true,
+      "prediction_positive": true
+    }
+  },
+  {
+    "sample_id": "IDRiD_01",
+    "class": "EX",
+    "annotation_available": true,
+    "reference_pixels": 935,
+    "foreground_probability": {
+      "pixels": 935,
+      "mean": 0.6001805067062378,
+      "min": 1.1768349850171944e-07,
+      "max": 1.0,
+      "p05": 0.000148305858601816,
+      "median": 0.9270057082176208,
+      "p95": 0.9999968409538269,
+      "fraction_at_or_above_0_5": 0.6
+    },
+    "background_probability": {
+      "pixels": 96985,
+      "mean": 0.0094778286293149,
+      "min": 3.027420436736705e-13,
+      "max": 0.9999996423721313,
+      "p05": 5.346451281695863e-09,
+      "median": 2.8177964850328863e-05,
+      "p95": 0.006246631965041161,
+      "fraction_at_or_above_0_5": 0.007557869773676342
+    },
+    "metrics": {
+      "tp": 561,
+      "fp": 733,
+      "fn": 374,
+      "dice": 0.5033647375504711,
+      "iou": 0.3363309352517986,
+      "target_positive": true,
+      "prediction_positive": true
+    }
+  },
+  {
+    "sample_id": "IDRiD_01",
+    "class": "SE",
+    "annotation_available": false,
+    "metrics": null
+  },
+  {
+    "sample_id": "IDRiD_03",
+    "class": "MA",
+    "annotation_available": true,
+    "reference_pixels": 99,
+    "foreground_probability": {
+      "pixels": 99,
+      "mean": 3.1489896628045244e-06,
+      "min": 3.971634896515752e-07,
+      "max": 1.4322442439151928e-05,
+      "p05": 1.3637051097248332e-06,
+      "median": 2.6993768642569194e-06,
+      "p95": 6.274718543863855e-06,
+      "fraction_at_or_above_0_5": 0.0
+    },
+    "background_probability": {
+      "pixels": 97821,
+      "mean": 2.97949281957699e-06,
+      "min": 1.3520244479536814e-08,
+      "max": 0.00036579533480107784,
+      "p05": 8.966388520548207e-08,
+      "median": 1.8440655367157888e-06,
+      "p95": 7.0811884143040515e-06,
+      "fraction_at_or_above_0_5": 0.0
+    },
+    "metrics": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 99,
+      "dice": 0.0,
+      "iou": 0.0,
+      "target_positive": true,
+      "prediction_positive": false
+    }
+  },
+  {
+    "sample_id": "IDRiD_03",
+    "class": "HE",
+    "annotation_available": true,
+    "reference_pixels": 1305,
+    "foreground_probability": {
+      "pixels": 1305,
+      "mean": 0.19931161403656006,
+      "min": 1.487637457664448e-09,
+      "max": 0.9988858103752136,
+      "p05": 1.0912552284025878e-07,
+      "median": 0.004392813891172409,
+      "p95": 0.9733525514602661,
+      "fraction_at_or_above_0_5": 0.1854406130268199
+    },
+    "background_probability": {
+      "pixels": 96615,
+      "mean": 0.0015226008836179972,
+      "min": 8.77804209040056e-36,
+      "max": 0.9986531734466553,
+      "p05": 2.84778894910076e-10,
+      "median": 1.2994887583772652e-06,
+      "p95": 0.0005546572501771152,
+      "fraction_at_or_above_0_5": 0.0007452258965999068
+    },
+    "metrics": {
+      "tp": 242,
+      "fp": 72,
+      "fn": 1063,
+      "dice": 0.2989499691167387,
+      "iou": 0.1757443718228032,
+      "target_positive": true,
+      "prediction_positive": true
+    }
+  },
+  {
+    "sample_id": "IDRiD_03",
+    "class": "EX",
+    "annotation_available": true,
+    "reference_pixels": 2417,
+    "foreground_probability": {
+      "pixels": 2417,
+      "mean": 0.5362164378166199,
+      "min": 1.0427687584524392e-06,
+      "max": 1.0,
+      "p05": 0.00019969842105638236,
+      "median": 0.6637316346168518,
+      "p95": 1.0,
+      "fraction_at_or_above_0_5": 0.5324782788580885
+    },
+    "background_probability": {
+      "pixels": 95503,
+      "mean": 0.012724000960588455,
+      "min": 2.5743578276060664e-12,
+      "max": 1.0,
+      "p05": 4.6005816045635584e-08,
+      "median": 3.0582006729673594e-05,
+      "p95": 0.021533863618969917,
+      "fraction_at_or_above_0_5": 0.009298137231291163
+    },
+    "metrics": {
+      "tp": 1287,
+      "fp": 888,
+      "fn": 1130,
+      "dice": 0.5605400696864111,
+      "iou": 0.38940998487140693,
+      "target_positive": true,
+      "prediction_positive": true
+    }
+  },
+  {
+    "sample_id": "IDRiD_03",
+    "class": "SE",
+    "annotation_available": true,
+    "reference_pixels": 27,
+    "foreground_probability": {
+      "pixels": 27,
+      "mean": 5.817457804369042e-07,
+      "min": 1.0683817919243666e-07,
+      "max": 1.1563153066163068e-06,
+      "p05": 1.2089482481769664e-07,
+      "median": 6.009767616887984e-07,
+      "p95": 1.1295461490590242e-06,
+      "fraction_at_or_above_0_5": 0.0
+    },
+    "background_probability": {
+      "pixels": 97893,
+      "mean": 2.71929661721515e-06,
+      "min": 4.5939753422208925e-23,
+      "max": 0.000356267235474661,
+      "p05": 6.311132714521828e-13,
+      "median": 2.386448016977738e-08,
+      "p95": 1.677247382758651e-05,
+      "fraction_at_or_above_0_5": 0.0
+    },
+    "metrics": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 27,
+      "dice": 0.0,
+      "iou": 0.0,
+      "target_positive": true,
+      "prediction_positive": false
+    }
+  },
+  {
+    "sample_id": "IDRiD_02",
+    "class": "MA",
+    "annotation_available": true,
+    "reference_pixels": 68,
+    "foreground_probability": {
+      "pixels": 68,
+      "mean": 1.3278703363539535e-06,
+      "min": 5.801715019515541e-07,
+      "max": 5.094696007290622e-06,
+      "p05": 7.254698743963672e-07,
+      "median": 1.2481605153880082e-06,
+      "p95": 1.7895365544973174e-06,
+      "fraction_at_or_above_0_5": 0.0
+    },
+    "background_probability": {
+      "pixels": 97852,
+      "mean": 9.061083687811333e-07,
+      "min": 3.2172431385646405e-09,
+      "max": 8.611274824943393e-05,
+      "p05": 9.700000447310231e-08,
+      "median": 8.947000651460257e-07,
+      "p95": 1.914918811962707e-06,
+      "fraction_at_or_above_0_5": 0.0
+    },
+    "metrics": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 68,
+      "dice": 0.0,
+      "iou": 0.0,
+      "target_positive": true,
+      "prediction_positive": false
+    }
+  },
+  {
+    "sample_id": "IDRiD_02",
+    "class": "HE",
+    "annotation_available": true,
+    "reference_pixels": 135,
+    "foreground_probability": {
+      "pixels": 135,
+      "mean": 3.5358354022463345e-09,
+      "min": 1.5919164857852719e-12,
+      "max": 3.601473608227934e-08,
+      "p05": 4.289016624497988e-12,
+      "median": 3.733895970192691e-10,
+      "p95": 2.4833926914880067e-08,
+      "fraction_at_or_above_0_5": 0.0
+    },
+    "background_probability": {
+      "pixels": 97785,
+      "mean": 0.0004775912093464285,
+      "min": 1.115584340837149e-31,
+      "max": 0.9642884135246277,
+      "p05": 4.261994403231828e-12,
+      "median": 1.7585659151109212e-08,
+      "p95": 5.6193661293946207e-05,
+      "fraction_at_or_above_0_5": 0.0003477015902234494
+    },
+    "metrics": {
+      "tp": 0,
+      "fp": 34,
+      "fn": 135,
+      "dice": 0.0,
+      "iou": 0.0,
+      "target_positive": true,
+      "prediction_positive": true
+    }
+  },
+  {
+    "sample_id": "IDRiD_02",
+    "class": "EX",
+    "annotation_available": true,
+    "reference_pixels": 1090,
+    "foreground_probability": {
+      "pixels": 1090,
+      "mean": 0.5835555791854858,
+      "min": 9.17238835995704e-08,
+      "max": 1.0,
+      "p05": 2.0368675905046985e-05,
+      "median": 0.8952833414077759,
+      "p95": 1.0,
+      "fraction_at_or_above_0_5": 0.5844036697247706
+    },
+    "background_probability": {
+      "pixels": 96830,
+      "mean": 0.008159211836755276,
+      "min": 2.683128608182983e-09,
+      "max": 1.0,
+      "p05": 9.724644769448787e-07,
+      "median": 2.8995553293498233e-05,
+      "p95": 0.0072223953902721405,
+      "fraction_at_or_above_0_5": 0.006578539708767944
+    },
+    "metrics": {
+      "tp": 637,
+      "fp": 637,
+      "fn": 453,
+      "dice": 0.538917089678511,
+      "iou": 0.3688477127967574,
+      "target_positive": true,
+      "prediction_positive": true
+    }
+  },
+  {
+    "sample_id": "IDRiD_02",
+    "class": "SE",
+    "annotation_available": false,
+    "metrics": null
+  },
+  {
+    "sample_id": "IDRiD_04",
+    "class": "MA",
+    "annotation_available": true,
+    "reference_pixels": 6,
+    "foreground_probability": {
+      "pixels": 6,
+      "mean": 1.5877531041041948e-06,
+      "min": 9.485177656642918e-07,
+      "max": 2.0333079646661645e-06,
+      "p05": 9.64480477705365e-07,
+      "median": 1.750212049955735e-06,
+      "p95": 2.032956217590254e-06,
+      "fraction_at_or_above_0_5": 0.0
+    },
+    "background_probability": {
+      "pixels": 97914,
+      "mean": 1.0629340749801486e-06,
+      "min": 3.692165151392146e-08,
+      "max": 1.2982714906684123e-05,
+      "p05": 8.85929480887171e-08,
+      "median": 9.021206892612099e-07,
+      "p95": 2.6660022740543354e-06,
+      "fraction_at_or_above_0_5": 0.0
+    },
+    "metrics": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 6,
+      "dice": 0.0,
+      "iou": 0.0,
+      "target_positive": true,
+      "prediction_positive": false
+    }
+  },
+  {
+    "sample_id": "IDRiD_04",
+    "class": "HE",
+    "annotation_available": true,
+    "reference_pixels": 471,
+    "foreground_probability": {
+      "pixels": 471,
+      "mean": 0.32404470443725586,
+      "min": 3.7523602003375345e-09,
+      "max": 0.999751627445221,
+      "p05": 1.2093248358269193e-07,
+      "median": 0.19546541571617126,
+      "p95": 0.9957054853439331,
+      "fraction_at_or_above_0_5": 0.3227176220806794
+    },
+    "background_probability": {
+      "pixels": 97449,
+      "mean": 0.00012955264537595212,
+      "min": 1.5657003012834776e-16,
+      "max": 0.5376636981964111,
+      "p05": 1.3517248084737865e-11,
+      "median": 6.585436551631574e-08,
+      "p95": 2.8927450330229476e-05,
+      "fraction_at_or_above_0_5": 3.0785333866945786e-05
+    },
+    "metrics": {
+      "tp": 152,
+      "fp": 3,
+      "fn": 319,
+      "dice": 0.48562300319488816,
+      "iou": 0.3206751054852321,
+      "target_positive": true,
+      "prediction_positive": true
+    }
+  },
+  {
+    "sample_id": "IDRiD_04",
+    "class": "EX",
+    "annotation_available": true,
+    "reference_pixels": 46,
+    "foreground_probability": {
+      "pixels": 46,
+      "mean": 0.2397078275680542,
+      "min": 1.1902665875140883e-07,
+      "max": 0.9844217300415039,
+      "p05": 1.7093951498736715e-07,
+      "median": 0.018698178231716156,
+      "p95": 0.8662446737289429,
+      "fraction_at_or_above_0_5": 0.2608695652173913
+    },
+    "background_probability": {
+      "pixels": 97874,
+      "mean": 0.005881578661501408,
+      "min": 5.605738529618209e-12,
+      "max": 0.9919074773788452,
+      "p05": 2.8223183790032635e-08,
+      "median": 5.2880750445183367e-05,
+      "p95": 0.008478918112814426,
+      "fraction_at_or_above_0_5": 0.003749719026503464
+    },
+    "metrics": {
+      "tp": 12,
+      "fp": 367,
+      "fn": 34,
+      "dice": 0.05647058823529412,
+      "iou": 0.029055690072639227,
+      "target_positive": true,
+      "prediction_positive": true
+    }
+  },
+  {
+    "sample_id": "IDRiD_04",
+    "class": "SE",
+    "annotation_available": false,
+    "metrics": null
+  }
+]

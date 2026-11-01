@@ -1,0 +1,55 @@
+{
+  "status": "registered_not_executed",
+  "comparison": "Observed BCE + soft Dice versus positive-weighted observed BCE + unchanged soft Dice",
+  "task": "idrid",
+  "classes": [
+    "MA",
+    "HE",
+    "EX",
+    "SE"
+  ],
+  "manifest_sha256": "5efcc29e06b6bcb0a4d0a8cfd5a3600951485cbbef17f78ab10e8ed41d66a4d1",
+  "statistics_split": "train only",
+  "statistics_images": 43,
+  "statistics": {
+    "positive": [
+      4576,
+      29992,
+      28952,
+      6878
+    ],
+    "negative": [
+      4205984,
+      4082648,
+      4181608,
+      2049442
+    ],
+    "annotated_images": [
+      43,
+      42,
+      43,
+      21
+    ]
+  },
+  "weight_rule": "clip(sqrt(negative_pixels / positive_pixels), 1, 20) on observed training labels at 384px, padding excluded",
+  "positive_weights": [
+    20.0,
+    11.667243314128676,
+    12.01800482195464,
+    17.261825830351288
+  ],
+  "sample_ids": [
+    "IDRiD_01",
+    "IDRiD_03",
+    "IDRiD_02",
+    "IDRiD_04"
+  ],
+  "steps": 200,
+  "seed": 42,
+  "input_size": 384,
+  "architecture": "query_detail",
+  "augmentation": "disabled",
+  "other_controls": "same float32, initialization seed, AdamW and learning rate as the unweighted diagnostic; no threshold or resolution change",
+  "purpose": "Isolate foreground imbalance hypothesis; no validation/test tuning or generalization claim",
+  "implementation": "Weighted objective must be implemented and gradient-tested before execution."
+}

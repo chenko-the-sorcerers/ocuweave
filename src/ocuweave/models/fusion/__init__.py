@@ -1,1 +1,1 @@
-"""Proposed evidence alignment and reliability-aware fusion. Novelty and implementation remain unverified."""
+"""Availability-masked evidence conditioning; clinical benefit remains unverified."""

@@ -1,0 +1,34 @@
+{
+  "idrid": {
+    "loss": {
+      "total": 1.150373935699463,
+      "bce": 0.16126471757888794,
+      "soft_dice": 0.9891091585159302
+    },
+    "gradient_norm": 0.4999174177646637,
+    "changed_parameters": 133,
+    "device": "cuda",
+    "sample_ids": [
+      "IDRiD_01",
+      "IDRiD_03",
+      "IDRiD_02",
+      "IDRiD_04"
+    ]
+  },
+  "fives": {
+    "loss": {
+      "total": 1.1846632957458496,
+      "bce": 0.27663454413414,
+      "soft_dice": 0.9080287218093872
+    },
+    "gradient_norm": 0.21367789804935455,
+    "changed_parameters": 67,
+    "device": "cuda",
+    "sample_ids": [
+      "train-101_A",
+      "train-102_A",
+      "train-103_A",
+      "train-104_A"
+    ]
+  }
+}

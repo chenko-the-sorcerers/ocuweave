@@ -1,0 +1,475 @@
+[
+  {
+    "sample_id": "IDRiD_01",
+    "class": "MA",
+    "annotation_available": true,
+    "reference_pixels": 54,
+    "foreground_probability": {
+      "pixels": 54,
+      "mean": 0.11360914260149002,
+      "min": 0.11188259720802307,
+      "max": 0.11489929258823395,
+      "p05": 0.11199357360601425,
+      "median": 0.1137797087430954,
+      "p95": 0.11466265469789505,
+      "fraction_at_or_above_0_5": 0.0
+    },
+    "background_probability": {
+      "pixels": 97866,
+      "mean": 0.11269868165254593,
+      "min": 0.10132656246423721,
+      "max": 0.1230974867939949,
+      "p05": 0.10963524132966995,
+      "median": 0.11362043023109436,
+      "p95": 0.11485247313976288,
+      "fraction_at_or_above_0_5": 0.0
+    },
+    "metrics": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 54,
+      "dice": 0.0,
+      "iou": 0.0,
+      "target_positive": true,
+      "prediction_positive": false
+    }
+  },
+  {
+    "sample_id": "IDRiD_01",
+    "class": "HE",
+    "annotation_available": true,
+    "reference_pixels": 283,
+    "foreground_probability": {
+      "pixels": 283,
+      "mean": 0.1337694376707077,
+      "min": 0.1293451488018036,
+      "max": 0.14297768473625183,
+      "p05": 0.13133803009986877,
+      "median": 0.13275815546512604,
+      "p95": 0.14155909419059753,
+      "fraction_at_or_above_0_5": 0.0
+    },
+    "background_probability": {
+      "pixels": 97637,
+      "mean": 0.1327776163816452,
+      "min": 0.11778242886066437,
+      "max": 0.15177229046821594,
+      "p05": 0.12516583502292633,
+      "median": 0.13341721892356873,
+      "p95": 0.1416730135679245,
+      "fraction_at_or_above_0_5": 0.0
+    },
+    "metrics": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 283,
+      "dice": 0.0,
+      "iou": 0.0,
+      "target_positive": true,
+      "prediction_positive": false
+    }
+  },
+  {
+    "sample_id": "IDRiD_01",
+    "class": "EX",
+    "annotation_available": true,
+    "reference_pixels": 935,
+    "foreground_probability": {
+      "pixels": 935,
+      "mean": 0.199641153216362,
+      "min": 0.1876952052116394,
+      "max": 0.21174836158752441,
+      "p05": 0.1931566447019577,
+      "median": 0.19944621622562408,
+      "p95": 0.20673240721225739,
+      "fraction_at_or_above_0_5": 0.0
+    },
+    "background_probability": {
+      "pixels": 96985,
+      "mean": 0.18314877152442932,
+      "min": 0.15944726765155792,
+      "max": 0.21113938093185425,
+      "p05": 0.16383342444896698,
+      "median": 0.1873539388179779,
+      "p95": 0.20258885622024536,
+      "fraction_at_or_above_0_5": 0.0
+    },
+    "metrics": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 935,
+      "dice": 0.0,
+      "iou": 0.0,
+      "target_positive": true,
+      "prediction_positive": false
+    }
+  },
+  {
+    "sample_id": "IDRiD_01",
+    "class": "SE",
+    "annotation_available": false,
+    "metrics": null
+  },
+  {
+    "sample_id": "IDRiD_03",
+    "class": "MA",
+    "annotation_available": true,
+    "reference_pixels": 99,
+    "foreground_probability": {
+      "pixels": 99,
+      "mean": 0.11324753612279892,
+      "min": 0.10620531439781189,
+      "max": 0.1143394261598587,
+      "p05": 0.11276993155479431,
+      "median": 0.11334001272916794,
+      "p95": 0.11401001363992691,
+      "fraction_at_or_above_0_5": 0.0
+    },
+    "background_probability": {
+      "pixels": 97821,
+      "mean": 0.11202336847782135,
+      "min": 0.09418528527021408,
+      "max": 0.12875866889953613,
+      "p05": 0.10874290764331818,
+      "median": 0.11309594660997391,
+      "p95": 0.11436732113361359,
+      "fraction_at_or_above_0_5": 0.0
+    },
+    "metrics": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 99,
+      "dice": 0.0,
+      "iou": 0.0,
+      "target_positive": true,
+      "prediction_positive": false
+    }
+  },
+  {
+    "sample_id": "IDRiD_03",
+    "class": "HE",
+    "annotation_available": true,
+    "reference_pixels": 1305,
+    "foreground_probability": {
+      "pixels": 1305,
+      "mean": 0.1340409219264984,
+      "min": 0.12323082238435745,
+      "max": 0.13939672708511353,
+      "p05": 0.1320139616727829,
+      "median": 0.13434277474880219,
+      "p95": 0.13630518317222595,
+      "fraction_at_or_above_0_5": 0.0
+    },
+    "background_probability": {
+      "pixels": 96615,
+      "mean": 0.1320684403181076,
+      "min": 0.11833079159259796,
+      "max": 0.15481184422969818,
+      "p05": 0.1254841387271881,
+      "median": 0.13354848325252533,
+      "p95": 0.1381884664297104,
+      "fraction_at_or_above_0_5": 0.0
+    },
+    "metrics": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 1305,
+      "dice": 0.0,
+      "iou": 0.0,
+      "target_positive": true,
+      "prediction_positive": false
+    }
+  },
+  {
+    "sample_id": "IDRiD_03",
+    "class": "EX",
+    "annotation_available": true,
+    "reference_pixels": 2417,
+    "foreground_probability": {
+      "pixels": 2417,
+      "mean": 0.21104782819747925,
+      "min": 0.1835050731897354,
+      "max": 0.2537832260131836,
+      "p05": 0.19069470465183258,
+      "median": 0.2075485736131668,
+      "p95": 0.24327486753463745,
+      "fraction_at_or_above_0_5": 0.0
+    },
+    "background_probability": {
+      "pixels": 95503,
+      "mean": 0.18480178713798523,
+      "min": 0.1606380194425583,
+      "max": 0.2366289496421814,
+      "p05": 0.16373300552368164,
+      "median": 0.18886283040046692,
+      "p95": 0.20581620931625366,
+      "fraction_at_or_above_0_5": 0.0
+    },
+    "metrics": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 2417,
+      "dice": 0.0,
+      "iou": 0.0,
+      "target_positive": true,
+      "prediction_positive": false
+    }
+  },
+  {
+    "sample_id": "IDRiD_03",
+    "class": "SE",
+    "annotation_available": true,
+    "reference_pixels": 27,
+    "foreground_probability": {
+      "pixels": 27,
+      "mean": 0.12043676525354385,
+      "min": 0.1190544068813324,
+      "max": 0.12165643274784088,
+      "p05": 0.11928386241197586,
+      "median": 0.12049251794815063,
+      "p95": 0.1216220110654831,
+      "fraction_at_or_above_0_5": 0.0
+    },
+    "background_probability": {
+      "pixels": 97893,
+      "mean": 0.11815089732408524,
+      "min": 0.10296598821878433,
+      "max": 0.15692038834095,
+      "p05": 0.10990998148918152,
+      "median": 0.11918315291404724,
+      "p95": 0.12742756307125092,
+      "fraction_at_or_above_0_5": 0.0
+    },
+    "metrics": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 27,
+      "dice": 0.0,
+      "iou": 0.0,
+      "target_positive": true,
+      "prediction_positive": false
+    }
+  },
+  {
+    "sample_id": "IDRiD_02",
+    "class": "MA",
+    "annotation_available": true,
+    "reference_pixels": 68,
+    "foreground_probability": {
+      "pixels": 68,
+      "mean": 0.10976503044366837,
+      "min": 0.10852283984422684,
+      "max": 0.11090312898159027,
+      "p05": 0.10896334052085876,
+      "median": 0.10969823598861694,
+      "p95": 0.11067701131105423,
+      "fraction_at_or_above_0_5": 0.0
+    },
+    "background_probability": {
+      "pixels": 97852,
+      "mean": 0.10842651128768921,
+      "min": 0.09257335960865021,
+      "max": 0.11793286353349686,
+      "p05": 0.1053493320941925,
+      "median": 0.10938722640275955,
+      "p95": 0.1107025295495987,
+      "fraction_at_or_above_0_5": 0.0
+    },
+    "metrics": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 68,
+      "dice": 0.0,
+      "iou": 0.0,
+      "target_positive": true,
+      "prediction_positive": false
+    }
+  },
+  {
+    "sample_id": "IDRiD_02",
+    "class": "HE",
+    "annotation_available": true,
+    "reference_pixels": 135,
+    "foreground_probability": {
+      "pixels": 135,
+      "mean": 0.13090014457702637,
+      "min": 0.12607450783252716,
+      "max": 0.1341831237077713,
+      "p05": 0.12700198590755463,
+      "median": 0.13153377175331116,
+      "p95": 0.13303063809871674,
+      "fraction_at_or_above_0_5": 0.0
+    },
+    "background_probability": {
+      "pixels": 97785,
+      "mean": 0.12916702032089233,
+      "min": 0.11538559198379517,
+      "max": 0.15167823433876038,
+      "p05": 0.12430378049612045,
+      "median": 0.12995202839374542,
+      "p95": 0.13414499163627625,
+      "fraction_at_or_above_0_5": 0.0
+    },
+    "metrics": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 135,
+      "dice": 0.0,
+      "iou": 0.0,
+      "target_positive": true,
+      "prediction_positive": false
+    }
+  },
+  {
+    "sample_id": "IDRiD_02",
+    "class": "EX",
+    "annotation_available": true,
+    "reference_pixels": 1090,
+    "foreground_probability": {
+      "pixels": 1090,
+      "mean": 0.20840638875961304,
+      "min": 0.18344654142856598,
+      "max": 0.24162881076335907,
+      "p05": 0.19245994091033936,
+      "median": 0.2078005075454712,
+      "p95": 0.22581793367862701,
+      "fraction_at_or_above_0_5": 0.0
+    },
+    "background_probability": {
+      "pixels": 96830,
+      "mean": 0.1901506632566452,
+      "min": 0.16387304663658142,
+      "max": 0.27993273735046387,
+      "p05": 0.16910505294799805,
+      "median": 0.19549307227134705,
+      "p95": 0.20831938087940216,
+      "fraction_at_or_above_0_5": 0.0
+    },
+    "metrics": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 1090,
+      "dice": 0.0,
+      "iou": 0.0,
+      "target_positive": true,
+      "prediction_positive": false
+    }
+  },
+  {
+    "sample_id": "IDRiD_02",
+    "class": "SE",
+    "annotation_available": false,
+    "metrics": null
+  },
+  {
+    "sample_id": "IDRiD_04",
+    "class": "MA",
+    "annotation_available": true,
+    "reference_pixels": 6,
+    "foreground_probability": {
+      "pixels": 6,
+      "mean": 0.11043986678123474,
+      "min": 0.11010794341564178,
+      "max": 0.11073373258113861,
+      "p05": 0.11015457659959793,
+      "median": 0.11047966778278351,
+      "p95": 0.11068622767925262,
+      "fraction_at_or_above_0_5": 0.0
+    },
+    "background_probability": {
+      "pixels": 97914,
+      "mean": 0.10963479429483414,
+      "min": 0.10230466723442078,
+      "max": 0.11461640894412994,
+      "p05": 0.10604105144739151,
+      "median": 0.1103038489818573,
+      "p95": 0.11190067231655121,
+      "fraction_at_or_above_0_5": 0.0
+    },
+    "metrics": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 6,
+      "dice": 0.0,
+      "iou": 0.0,
+      "target_positive": true,
+      "prediction_positive": false
+    }
+  },
+  {
+    "sample_id": "IDRiD_04",
+    "class": "HE",
+    "annotation_available": true,
+    "reference_pixels": 471,
+    "foreground_probability": {
+      "pixels": 471,
+      "mean": 0.1255919188261032,
+      "min": 0.12315281480550766,
+      "max": 0.13349847495555878,
+      "p05": 0.1234537810087204,
+      "median": 0.12423830479383469,
+      "p95": 0.13208681344985962,
+      "fraction_at_or_above_0_5": 0.0
+    },
+    "background_probability": {
+      "pixels": 97449,
+      "mean": 0.12938302755355835,
+      "min": 0.11906595528125763,
+      "max": 0.15388016402721405,
+      "p05": 0.12345930933952332,
+      "median": 0.1276264786720276,
+      "p95": 0.1387748122215271,
+      "fraction_at_or_above_0_5": 0.0
+    },
+    "metrics": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 471,
+      "dice": 0.0,
+      "iou": 0.0,
+      "target_positive": true,
+      "prediction_positive": false
+    }
+  },
+  {
+    "sample_id": "IDRiD_04",
+    "class": "EX",
+    "annotation_available": true,
+    "reference_pixels": 46,
+    "foreground_probability": {
+      "pixels": 46,
+      "mean": 0.2040226012468338,
+      "min": 0.1778210699558258,
+      "max": 0.21706773340702057,
+      "p05": 0.18097060918807983,
+      "median": 0.20518234372138977,
+      "p95": 0.21660488843917847,
+      "fraction_at_or_above_0_5": 0.0
+    },
+    "background_probability": {
+      "pixels": 97874,
+      "mean": 0.19096113741397858,
+      "min": 0.16440580785274506,
+      "max": 0.24299129843711853,
+      "p05": 0.1684909164905548,
+      "median": 0.1901313066482544,
+      "p95": 0.21824537217617035,
+      "fraction_at_or_above_0_5": 0.0
+    },
+    "metrics": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 46,
+      "dice": 0.0,
+      "iou": 0.0,
+      "target_positive": true,
+      "prediction_positive": false
+    }
+  },
+  {
+    "sample_id": "IDRiD_04",
+    "class": "SE",
+    "annotation_available": false,
+    "metrics": null
+  }
+]

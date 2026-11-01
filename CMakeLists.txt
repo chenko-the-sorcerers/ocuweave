@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.20)
-project(ocuweave VERSION 0.11.0 LANGUAGES CXX)
+project(ocuweave VERSION 0.11.1 LANGUAGES CXX)
 add_library(ocuweave_core STATIC native/src/evidence.cpp native/src/segmentation.cpp)
 target_compile_features(ocuweave_core PUBLIC cxx_std_17)
 target_include_directories(ocuweave_core PUBLIC native/include)

@@ -1,0 +1,126 @@
+{
+  "scope": "training-only diagnostics; not validation or generalization",
+  "source_commit": "0a855b2ade86473c84b60d8e59221ba667e642ba",
+  "classes": [
+    {
+      "task": "idrid",
+      "class": "MA",
+      "positive_training_images": 4,
+      "input_dice": 0.0,
+      "original_dice": 0.0,
+      "original_iou": 0.0,
+      "input_foreground_probability_mean": 2.3438417713350645e-06,
+      "original_tp": 0,
+      "original_fp": 0,
+      "original_fn": 28479,
+      "small_set_fit_pass": false
+    },
+    {
+      "task": "idrid",
+      "class": "HE",
+      "positive_training_images": 4,
+      "input_dice": 0.3269722586219481,
+      "original_dice": 0.31924552848187565,
+      "original_iou": 0.2061660068667402,
+      "input_foreground_probability_mean": 0.2197918602723103,
+      "original_tp": 60020,
+      "original_fp": 13030,
+      "original_fn": 214754,
+      "small_set_fit_pass": false
+    },
+    {
+      "task": "idrid",
+      "class": "EX",
+      "positive_training_images": 4,
+      "input_dice": 0.4148231212876718,
+      "original_dice": 0.4100063104299055,
+      "original_iou": 0.27672769376114786,
+      "input_foreground_probability_mean": 0.4899150878190994,
+      "original_tp": 306451,
+      "original_fp": 328278,
+      "original_fn": 249372,
+      "small_set_fit_pass": false
+    },
+    {
+      "task": "idrid",
+      "class": "SE",
+      "positive_training_images": 1,
+      "input_dice": 0.0,
+      "original_dice": 0.0,
+      "original_iou": 0.0,
+      "input_foreground_probability_mean": 5.817457804369042e-07,
+      "original_tp": 0,
+      "original_fp": 0,
+      "original_fn": 3318,
+      "small_set_fit_pass": false
+    },
+    {
+      "task": "fives",
+      "class": "vessel",
+      "positive_training_images": 4,
+      "input_dice": 0.6117346622361131,
+      "original_dice": 0.6114650990271943,
+      "original_iou": 0.4404214988771502,
+      "input_foreground_probability_mean": 0.5883126705884933,
+      "original_tp": 744973,
+      "original_fp": 412999,
+      "original_fn": 532859,
+      "small_set_fit_pass": false
+    }
+  ],
+  "gates": {
+    "idrid": {
+      "pipeline_pass": true,
+      "small_set_fit_pass": false,
+      "checkpoint_reload_matches": true,
+      "original_metrics_recount_matches": true,
+      "update_l2_sums_by_group": {
+        "encoder": 22.855790494661548,
+        "heads.0": 5.223684926284198,
+        "heads.1": 8.991397815936248,
+        "heads.2": 9.336975518342895,
+        "heads.3": 7.505934654733214,
+        "local_detail": 5.034481559699757
+      },
+      "gradient_l2_sums_by_group": {
+        "encoder": 216.71655996990972,
+        "heads.0": 1.3993365734075451,
+        "heads.1": 43.12405860767262,
+        "heads.2": 77.76318708465801,
+        "heads.3": 1.0653475984521001,
+        "local_detail": 31.369795025636385
+      },
+      "steps": 200,
+      "elapsed_seconds": 22.678139385999998,
+      "peak_cuda_allocated_bytes": 470326272,
+      "peak_cuda_reserved_bytes": 635437056,
+      "first_loss": 1.150373935699463,
+      "last_loss": 0.7946991920471191
+    },
+    "fives": {
+      "pipeline_pass": true,
+      "small_set_fit_pass": false,
+      "checkpoint_reload_matches": true,
+      "original_metrics_recount_matches": true,
+      "update_l2_sums_by_group": {
+        "encoder": 16.98004548050981,
+        "head": 6.9411213513570695,
+        "local_detail": 3.8557072786683335
+      },
+      "gradient_l2_sums_by_group": {
+        "encoder": 1278.3019083825006,
+        "head": 635.6908854502603,
+        "local_detail": 58.35187029902078
+      },
+      "steps": 200,
+      "elapsed_seconds": 12.983743982000078,
+      "peak_cuda_allocated_bytes": 284351488,
+      "peak_cuda_reserved_bytes": 306184192,
+      "first_loss": 1.1846632957458496,
+      "last_loss": 0.6577785611152649
+    }
+  },
+  "test_evaluated": false,
+  "validation_evaluated": false,
+  "main_matrix_started": false
+}

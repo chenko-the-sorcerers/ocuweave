@@ -6,7 +6,7 @@ Query and LQNet provide binary OTFID/FIVES segmentation. MultiLabelLQNet provide
 
 ## Evidence
 
-Historical OTFID and six supplementary FIVES/IDRiD CPU pilots are recorded in [results](../results/README.md). IDRiD validation Dice/IoU remain zero in the recorded pilots. The software release adds infrastructure and synthetic checks, not improved medical results. GPU readiness diagnostics and the core experiment matrix remain pending.
+Historical OTFID and six supplementary FIVES/IDRiD CPU pilots are recorded in [results](../results/README.md). IDRiD validation Dice/IoU remain zero in the recorded pilots. The software release adds infrastructure and synthetic checks, not improved medical results. Initial training-only T4 diagnostics passed technical checks but failed the small-set fitting goal; see [readiness evidence](../results/gpu-readiness-v0110/README.md). The core experiment matrix remains pending.
 
 ## Evaluation and use
 

@@ -1,0 +1,32 @@
+[
+  {
+    "task": "idrid",
+    "class": "MA",
+    "192_roundtrip_dice": 0.45362064447235384,
+    "384_roundtrip_dice": 0.7181298188287822
+  },
+  {
+    "task": "idrid",
+    "class": "HE",
+    "192_roundtrip_dice": 0.7860060253815295,
+    "384_roundtrip_dice": 0.8978674636118029
+  },
+  {
+    "task": "idrid",
+    "class": "EX",
+    "192_roundtrip_dice": 0.5813680066916754,
+    "384_roundtrip_dice": 0.7833112430039433
+  },
+  {
+    "task": "idrid",
+    "class": "SE",
+    "192_roundtrip_dice": 0.8102300242130751,
+    "384_roundtrip_dice": 0.9315686569408934
+  },
+  {
+    "task": "fives",
+    "class": "vessel",
+    "192_roundtrip_dice": 0.8251570522216369,
+    "384_roundtrip_dice": 0.9168411547713962
+  }
+]

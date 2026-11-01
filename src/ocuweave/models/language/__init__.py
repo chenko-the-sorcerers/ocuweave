@@ -1,1 +1,1 @@
-"""Local LLM/text-encoder integration. Keep original clinical text distinct from generated summaries."""
+"""Random-initialized byte-text encoder; no pretrained LLM or clinical training."""

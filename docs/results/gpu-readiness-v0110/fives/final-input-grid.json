@@ -1,0 +1,142 @@
+[
+  {
+    "sample_id": "train-101_A",
+    "class": "vessel",
+    "annotation_available": true,
+    "reference_pixels": 11171,
+    "foreground_probability": {
+      "pixels": 11171,
+      "mean": 0.6417903304100037,
+      "min": 8.98108773981221e-05,
+      "max": 1.0,
+      "p05": 0.018081992864608765,
+      "median": 0.8261958956718445,
+      "p95": 0.9999662637710571,
+      "fraction_at_or_above_0_5": 0.646405872348044
+    },
+    "background_probability": {
+      "pixels": 136285,
+      "mean": 0.06160341948270798,
+      "min": 1.613709027514787e-10,
+      "max": 0.9999873638153076,
+      "p05": 2.8239714083611034e-05,
+      "median": 0.007416821550577879,
+      "p95": 0.3631291091442108,
+      "fraction_at_or_above_0_5": 0.03475070624059875
+    },
+    "metrics": {
+      "tp": 7221,
+      "fp": 4736,
+      "fn": 3950,
+      "dice": 0.6244379107575233,
+      "iou": 0.4539510907147797,
+      "target_positive": true,
+      "prediction_positive": true
+    }
+  },
+  {
+    "sample_id": "train-102_A",
+    "class": "vessel",
+    "annotation_available": true,
+    "reference_pixels": 10509,
+    "foreground_probability": {
+      "pixels": 10509,
+      "mean": 0.5774935483932495,
+      "min": 3.7976732869537955e-07,
+      "max": 1.0,
+      "p05": 0.004536541178822517,
+      "median": 0.7175104022026062,
+      "p95": 0.9999302625656128,
+      "fraction_at_or_above_0_5": 0.5756970216005328
+    },
+    "background_probability": {
+      "pixels": 136947,
+      "mean": 0.03750638663768768,
+      "min": 2.993875725110229e-08,
+      "max": 0.9999912977218628,
+      "p05": 1.1474895472929347e-05,
+      "median": 0.0021615957375615835,
+      "p95": 0.19099995493888855,
+      "fraction_at_or_above_0_5": 0.023213359912959027
+    },
+    "metrics": {
+      "tp": 6050,
+      "fp": 3179,
+      "fn": 4459,
+      "dice": 0.6130307021988043,
+      "iou": 0.4419929865575687,
+      "target_positive": true,
+      "prediction_positive": true
+    }
+  },
+  {
+    "sample_id": "train-103_A",
+    "class": "vessel",
+    "annotation_available": true,
+    "reference_pixels": 11674,
+    "foreground_probability": {
+      "pixels": 11674,
+      "mean": 0.5526686906814575,
+      "min": 9.104345735977404e-06,
+      "max": 1.0,
+      "p05": 0.005211640149354935,
+      "median": 0.6265734434127808,
+      "p95": 0.9999502301216125,
+      "fraction_at_or_above_0_5": 0.5464279595682714
+    },
+    "background_probability": {
+      "pixels": 135782,
+      "mean": 0.03729033097624779,
+      "min": 3.0483860768981685e-08,
+      "max": 0.9999947547912598,
+      "p05": 4.359841113910079e-06,
+      "median": 0.0021359401289373636,
+      "p95": 0.1913006752729416,
+      "fraction_at_or_above_0_5": 0.02268341900988349
+    },
+    "metrics": {
+      "tp": 6379,
+      "fp": 3080,
+      "fn": 5295,
+      "dice": 0.603700373822931,
+      "iou": 0.4323573268266233,
+      "target_positive": true,
+      "prediction_positive": true
+    }
+  },
+  {
+    "sample_id": "train-104_A",
+    "class": "vessel",
+    "annotation_available": true,
+    "reference_pixels": 11578,
+    "foreground_probability": {
+      "pixels": 11578,
+      "mean": 0.5812981128692627,
+      "min": 2.701555786188692e-06,
+      "max": 1.0,
+      "p05": 0.004054948687553406,
+      "median": 0.7582221031188965,
+      "p95": 0.9999524354934692,
+      "fraction_at_or_above_0_5": 0.583088616341337
+    },
+    "background_probability": {
+      "pixels": 135878,
+      "mean": 0.0413273349404335,
+      "min": 1.8305058802070562e-07,
+      "max": 0.9999439716339111,
+      "p05": 7.877623829699587e-06,
+      "median": 0.001912452862598002,
+      "p95": 0.23674704134464264,
+      "fraction_at_or_above_0_5": 0.029143790753470025
+    },
+    "metrics": {
+      "tp": 6751,
+      "fp": 3960,
+      "fn": 4827,
+      "dice": 0.6057696621651936,
+      "iou": 0.4344832024713605,
+      "target_positive": true,
+      "prediction_positive": true
+    }
+  }
+]

@@ -1,0 +1,35 @@
+{
+  "protocol": "gpu-readiness-diagnostic-v1",
+  "source_commit": "0a855b2ade86473c84b60d8e59221ba667e642ba",
+  "software_version": "0.11.0",
+  "config": {
+    "architecture": "query_detail",
+    "width": 24,
+    "dim": 48,
+    "queries": 8,
+    "size": 384,
+    "batch_size": 4,
+    "steps": 200,
+    "seed": 42,
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "gradient_clip": 1.0,
+    "flip_probability": 0.0,
+    "save_every": 25
+  },
+  "tasks": [
+    "idrid",
+    "fives"
+  ],
+  "count": 4,
+  "selection": "Training-only lexical greedy positive-class coverage at input grid; then lexical fill. No predictions or held-out samples used.",
+  "pipeline_criteria": [
+    "finite loss/gradients",
+    "nonzero encoder/head/local updates",
+    "checkpoint reload matches"
+  ],
+  "small_set_fit_criterion": "Each observed positive class: mean input-grid Dice on selected positive images >= 0.80. Fixed 200-step budget; no threshold tuning.",
+  "test_evaluated": false,
+  "validation_evaluated": false,
+  "main_matrix_started": false
+}

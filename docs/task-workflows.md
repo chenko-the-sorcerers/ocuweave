@@ -81,7 +81,7 @@ ocuweave infer --checkpoint outputs/fives-session-02/last.pt \
 |---|---|
 | OTFID/FIVES/IDRiD preparation, training, validation, inference | Implemented; synthetic CPU integration tests |
 | Interrupted training continuation | Implemented; exact CPU equivalence test |
-| Training-only diagnostics | Implemented; synthetic CPU verified; medical-data GPU execution pending |
+| Training-only diagnostics | Implemented; synthetic CPU verified; initial medical-data T4 diagnostics executed; small-set fitting goal not passed |
 | Note, structured feature and missing-modality conditioning | Implemented prototype; synthetic tests only |
 | Native confusion counts and pooling | C++/Python parity tested; no autograd or speed claim |
 | REFUGE2 training | Pending authorized data and adapter validation |

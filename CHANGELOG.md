@@ -3,6 +3,17 @@
 Notable changes to OcuWeave are recorded here. Versions follow Semantic Versioning.
 Dates use ISO 8601. Research hypotheses are not software capabilities.
 
+## [0.11.1] — 2026-11-01
+
+### Measured research and documentation
+- Record two fixed-budget, training-only T4 diagnostics using source v0.11.0: four IDRiD and four FIVES images, 384 px, seed 42, 200 steps. CUDA execution, parameter updates, checkpoint reload and independent saved-mask metric recounts pass; both tasks fail the prespecified small-set fitting goal.
+- Preserve per-class probability/loss/gradient traces and original-grid metrics, including zero MA/SE overlap. Record label-resize roundtrip measurements at 192 and 384 px, explicitly not a model-performance ceiling.
+- Register an objective-only follow-up using observed training-label statistics; mark it unexecuted. Keep historical validation results and the main experiment matrices unchanged.
+- Update the current readiness status and correct stale text/fusion module descriptions. No model architecture, loss implementation or historical checkpoint is changed.
+
+### Validation
+- Release metadata checks; 84 Python tests; 2 CTest cases; 6 native/reference parity checks; structural synthetic manifest audit; and all three installed-wheel CPU demos passed. GPU measurements are traceable to the unchanged v0.11.0 source commit.
+
 ## [0.11.0] — 2026-11-01
 
 ### Added

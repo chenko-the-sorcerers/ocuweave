@@ -1,0 +1,14 @@
+{
+  "idrid": [
+    "IDRiD_01",
+    "IDRiD_03",
+    "IDRiD_02",
+    "IDRiD_04"
+  ],
+  "fives": [
+    "train-101_A",
+    "train-102_A",
+    "train-103_A",
+    "train-104_A"
+  ]
+}

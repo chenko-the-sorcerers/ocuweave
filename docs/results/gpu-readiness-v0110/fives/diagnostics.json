@@ -1,0 +1,397 @@
+{
+  "software_version": "0.11.0",
+  "source_commit": "0a855b2ade86473c84b60d8e59221ba667e642ba",
+  "source_dirty": false,
+  "purpose": "training-only fixed-subset diagnostic; not research performance",
+  "task": "fives",
+  "sample_ids": [
+    "train-101_A",
+    "train-102_A",
+    "train-103_A",
+    "train-104_A"
+  ],
+  "selection": "explicit IDs",
+  "config": {
+    "architecture": "query_detail",
+    "width": 24,
+    "dim": 48,
+    "queries": 8,
+    "size": 384,
+    "batch_size": 4,
+    "steps": 200,
+    "seed": 42,
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "gradient_clip": 1.0,
+    "flip_probability": 0.0,
+    "save_every": 25
+  },
+  "augmentation": "disabled",
+  "device": "cuda",
+  "gpu_executed": true,
+  "device_name": "Tesla T4",
+  "manifest_sha256": "632b76bad18375cb824fc18761216a00428310fe806f4170c2f866199f13ad68",
+  "precision": "float32",
+  "test_evaluated": false,
+  "validation_evaluated": false,
+  "readiness": "manual review required; no automatic permission to start the main matrix",
+  "status": "executed_requires_review",
+  "checkpoint_reload_matches": true,
+  "checkpoint_sha256": "6f036caaa0a373d8803bb7dd722a4ca7a057f701c78acb4436739d70c2db5520",
+  "positive_supervision_on_input_grid": {
+    "vessel": true
+  },
+  "untested_classes": [],
+  "initial": [
+    {
+      "sample_id": "train-101_A",
+      "class": "vessel",
+      "annotation_available": true,
+      "reference_pixels": 11171,
+      "foreground_probability": {
+        "pixels": 11171,
+        "mean": 0.11449502408504486,
+        "min": 0.09905306994915009,
+        "max": 0.11777687817811966,
+        "p05": 0.11272254586219788,
+        "median": 0.11467133462429047,
+        "p95": 0.11558575928211212,
+        "fraction_at_or_above_0_5": 0.0
+      },
+      "background_probability": {
+        "pixels": 136285,
+        "mean": 0.11354183405637741,
+        "min": 0.09416252374649048,
+        "max": 0.1235581785440445,
+        "p05": 0.10954108089208603,
+        "median": 0.11470753699541092,
+        "p95": 0.11561176180839539,
+        "fraction_at_or_above_0_5": 0.0
+      },
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 11171,
+        "dice": 0.0,
+        "iou": 0.0,
+        "target_positive": true,
+        "prediction_positive": false
+      }
+    },
+    {
+      "sample_id": "train-102_A",
+      "class": "vessel",
+      "annotation_available": true,
+      "reference_pixels": 10509,
+      "foreground_probability": {
+        "pixels": 10509,
+        "mean": 0.11577464640140533,
+        "min": 0.10601555556058884,
+        "max": 0.11832477897405624,
+        "p05": 0.11459162086248398,
+        "median": 0.11586718261241913,
+        "p95": 0.11671298742294312,
+        "fraction_at_or_above_0_5": 0.0
+      },
+      "background_probability": {
+        "pixels": 136947,
+        "mean": 0.11496168375015259,
+        "min": 0.09632888436317444,
+        "max": 0.12716497480869293,
+        "p05": 0.11160910129547119,
+        "median": 0.11580104380846024,
+        "p95": 0.11693617701530457,
+        "fraction_at_or_above_0_5": 0.0
+      },
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 10509,
+        "dice": 0.0,
+        "iou": 0.0,
+        "target_positive": true,
+        "prediction_positive": false
+      }
+    },
+    {
+      "sample_id": "train-103_A",
+      "class": "vessel",
+      "annotation_available": true,
+      "reference_pixels": 11674,
+      "foreground_probability": {
+        "pixels": 11674,
+        "mean": 0.11435973644256592,
+        "min": 0.09816669672727585,
+        "max": 0.11693985015153885,
+        "p05": 0.1129540354013443,
+        "median": 0.11446833610534668,
+        "p95": 0.11545945703983307,
+        "fraction_at_or_above_0_5": 0.0
+      },
+      "background_probability": {
+        "pixels": 135782,
+        "mean": 0.113410085439682,
+        "min": 0.09587131440639496,
+        "max": 0.12393622100353241,
+        "p05": 0.1096392422914505,
+        "median": 0.11441220343112946,
+        "p95": 0.11560773104429245,
+        "fraction_at_or_above_0_5": 0.0
+      },
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 11674,
+        "dice": 0.0,
+        "iou": 0.0,
+        "target_positive": true,
+        "prediction_positive": false
+      }
+    },
+    {
+      "sample_id": "train-104_A",
+      "class": "vessel",
+      "annotation_available": true,
+      "reference_pixels": 11578,
+      "foreground_probability": {
+        "pixels": 11578,
+        "mean": 0.11458858847618103,
+        "min": 0.09800759702920914,
+        "max": 0.11771280318498611,
+        "p05": 0.11333465576171875,
+        "median": 0.11467309296131134,
+        "p95": 0.11569815129041672,
+        "fraction_at_or_above_0_5": 0.0
+      },
+      "background_probability": {
+        "pixels": 135878,
+        "mean": 0.1137167289853096,
+        "min": 0.0945931151509285,
+        "max": 0.12387815117835999,
+        "p05": 0.11033311486244202,
+        "median": 0.11460822820663452,
+        "p95": 0.11578356474637985,
+        "fraction_at_or_above_0_5": 0.0
+      },
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 11578,
+        "dice": 0.0,
+        "iou": 0.0,
+        "target_positive": true,
+        "prediction_positive": false
+      }
+    }
+  ],
+  "final": [
+    {
+      "sample_id": "train-101_A",
+      "class": "vessel",
+      "annotation_available": true,
+      "reference_pixels": 11171,
+      "foreground_probability": {
+        "pixels": 11171,
+        "mean": 0.6417903304100037,
+        "min": 8.98108773981221e-05,
+        "max": 1.0,
+        "p05": 0.018081992864608765,
+        "median": 0.8261958956718445,
+        "p95": 0.9999662637710571,
+        "fraction_at_or_above_0_5": 0.646405872348044
+      },
+      "background_probability": {
+        "pixels": 136285,
+        "mean": 0.06160341948270798,
+        "min": 1.613709027514787e-10,
+        "max": 0.9999873638153076,
+        "p05": 2.8239714083611034e-05,
+        "median": 0.007416821550577879,
+        "p95": 0.3631291091442108,
+        "fraction_at_or_above_0_5": 0.03475070624059875
+      },
+      "metrics": {
+        "tp": 7221,
+        "fp": 4736,
+        "fn": 3950,
+        "dice": 0.6244379107575233,
+        "iou": 0.4539510907147797,
+        "target_positive": true,
+        "prediction_positive": true
+      }
+    },
+    {
+      "sample_id": "train-102_A",
+      "class": "vessel",
+      "annotation_available": true,
+      "reference_pixels": 10509,
+      "foreground_probability": {
+        "pixels": 10509,
+        "mean": 0.5774935483932495,
+        "min": 3.7976732869537955e-07,
+        "max": 1.0,
+        "p05": 0.004536541178822517,
+        "median": 0.7175104022026062,
+        "p95": 0.9999302625656128,
+        "fraction_at_or_above_0_5": 0.5756970216005328
+      },
+      "background_probability": {
+        "pixels": 136947,
+        "mean": 0.03750638663768768,
+        "min": 2.993875725110229e-08,
+        "max": 0.9999912977218628,
+        "p05": 1.1474895472929347e-05,
+        "median": 0.0021615957375615835,
+        "p95": 0.19099995493888855,
+        "fraction_at_or_above_0_5": 0.023213359912959027
+      },
+      "metrics": {
+        "tp": 6050,
+        "fp": 3179,
+        "fn": 4459,
+        "dice": 0.6130307021988043,
+        "iou": 0.4419929865575687,
+        "target_positive": true,
+        "prediction_positive": true
+      }
+    },
+    {
+      "sample_id": "train-103_A",
+      "class": "vessel",
+      "annotation_available": true,
+      "reference_pixels": 11674,
+      "foreground_probability": {
+        "pixels": 11674,
+        "mean": 0.5526686906814575,
+        "min": 9.104345735977404e-06,
+        "max": 1.0,
+        "p05": 0.005211640149354935,
+        "median": 0.6265734434127808,
+        "p95": 0.9999502301216125,
+        "fraction_at_or_above_0_5": 0.5464279595682714
+      },
+      "background_probability": {
+        "pixels": 135782,
+        "mean": 0.03729033097624779,
+        "min": 3.0483860768981685e-08,
+        "max": 0.9999947547912598,
+        "p05": 4.359841113910079e-06,
+        "median": 0.0021359401289373636,
+        "p95": 0.1913006752729416,
+        "fraction_at_or_above_0_5": 0.02268341900988349
+      },
+      "metrics": {
+        "tp": 6379,
+        "fp": 3080,
+        "fn": 5295,
+        "dice": 0.603700373822931,
+        "iou": 0.4323573268266233,
+        "target_positive": true,
+        "prediction_positive": true
+      }
+    },
+    {
+      "sample_id": "train-104_A",
+      "class": "vessel",
+      "annotation_available": true,
+      "reference_pixels": 11578,
+      "foreground_probability": {
+        "pixels": 11578,
+        "mean": 0.5812981128692627,
+        "min": 2.701555786188692e-06,
+        "max": 1.0,
+        "p05": 0.004054948687553406,
+        "median": 0.7582221031188965,
+        "p95": 0.9999524354934692,
+        "fraction_at_or_above_0_5": 0.583088616341337
+      },
+      "background_probability": {
+        "pixels": 135878,
+        "mean": 0.0413273349404335,
+        "min": 1.8305058802070562e-07,
+        "max": 0.9999439716339111,
+        "p05": 7.877623829699587e-06,
+        "median": 0.001912452862598002,
+        "p95": 0.23674704134464264,
+        "fraction_at_or_above_0_5": 0.029143790753470025
+      },
+      "metrics": {
+        "tp": 6751,
+        "fp": 3960,
+        "fn": 4827,
+        "dice": 0.6057696621651936,
+        "iou": 0.4344832024713605,
+        "target_positive": true,
+        "prediction_positive": true
+      }
+    }
+  ],
+  "original_grid": [
+    {
+      "sample_id": "train-101_A",
+      "class": "vessel",
+      "annotation_available": true,
+      "reference_pixels": 319016,
+      "metrics": {
+        "tp": 204213,
+        "fp": 130379,
+        "fn": 114803,
+        "dice": 0.6248791324463593,
+        "iou": 0.4544176058923664,
+        "target_positive": true,
+        "prediction_positive": true
+      }
+    },
+    {
+      "sample_id": "train-102_A",
+      "class": "vessel",
+      "annotation_available": true,
+      "reference_pixels": 299097,
+      "metrics": {
+        "tp": 170603,
+        "fp": 87329,
+        "fn": 128494,
+        "dice": 0.6125462049552177,
+        "iou": 0.4414894442920507,
+        "target_positive": true,
+        "prediction_positive": true
+      }
+    },
+    {
+      "sample_id": "train-103_A",
+      "class": "vessel",
+      "annotation_available": true,
+      "reference_pixels": 331422,
+      "metrics": {
+        "tp": 179615,
+        "fp": 84880,
+        "fn": 151807,
+        "dice": 0.6028188489336602,
+        "iou": 0.4314536081978948,
+        "target_positive": true,
+        "prediction_positive": true
+      }
+    },
+    {
+      "sample_id": "train-104_A",
+      "class": "vessel",
+      "annotation_available": true,
+      "reference_pixels": 328297,
+      "metrics": {
+        "tp": 190542,
+        "fp": 110411,
+        "fn": 137755,
+        "dice": 0.6056162097735399,
+        "iou": 0.434325337126289,
+        "target_positive": true,
+        "prediction_positive": true
+      }
+    }
+  ],
+  "steps_completed": 200,
+  "first_loss": 1.1846632957458496,
+  "last_loss": 0.6577785611152649,
+  "elapsed_seconds": 12.983743982000078,
+  "peak_cuda_allocated_bytes": 284351488,
+  "peak_cuda_reserved_bytes": 306184192
+}

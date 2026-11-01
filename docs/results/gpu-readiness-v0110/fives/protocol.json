@@ -1,0 +1,38 @@
+{
+  "software_version": "0.11.0",
+  "source_commit": "0a855b2ade86473c84b60d8e59221ba667e642ba",
+  "source_dirty": false,
+  "purpose": "training-only fixed-subset diagnostic; not research performance",
+  "task": "fives",
+  "sample_ids": [
+    "train-101_A",
+    "train-102_A",
+    "train-103_A",
+    "train-104_A"
+  ],
+  "selection": "explicit IDs",
+  "config": {
+    "architecture": "query_detail",
+    "width": 24,
+    "dim": 48,
+    "queries": 8,
+    "size": 384,
+    "batch_size": 4,
+    "steps": 200,
+    "seed": 42,
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "gradient_clip": 1.0,
+    "flip_probability": 0.0,
+    "save_every": 25
+  },
+  "augmentation": "disabled",
+  "device": "cuda",
+  "gpu_executed": true,
+  "device_name": "Tesla T4",
+  "manifest_sha256": "632b76bad18375cb824fc18761216a00428310fe806f4170c2f866199f13ad68",
+  "precision": "float32",
+  "test_evaluated": false,
+  "validation_evaluated": false,
+  "readiness": "manual review required; no automatic permission to start the main matrix"
+}

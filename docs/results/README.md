@@ -13,10 +13,11 @@ novelty, or multimodal training result has been established.
 | FairVLMed numeric arrays and development-note flags | v0.3.0 | Completed technical audit; semantic leakage review pending | [Quality report](quality-review.md) |
 | OTFID development failure analysis | v0.3.0 | Completed, existing weights only | [Quality report](quality-review.md) |
 | Annotation geometry and 192/384 roundtrip review | v0.4.0 | Completed technical review of 238 development pairs; no clinical adjudication | [Executed review](annotation-review.md) |
-| Query 192 vs query 384, seeds 42/123/2026 | v0.4.0 | Nine-run suite registered; training pending due to Colab GPU limits | [Protocol](../protocols/resolution_detail.md) |
+| Query 192 vs query 384, seeds 42/123/2026 | v0.4.0 | Nine-run suite registered; main training pending readiness review | [Protocol](../protocols/resolution_detail.md) |
 | Query 384 vs local-detail query 384, same seeds | v0.4.0 | Experimental implementation; no improvement claimed | [Architecture and controls](../protocols/resolution_detail.md) |
 | Quality, annotation queues, identity and original-note context | v0.5.0 | Technical screening completed; one OTFID train–validation candidate; clinical and identity gates unresolved | [Cleaning findings](cleaning-review.md) |
 | FIVES vessels and IDRiD four lesion channels | v0.10.0 | Supplementary 100-step, seed-42 CPU comparisons; core GPU matrix remains pending | [Measured cross-task report](cross-task-feasibility-v0100/README.md) |
+| IDRiD/FIVES GPU readiness, four training images each | v0.11.0 | Two 200-step T4 diagnostics completed; technical checks pass, small-set fitting fails | [GPU diagnostic findings](gpu-readiness-v0110/README.md) |
 | FairVLMed original-note multimodal glaucoma study | Not trained | Blocked on semantic/temporal leakage review | [EMR entry criteria](../protocols/emr_leakage_gate.md) |
 
 See the [new cleaning findings](cleaning-review.md), including quality flags, the train–validation candidate and unresolved patient/EMR evidence.

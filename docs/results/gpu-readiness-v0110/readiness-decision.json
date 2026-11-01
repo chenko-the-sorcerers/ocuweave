@@ -1,0 +1,19 @@
+{
+  "status": "main_training_not_ready",
+  "pipeline": "CUDA, gradients/updates, checkpoint reload and independent original-mask counts passed for both tasks",
+  "small_set_fit": "Both tasks failed the prespecified input-grid Dice >= 0.80 criterion within 200 steps",
+  "observations": [
+    "IDRiD MA and SE still predict background on selected training images; HE and EX have nonzero overlap.",
+    "Label roundtrip at 384px retains nonzero overlap for every class; interpolation alone does not explain MA/SE zero predictions.",
+    "FIVES learns partial vessel extent but does not reach the small-set fit goal."
+  ],
+  "hypotheses_not_confirmed": [
+    "Foreground imbalance and optimization",
+    "Loss of small-structure detail",
+    "Representational limitations or insufficient diagnostic budget"
+  ],
+  "next_experiment": "Register objective-only comparison first; keep sampling, size, architecture, seed and steps fixed. Patch training remains a separate future comparison.",
+  "clinical_annotation_review_complete": false,
+  "test_evaluated": false,
+  "validation_evaluated": false
+}

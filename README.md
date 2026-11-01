@@ -10,7 +10,7 @@
 
 [![Checks](https://github.com/chenko-the-sorcerers/ocuweave/actions/workflows/ci.yml/badge.svg)](https://github.com/chenko-the-sorcerers/ocuweave/actions)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Software v0.11.0](https://img.shields.io/badge/software-v0.11.0-334bd3.svg)](https://github.com/chenko-the-sorcerers/ocuweave/tree/v0.11.0)
+[![Software v0.11.1](https://img.shields.io/badge/software-v0.11.1-334bd3.svg)](https://github.com/chenko-the-sorcerers/ocuweave/tree/v0.11.1)
 
 ![FIVES validation: photograph, reference vessel mask and LQNet prediction](docs/assets/fives-lqnet-feasibility.webp)
 
@@ -34,7 +34,7 @@ The release provides runnable segmentation workflows for **OTFID, FIVES and IDRi
 Python **3.10+**. Start with CPU; CUDA is optional. C++ tooling is optional, for native confusion counts and weighted pooling. Installation from source is supported; this release is not published to PyPI.
 
 ```bash
-git clone --branch v0.11.0 https://github.com/chenko-the-sorcerers/ocuweave.git
+git clone --branch v0.11.1 https://github.com/chenko-the-sorcerers/ocuweave.git
 cd ocuweave
 python -m venv .venv
 source .venv/bin/activate  # Windows: .venv\Scripts\activate
@@ -136,7 +136,7 @@ The local branch starts with a zero output projection. It refines logits at half
 
 - One historical OTFID query-network feasibility pilot is documented. Some validation examples have **zero overlap**. These remain reported failures.
 - The controlled matrix—query 192, query 384, LQNet 384; seeds 42, 123 and 2026—has **0/9 completed runs** in the recorded research status. This software release does not complete those experiments.
-- The new development manifest is frozen at **197 training / 41 validation**, with all **104 quality-flagged images retained** and all 42 historical test rows preserved. CPU smoke checks passed for all three variants; GPU training remains blocked by Colab usage limits. See the [execution record](docs/experiments/2026-10-31-development-freeze.md) and [continuation protocol](docs/protocols/exploratory_training.md).
+- The new development manifest is frozen at **197 training / 41 validation**, with all **104 quality-flagged images retained** and all 42 historical test rows preserved. CPU smoke checks passed for all three variants. The original session was blocked by Colab limits; T4 became available on 1 November. New training-only diagnostics passed technical checks but failed their small-set fitting criterion, so the main matrix remains pending. See the [execution record](docs/experiments/2026-10-31-development-freeze.md) and [continuation protocol](docs/protocols/exploratory_training.md).
 - Supplementary FIVES vessel and IDRiD four-lesion CPU experiments are documented in the [cross-task feasibility report](docs/results/cross-task-feasibility-v0100/README.md). These use 100 steps and one seed; they do not complete the core GPU matrix.
 - Clinical annotation correctness and patient linkage remain unresolved. Vessel segmentation does not establish hypertension diagnosis. REFUGE2 disc/cup training remains blocked on dataset access.
 - Native C++ provides tested binary confusion counts, Dice/IoU through the Python binding, and weighted pooling. Neural-network training is Python/PyTorch; custom CUDA kernels and C++ autograd are not implemented.
@@ -152,7 +152,7 @@ Training saves configuration, software version, source revision when available, 
 
 Each is a separate 100-step CPU run, seed 42, evaluated at original image dimensions. FIVES includes one empty reference among 120 validation images; positive-only scores and centerline metrics are in the report. IDRiD predicts background on all annotated validation channels at threshold 0.5. This is an observed failure, not a missing result. The small FIVES Dice difference does not establish superiority; thin-centerline recall did not improve. [Protocols, denominators, time, memory and per-image results](docs/results/cross-task-feasibility-v0100/README.md).
 
-Before the next GPU session, complete the [GPU readiness checklist](docs/protocols/gpu_pretraining_diagnostics.md): tensor review, CUDA smoke checks, fixed-subset fitting and background-prediction diagnostics. Patch sampling and loss changes require separate registered comparisons. The `diagnose` command now implements the small-subset diagnostics. Synthetic CPU verification is complete; the medical-data GPU readiness checks have not run.
+Before main training, complete the [GPU readiness checklist](docs/protocols/gpu_pretraining_diagnostics.md): tensor review, CUDA smoke checks, fixed-subset fitting and background-prediction diagnostics. Patch sampling and loss changes require separate registered comparisons. The `diagnose` command now implements the small-subset diagnostics. Medical-data GPU checks have now run on four IDRiD and four FIVES training images. Technical checks passed, but both tasks failed the predeclared small-set fitting goal; [read the diagnostic findings](docs/results/gpu-readiness-v0110/README.md).
 
 ## Cross-task experiment programme
 
@@ -248,7 +248,7 @@ Please cite the **software** until a paper is publicly available. GitHub’s “
   title = {OcuWeave: Evidence-Grounded Vision--Language Learning with
            Incomplete Clinical Records for Ophthalmic Disease Assessment},
   year = {2026},
-  version = {0.11.0},
+  version = {0.11.1},
   url = {https://github.com/chenko-the-sorcerers/ocuweave}
 }
 ```

@@ -1,0 +1,182 @@
+[
+  {
+    "task": "idrid",
+    "sample_id": "IDRiD_01",
+    "class": "MA",
+    "available": true,
+    "original_pixels": 6941,
+    "192_pixels": 15,
+    "384_pixels": 54
+  },
+  {
+    "task": "idrid",
+    "sample_id": "IDRiD_01",
+    "class": "HE",
+    "available": true,
+    "original_pixels": 35430,
+    "192_pixels": 69,
+    "384_pixels": 283
+  },
+  {
+    "task": "idrid",
+    "sample_id": "IDRiD_01",
+    "class": "EX",
+    "available": true,
+    "original_pixels": 113286,
+    "192_pixels": 220,
+    "384_pixels": 935
+  },
+  {
+    "task": "idrid",
+    "sample_id": "IDRiD_01",
+    "class": "SE",
+    "available": false,
+    "original_pixels": null,
+    "192_pixels": null,
+    "384_pixels": null
+  },
+  {
+    "task": "idrid",
+    "sample_id": "IDRiD_03",
+    "class": "MA",
+    "available": true,
+    "original_pixels": 11288,
+    "192_pixels": 26,
+    "384_pixels": 99
+  },
+  {
+    "task": "idrid",
+    "sample_id": "IDRiD_03",
+    "class": "HE",
+    "available": true,
+    "original_pixels": 162605,
+    "192_pixels": 308,
+    "384_pixels": 1305
+  },
+  {
+    "task": "idrid",
+    "sample_id": "IDRiD_03",
+    "class": "EX",
+    "available": true,
+    "original_pixels": 301586,
+    "192_pixels": 599,
+    "384_pixels": 2417
+  },
+  {
+    "task": "idrid",
+    "sample_id": "IDRiD_03",
+    "class": "SE",
+    "available": true,
+    "original_pixels": 3318,
+    "192_pixels": 7,
+    "384_pixels": 27
+  },
+  {
+    "task": "idrid",
+    "sample_id": "IDRiD_02",
+    "class": "MA",
+    "available": true,
+    "original_pixels": 9446,
+    "192_pixels": 24,
+    "384_pixels": 68
+  },
+  {
+    "task": "idrid",
+    "sample_id": "IDRiD_02",
+    "class": "HE",
+    "available": true,
+    "original_pixels": 17356,
+    "192_pixels": 32,
+    "384_pixels": 135
+  },
+  {
+    "task": "idrid",
+    "sample_id": "IDRiD_02",
+    "class": "EX",
+    "available": true,
+    "original_pixels": 135394,
+    "192_pixels": 281,
+    "384_pixels": 1090
+  },
+  {
+    "task": "idrid",
+    "sample_id": "IDRiD_02",
+    "class": "SE",
+    "available": false,
+    "original_pixels": null,
+    "192_pixels": null,
+    "384_pixels": null
+  },
+  {
+    "task": "idrid",
+    "sample_id": "IDRiD_04",
+    "class": "MA",
+    "available": true,
+    "original_pixels": 804,
+    "192_pixels": 1,
+    "384_pixels": 6
+  },
+  {
+    "task": "idrid",
+    "sample_id": "IDRiD_04",
+    "class": "HE",
+    "available": true,
+    "original_pixels": 59383,
+    "192_pixels": 118,
+    "384_pixels": 471
+  },
+  {
+    "task": "idrid",
+    "sample_id": "IDRiD_04",
+    "class": "EX",
+    "available": true,
+    "original_pixels": 5557,
+    "192_pixels": 7,
+    "384_pixels": 46
+  },
+  {
+    "task": "idrid",
+    "sample_id": "IDRiD_04",
+    "class": "SE",
+    "available": false,
+    "original_pixels": null,
+    "192_pixels": null,
+    "384_pixels": null
+  },
+  {
+    "task": "fives",
+    "sample_id": "train-101_A",
+    "class": "vessel",
+    "available": true,
+    "original_pixels": 319016,
+    "192_pixels": 2798,
+    "384_pixels": 11171
+  },
+  {
+    "task": "fives",
+    "sample_id": "train-102_A",
+    "class": "vessel",
+    "available": true,
+    "original_pixels": 299097,
+    "192_pixels": 2655,
+    "384_pixels": 10509
+  },
+  {
+    "task": "fives",
+    "sample_id": "train-103_A",
+    "class": "vessel",
+    "available": true,
+    "original_pixels": 331422,
+    "192_pixels": 2898,
+    "384_pixels": 11674
+  },
+  {
+    "task": "fives",
+    "sample_id": "train-104_A",
+    "class": "vessel",
+    "available": true,
+    "original_pixels": 328297,
+    "192_pixels": 2900,
+    "384_pixels": 11578
+  }
+]

@@ -1,0 +1,142 @@
+[
+  {
+    "sample_id": "train-101_A",
+    "class": "vessel",
+    "annotation_available": true,
+    "reference_pixels": 11171,
+    "foreground_probability": {
+      "pixels": 11171,
+      "mean": 0.11449502408504486,
+      "min": 0.09905306994915009,
+      "max": 0.11777687817811966,
+      "p05": 0.11272254586219788,
+      "median": 0.11467133462429047,
+      "p95": 0.11558575928211212,
+      "fraction_at_or_above_0_5": 0.0
+    },
+    "background_probability": {
+      "pixels": 136285,
+      "mean": 0.11354183405637741,
+      "min": 0.09416252374649048,
+      "max": 0.1235581785440445,
+      "p05": 0.10954108089208603,
+      "median": 0.11470753699541092,
+      "p95": 0.11561176180839539,
+      "fraction_at_or_above_0_5": 0.0
+    },
+    "metrics": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 11171,
+      "dice": 0.0,
+      "iou": 0.0,
+      "target_positive": true,
+      "prediction_positive": false
+    }
+  },
+  {
+    "sample_id": "train-102_A",
+    "class": "vessel",
+    "annotation_available": true,
+    "reference_pixels": 10509,
+    "foreground_probability": {
+      "pixels": 10509,
+      "mean": 0.11577464640140533,
+      "min": 0.10601555556058884,
+      "max": 0.11832477897405624,
+      "p05": 0.11459162086248398,
+      "median": 0.11586718261241913,
+      "p95": 0.11671298742294312,
+      "fraction_at_or_above_0_5": 0.0
+    },
+    "background_probability": {
+      "pixels": 136947,
+      "mean": 0.11496168375015259,
+      "min": 0.09632888436317444,
+      "max": 0.12716497480869293,
+      "p05": 0.11160910129547119,
+      "median": 0.11580104380846024,
+      "p95": 0.11693617701530457,
+      "fraction_at_or_above_0_5": 0.0
+    },
+    "metrics": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 10509,
+      "dice": 0.0,
+      "iou": 0.0,
+      "target_positive": true,
+      "prediction_positive": false
+    }
+  },
+  {
+    "sample_id": "train-103_A",
+    "class": "vessel",
+    "annotation_available": true,
+    "reference_pixels": 11674,
+    "foreground_probability": {
+      "pixels": 11674,
+      "mean": 0.11435973644256592,
+      "min": 0.09816669672727585,
+      "max": 0.11693985015153885,
+      "p05": 0.1129540354013443,
+      "median": 0.11446833610534668,
+      "p95": 0.11545945703983307,
+      "fraction_at_or_above_0_5": 0.0
+    },
+    "background_probability": {
+      "pixels": 135782,
+      "mean": 0.113410085439682,
+      "min": 0.09587131440639496,
+      "max": 0.12393622100353241,
+      "p05": 0.1096392422914505,
+      "median": 0.11441220343112946,
+      "p95": 0.11560773104429245,
+      "fraction_at_or_above_0_5": 0.0
+    },
+    "metrics": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 11674,
+      "dice": 0.0,
+      "iou": 0.0,
+      "target_positive": true,
+      "prediction_positive": false
+    }
+  },
+  {
+    "sample_id": "train-104_A",
+    "class": "vessel",
+    "annotation_available": true,
+    "reference_pixels": 11578,
+    "foreground_probability": {
+      "pixels": 11578,
+      "mean": 0.11458858847618103,
+      "min": 0.09800759702920914,
+      "max": 0.11771280318498611,
+      "p05": 0.11333465576171875,
+      "median": 0.11467309296131134,
+      "p95": 0.11569815129041672,
+      "fraction_at_or_above_0_5": 0.0
+    },
+    "background_probability": {
+      "pixels": 135878,
+      "mean": 0.1137167289853096,
+      "min": 0.0945931151509285,
+      "max": 0.12387815117835999,
+      "p05": 0.11033311486244202,
+      "median": 0.11460822820663452,
+      "p95": 0.11578356474637985,
+      "fraction_at_or_above_0_5": 0.0
+    },
+    "metrics": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 11578,
+      "dice": 0.0,
+      "iou": 0.0,
+      "target_positive": true,
+      "prediction_positive": false
+    }
+  }
+]

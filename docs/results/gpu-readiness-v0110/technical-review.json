@@ -1,0 +1,6 @@
+{
+  "review": "Displayed 384px reference overlays for all eight selected training images. No gross image-mask shift visible at this display scale; clinical boundaries not verified.",
+  "small_structure_limit": "IDRiD_04 MA has 1 target pixel at 192 and 6 at 384; SE coverage is one selected image. FIVES lexical subset is not disease-balanced.",
+  "clinical_review_complete": false,
+  "quality_exclusions": 0
+}
