@@ -1,5 +1,6 @@
 #pragma once
 #include "ocuweave/nn/tensor.hpp"
+#include <cstdint>
 #include <string>
 namespace ocuweave::nn {
 struct Batch {
