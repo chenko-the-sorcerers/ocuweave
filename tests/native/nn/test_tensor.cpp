@@ -1,3 +1,4 @@
+#include "ocuweave/nn/cuda.hpp"
 #include "ocuweave/nn/lqnet.hpp"
 #include <cmath>
 #include <cstdio>
@@ -54,7 +55,9 @@ void gradient(const std::string &name, const std::function<T()> &fn,
   }
   std::cout << "gradient " << name << " passed\n";
 }
-int main() {
+int main(int argc, char **argv) {
+  if (argc > 1 && std::string(argv[1]) == "cuda")
+    set_cuda(true);
   try {
     auto a = values({2, 3, 2, 3}), b = values({1, 3, 1, 1});
     gradient("broadcast", [&] { return mul(add(a, b), b); }, {a, b});

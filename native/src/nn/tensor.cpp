@@ -47,6 +47,42 @@ std::size_t broadcast_index(std::size_t index, const Shape &out,
   }
   return result;
 }
+// Most neural-network broadcasts select one contiguous channel/token block.
+// Precompute that mapping rather than decoding every tensor coordinate per
+// pixel.
+struct BroadcastIndex {
+  Shape out, in;
+  bool contiguous = true, identity = false;
+  std::size_t stride = 1, count = 1;
+  BroadcastIndex(const Shape &output, const Shape &input)
+      : out(output), in(input) {
+    Shape aligned(out.size(), 1);
+    std::copy(in.begin(), in.end(), aligned.end() - in.size());
+    identity = aligned == out;
+    std::size_t first = out.size(), last = 0;
+    for (std::size_t k = 0; k < aligned.size(); ++k) {
+      count *= aligned[k];
+      if (aligned[k] != 1) {
+        first = std::min(first, k);
+        last = k;
+      }
+    }
+    if (count == 1)
+      return;
+    for (std::size_t k = first; k <= last; ++k)
+      if (aligned[k] != out[k])
+        contiguous = false;
+    for (std::size_t k = last + 1; k < out.size(); ++k)
+      stride *= out[k];
+  }
+  std::size_t operator()(std::size_t i) const {
+    if (identity)
+      return i;
+    if (count == 1)
+      return 0;
+    return contiguous ? (i / stride) % count : broadcast_index(i, out, in);
+  }
+};
 T binary(const T &a, const T &b, bool product) {
   Shape shape(std::max(a->shape.size(), b->shape.size()), 1);
   for (std::size_t i = 0; i < shape.size(); ++i) {
@@ -56,16 +92,15 @@ T binary(const T &a, const T &b, bool product) {
     shape[shape.size() - 1 - i] = std::max(ai, bi);
   }
   auto o = operation(shape, {a, b});
+  BroadcastIndex ai(shape, a->shape), bi(shape, b->shape);
   for (std::size_t i = 0; i < o->data.size(); ++i) {
-    auto x = broadcast_index(i, shape, a->shape),
-         y = broadcast_index(i, shape, b->shape);
+    auto x = ai(i), y = bi(i);
     o->data[i] = product ? a->data[x] * b->data[y] : a->data[x] + b->data[y];
   }
   if (o->requires_grad)
-    o->vjp = [a, b, shape, product](const auto &g) {
+    o->vjp = [a, b, ai, bi, product](const auto &g) {
       for (std::size_t i = 0; i < g.size(); ++i) {
-        auto x = broadcast_index(i, shape, a->shape),
-             y = broadcast_index(i, shape, b->shape);
+        auto x = ai(i), y = bi(i);
         accumulate(a, x, g[i] * (product ? b->data[y] : 1));
         accumulate(b, y, g[i] * (product ? a->data[x] : 1));
       }
