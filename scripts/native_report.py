@@ -136,7 +136,7 @@ def summarize(session, output):
     (output / "summary.json").write_text(json.dumps(report, indent=2) + "\n")
     if rows:
         with (output / "metrics.csv").open("w", newline="") as f:
-            writer = csv.DictWriter(f, fieldnames=list(rows[0]))
+            writer = csv.DictWriter(f, fieldnames=list(rows[0]), lineterminator="\n")
             writer.writeheader()
             writer.writerows(rows)
     return report

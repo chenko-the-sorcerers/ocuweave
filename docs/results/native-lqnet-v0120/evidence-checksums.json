@@ -7,11 +7,12 @@
     "contract-locked.json": "f7e6cc57440a91b88a4882afb6b5f298614cdc83070442f7cb7f670b730b8b6b",
     "patch-status.json": "e9e864a229d577ec03292926d0da296a733fef5b0025743756ab5b16591119a7",
     "snapshot/summary.json": "6ac9ea89a9a169aff74899104d0d025d7dd25bab07aa4102a63505cb0fe691b1",
-    "snapshot/metrics.csv": "c0aa5da7d7c4cb71fac39647caa88e649b59532db9d4bbb07730a9e40d3e7b20",
+    "snapshot/metrics.csv": "f904827cceec6eff3dace11ae91793661d3a295aedfed9c97ef42528aae1d3bb",
     "idrid-baseline/metrics.json": "449b283d9079603daa84d13078e9313e795ce0013a9c184a4bd46a2b1eb78892",
     "idrid-baseline/protocol.json": "591f86e59563a024dee5e270dc0a4775bf45da2c0def977f5f4da88447604e87",
     "idrid-baseline/history.jsonl": "94c30bb1b9176f88f497b03ca8f86315052a28d9be2f0669fc0a8f78a98bde7f",
     "idrid-baseline/status.json": "4f3e4909a7d2869484da2538f0c90509325c1505f46b5663586aaa0a10276551",
     "idrid-baseline/original-grid/metrics.json": "ffc1e9e79f7447e29570a47c4e6805a447095a14130b86152512671d75a9a590"
-  }
+  },
+  "publication_transform": "snapshot/metrics.csv line endings normalized from CRLF to LF; numeric content unchanged"
 }
