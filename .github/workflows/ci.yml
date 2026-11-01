@@ -26,6 +26,7 @@ jobs:
       - run: ctest --test-dir build --output-on-failure
       - run: python -m unittest discover -s tests -v
         env:
+          OCUWEAVE_NATIVE_BUILD: ${{ github.workspace }}/build
           OCUWEAVE_NATIVE_LIBRARY: ${{ github.workspace }}/build/libocuweave_native.so
       - run: python scripts/audit_data.py examples/synthetic_manifest.json
       - name: Build and exercise an installed wheel outside the checkout

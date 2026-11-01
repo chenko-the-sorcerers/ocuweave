@@ -1,5 +1,7 @@
 # Getting started
 
+For the framework-free C++/CUDA path, start with the [native build and data protocol](protocols/native/README.md). The Python commands below describe the separately maintained historical backend.
+
 ## Environment and installation
 
 Use Python 3.10 or later in a virtual environment. Install the repository with `python -m pip install -e ".[research]"`. This installs PyTorch, NumPy, Pillow and Matplotlib. `pip install .` alone installs the lightweight metadata/audit package and CLI help, not the neural-network dependencies.

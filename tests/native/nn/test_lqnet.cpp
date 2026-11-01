@@ -79,6 +79,8 @@ int main(int argc, char **argv) {
     model.training(false);
     check(!model.forward(x)->requires_grad,
           "Inference disables graph retention");
+    LQNet fresh(cfg);
+    auto initial_output = fresh.forward(x)->data;
     for (int variant = 0; variant < 2; ++variant) {
       auto c = cfg;
       c.full_resolution_detail = variant == 0;
@@ -86,6 +88,10 @@ int main(int argc, char **argv) {
       LQNet alt(c);
       auto z = alt.forward(x);
       check(z->shape == y->shape, "Variant output shape");
+      check(z->data == initial_output, "Ablation preserves initial output");
+      for (auto &[name, p] : fresh.parameters())
+        check(p->data == alt.parameters().at(name)->data,
+              "Ablation preserves shared initial parameters");
       backward(observed_loss(z, y, valid, available).total);
     }
     std::remove(path.c_str());

@@ -1,6 +1,7 @@
 #include "ocuweave/nn/lqnet.hpp"
 #include <algorithm>
 #include <cmath>
+#include <filesystem>
 #include <fstream>
 #include <limits>
 #include <stdexcept>
@@ -295,7 +296,8 @@ float AdamW::step() {
   return norm;
 }
 void save_checkpoint(const std::string &path, LQNet &m, const AdamW &o) {
-  std::ofstream f(path, std::ios::binary);
+  const auto temporary = path + ".tmp";
+  std::ofstream f(temporary, std::ios::binary);
   if (!f)
     throw std::runtime_error("Cannot open checkpoint output");
   f.write("OWLQ0001", 8);
@@ -317,8 +319,14 @@ void save_checkpoint(const std::string &path, LQNet &m, const AdamW &o) {
     vector_write(f, o.first.at(name));
     vector_write(f, o.second.at(name));
   }
+  f.flush();
   if (!f)
     throw std::runtime_error("Checkpoint write failed");
+  f.close();
+  if (!f)
+    throw std::runtime_error("Checkpoint close failed");
+  // Same-directory rename preserves the prior checkpoint on a partial write.
+  std::filesystem::rename(temporary, path);
 }
 void load_checkpoint(const std::string &path, LQNet &m, AdamW &o) {
   std::ifstream f(path, std::ios::binary);

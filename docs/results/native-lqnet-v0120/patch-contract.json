@@ -1,0 +1,28 @@
+{
+  "protocol": "native-fives-patch-diagnostic-v1",
+  "source_commit": "0a4385cc354de17ff046e48a78395d28b3b1dd54",
+  "manifest_sha256": "632b76bad18375cb824fc18761216a00428310fe806f4170c2f866199f13ad68",
+  "ids": [
+    "train-101_A",
+    "train-102_A",
+    "train-103_A",
+    "train-104_A"
+  ],
+  "input_size": 384,
+  "patch_size": 384,
+  "inference_overlap": 96,
+  "steps": 200,
+  "device": "cuda",
+  "seed": 42,
+  "width": 24,
+  "dim": 48,
+  "queries": 8,
+  "learning_rate": 0.001,
+  "loss": "unchanged observed BCE + soft Dice",
+  "selection": "first lexical annotated-positive and zero-annotated-positive tile per image",
+  "background_limit": "May include black borders; unknown labels are not negative",
+  "comparison": "full-image-trained and patch-trained checkpoints both evaluated by identical tiled inference",
+  "exposure_limit": "8 patches versus 4 full images per step; changes context, sampling and pixel exposure together",
+  "scope": "training-only; no validation or test inference",
+  "runner_sha256": "474b1454f19f7a2b0b3cbb2b0a561d2ed1ead35f94a19c6e834784980416e7cc"
+}

@@ -1,6 +1,6 @@
 # OcuWeave–LQNet
 
-The implemented method is an image-only query segmenter with an optional local-detail residual. The architecture, training loops, adapters and evaluators are implemented in this repository. PyTorch provides tensor operations and automatic differentiation; the experiments initialize network weights randomly.
+The implemented method is an image-only query segmenter with an optional local-detail residual. The architecture, training loops, adapters and evaluators are implemented in this repository. The historical Python backend uses PyTorch. The native backend implements C++ tensor operators, analytic vector–Jacobian products and AdamW, with optional custom CUDA convolution/matrix products. Both initialize weights randomly; their initialization streams differ.
 
 ![Architecture](assets/lqnet-architecture.svg)
 
@@ -43,3 +43,11 @@ This implementation supports synthetic forward/backward tests. It is not an LLM,
 ## Native operations
 
 The optional C++17 library supplies weighted pooling and binary confusion counts through an exception-safe C ABI. Python bindings derive Dice and IoU from native counts. There is no autograd or custom CUDA operator. Neural-network training uses Python/PyTorch; no native performance advantage is asserted.
+
+## Native implementation and independent ablations
+
+The standalone engine is under `native/include/ocuweave/nn` and `native/src/nn`, with CUDA kernels under `native/cuda/nn_kernels.cu`. Tensor storage/activations use float32; selected CPU reductions use double accumulators. No mixed-precision training, pretrained weights, external autograd, cuDNN or cuBLAS is used. The differentiation tape orders analytic operator backward functions. Image codecs are outside the engine.
+
+The baseline preserves the image-only LQNet graph. In `detail_full`, the local RGB branch changes stride from two to one; its output projection remains zero-initialized. In `spatial_query`, a zero-initialized pointwise projection of the shared mask features produces spatial query scores, added to the original query-only scores before the softmax over queries. Thus both ablations preserve the baseline prediction at initialization, but change subsequent computation/learning. They are separate configurations, not a combined improvement claim. Their parameter count and compute must accompany results.
+
+The weighted objective changes only the positive term of observed BCE. Padding and unavailable image–class labels are excluded; the original per-observed-pair soft-Dice component and smoothing constant remain unchanged. The new native paired baseline controls backend and initialization, while historical PyTorch comparisons retain their original provenance. See [native execution protocol](protocols/native/README.md).

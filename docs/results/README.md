@@ -1,5 +1,7 @@
 # OcuWeave results register
 
+- [Native LQNet v0.12.0: controlled training-only diagnostics and execution status](native-lqnet-v0120/README.md).
+
 Marchel Andrian Shevchenko · Data Sorcerers · 2026. Updated 2026-11-01.
 
 This register separates **measured results**, **implemented methods**, and

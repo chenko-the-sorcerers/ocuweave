@@ -34,11 +34,15 @@ The release provides runnable segmentation workflows for **OTFID, FIVES and IDRi
 The C++17 implementation trains and predicts without PyTorch, TensorFlow, JAX, cuDNN or cuBLAS. It includes analytic backward operators, AdamW, weighted observed-label BCE/soft Dice, checkpoint resume and segmentation area summaries. Optional custom CUDA kernels accelerate convolution/matrix products; other operations remain on the CPU. Image export/evaluation uses Pillow, not an ML framework.
 
 ```bash
+git clone --branch v0.12.0 https://github.com/chenko-the-sorcerers/ocuweave.git
+cd ocuweave
 cmake -S . -B build-native -DCMAKE_BUILD_TYPE=Release
 cmake --build build-native -j2
 ctest --test-dir build-native --output-on-failure
 ./build-native/ocuweave-lqnet --synthetic true --output outputs/native-demo --width 4 --dim 8 --queries 2 --steps 30
 ```
+
+[Measured native diagnostic and pending runs](docs/results/native-lqnet-v0120/README.md).
 
 [Native build, data export, controlled experiments and limitations](docs/protocols/native/README.md). Historical Python/PyTorch commands below remain supported; they are a separate backend. Native initialization differs, so new paired native baselines are required. Synthetic demos are not medical benchmarks.
 

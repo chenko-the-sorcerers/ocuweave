@@ -1,0 +1,83 @@
+{
+  "source_commit": "0a4385cc354de17ff046e48a78395d28b3b1dd54",
+  "executable_sha256": "807226587d2d664aec120a947d2bc000e87572604279b9185da6589dc67785fd",
+  "scope": "training-only",
+  "runs": [
+    {
+      "task": "idrid",
+      "name": "baseline",
+      "status": "completed",
+      "batch_sha256": "17751e66c2aae4b3ebfab5477bb504a9df0f8a98635b5bbd793ec3bfe91586ee",
+      "start_unix": 1793511715.5197918,
+      "command": [
+        "/content/ocuweave-native-build-v0120/ocuweave-lqnet",
+        "--batch",
+        "/content/drive/MyDrive/OcuWeave \u2014 Datasets and experiments/04 \u2014 Runs/LQNet-native-v0.12.0/20261101T053525Z/idrid.bin",
+        "--classes",
+        "4",
+        "--device",
+        "cuda",
+        "--output",
+        "/content/drive/MyDrive/OcuWeave \u2014 Datasets and experiments/04 \u2014 Runs/LQNet-native-v0.12.0/20261101T053525Z/idrid-baseline",
+        "--steps",
+        "200",
+        "--save-every",
+        "25",
+        "--variant",
+        "baseline"
+      ],
+      "returncode": 0,
+      "end_unix": 1793512448.3093061,
+      "initial_sha256": "d063c72cbfbc159f2260ce38199c39c289b0bd63be803f5648e647f8b3c41b79",
+      "checkpoint_sha256": "05de07a4f4e98ad4eec977adf287c018ffb8b6b140d523dfaa5a0b2c1a2c66a6",
+      "summary": {
+        "MA": {
+          "positive_annotated_images": 4,
+          "positive_macro_dice": 0.0,
+          "positive_macro_iou": 0.0
+        },
+        "HE": {
+          "positive_annotated_images": 4,
+          "positive_macro_dice": 0.46872362366941545,
+          "positive_macro_iou": 0.354501393391963
+        },
+        "EX": {
+          "positive_annotated_images": 4,
+          "positive_macro_dice": 0.42580288064889443,
+          "positive_macro_iou": 0.28785795958292976
+        },
+        "SE": {
+          "positive_annotated_images": 1,
+          "positive_macro_dice": 0.0,
+          "positive_macro_iou": 0.0
+        }
+      }
+    },
+    {
+      "task": "idrid",
+      "name": "weighted",
+      "status": "running",
+      "batch_sha256": "17751e66c2aae4b3ebfab5477bb504a9df0f8a98635b5bbd793ec3bfe91586ee",
+      "start_unix": 1793512506.931177,
+      "command": [
+        "/content/ocuweave-native-build-v0120/ocuweave-lqnet",
+        "--batch",
+        "/content/drive/MyDrive/OcuWeave \u2014 Datasets and experiments/04 \u2014 Runs/LQNet-native-v0.12.0/20261101T053525Z/idrid.bin",
+        "--classes",
+        "4",
+        "--device",
+        "cuda",
+        "--output",
+        "/content/drive/MyDrive/OcuWeave \u2014 Datasets and experiments/04 \u2014 Runs/LQNet-native-v0.12.0/20261101T053525Z/idrid-weighted",
+        "--steps",
+        "200",
+        "--save-every",
+        "25",
+        "--variant",
+        "baseline",
+        "--weights",
+        "20.0,11.667243314128676,12.01800482195464,17.261825830351288"
+      ]
+    }
+  ]
+}

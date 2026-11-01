@@ -2,6 +2,8 @@ import array
 import hashlib
 import importlib.util
 import json
+import os
+import subprocess
 import struct
 import sys
 import tempfile
@@ -14,6 +16,8 @@ sys.path.insert(0, str(SCRIPTS))
 from native_data import export, sha256, tile_boxes
 from native_evaluate import evaluate
 from native_tiles import merge_tiles
+from native_patch_programme import run as run_patch_programme
+from native_report import summarize
 
 
 class NativeIOScripts(unittest.TestCase):
@@ -86,6 +90,183 @@ class NativeIOScripts(unittest.TestCase):
             manifest.write_text(json.dumps({"records": [row]}))
             report = export(root, manifest, root / "otfid.bin", ["tox"], 16, "otfid")
             self.assertEqual(report["classes"], ["lesion"])
+
+    @unittest.skipUnless(
+        os.environ.get("OCUWEAVE_NATIVE_BUILD"),
+        "Standalone executable integration requires a native build",
+    )
+    def test_patch_training_and_whole_image_inference(self):
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d)
+            repo = root / "repo"
+            repo.mkdir()
+            subprocess.run(["git", "init", "-q", str(repo)], check=True)
+            subprocess.run(
+                [
+                    "git",
+                    "-c",
+                    "user.name=Native test",
+                    "-c",
+                    "user.email=test@example.invalid",
+                    "commit",
+                    "--allow-empty",
+                    "-qm",
+                    "Fixture",
+                ],
+                cwd=repo,
+                check=True,
+            )
+            revision = subprocess.check_output(
+                ["git", "rev-parse", "HEAD"], cwd=repo, text=True
+            ).strip()
+            data, session = root / "data", root / "session"
+            data.mkdir()
+            session.mkdir()
+            Image.new("RGB", (32, 32), (128, 64, 32)).save(data / "image.png")
+            mask = Image.new("L", (32, 32))
+            mask.paste(255, (4, 4, 9, 9))
+            mask.save(data / "mask.png")
+            manifest = data / "manifest.json"
+            manifest.write_text(
+                json.dumps(
+                    {
+                        "records": [
+                            {
+                                "sample_id": "sample",
+                                "split": "train",
+                                "image": "image.png",
+                                "mask": "mask.png",
+                                "image_sha256": sha256(data / "image.png"),
+                                "mask_sha256": sha256(data / "mask.png"),
+                            }
+                        ]
+                    }
+                )
+            )
+            export(data, manifest, session / "fives.bin", ["sample"], 16, "fives")
+            build = Path(os.environ["OCUWEAVE_NATIVE_BUILD"]).resolve()
+            subprocess.run(
+                [
+                    str(build / "ocuweave-lqnet"),
+                    "--batch",
+                    str(session / "fives.bin"),
+                    "--classes",
+                    "1",
+                    "--output",
+                    str(session / "fives-baseline"),
+                    "--steps",
+                    "1",
+                ],
+                check=True,
+                capture_output=True,
+            )
+            (session / "programme-status.json").write_text(
+                json.dumps({"status": "completed", "runs": []})
+            )
+            (session / "patch-contract.json").write_text(
+                json.dumps(
+                    {
+                        "source_commit": revision,
+                        "manifest_sha256": sha256(manifest),
+                        "ids": ["sample"],
+                        "input_size": 16,
+                        "patch_size": 16,
+                        "inference_overlap": 4,
+                        "steps": 1,
+                        "device": "cpu",
+                    }
+                )
+            )
+            report = run_patch_programme(repo, build, session, data, manifest)
+            self.assertEqual(len(report["rows"]), 2)
+            self.assertEqual(
+                json.loads((session / "patch-status.json").read_text())["status"],
+                "completed",
+            )
+            for row in report["rows"]:
+                self.assertEqual(row["image_area_pixels"], 1024)
+                self.assertEqual(row["metrics"]["reference_area_pixels"], 25)
+
+    def test_report_preserves_pending_and_recounts_metrics(self):
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d)
+            (root / "contract-locked.json").write_text(
+                json.dumps({"source_commit": "fixture", "runs": [{"name": "baseline"}]})
+            )
+            state = {
+                "source_commit": "fixture",
+                "runs": [
+                    {
+                        "task": "fives",
+                        "name": "baseline",
+                        "status": "completed",
+                        "checkpoint_sha256": "checkpoint",
+                        "batch_sha256": "batch",
+                    }
+                ],
+            }
+            (root / "programme-status.json").write_text(json.dumps(state))
+            run = root / "fives-baseline"
+            (run / "original-grid").mkdir(parents=True)
+            (run / "status.json").write_text(
+                json.dumps({"checkpoint_reload_matches": True, "elapsed_seconds": 1})
+            )
+            (run / "protocol.json").write_text(
+                json.dumps(
+                    {
+                        "source_commit": "fixture",
+                        "source_dirty": False,
+                        "parameters": 12,
+                        "start_step": 0,
+                        "additional_steps": 200,
+                    }
+                )
+            )
+            (run / "metrics.json").write_text(
+                json.dumps(
+                    {
+                        "rows": [
+                            {
+                                "class_index": 0,
+                                "annotation_available": True,
+                                "cldice": 0.75,
+                            }
+                        ]
+                    }
+                )
+            )
+            metrics = {
+                "summary": {"vessel": {"positive_macro_dice": 0.5}},
+                "rows": [
+                    {
+                        "class": "vessel",
+                        "image_area_pixels": 100,
+                        "metrics": {
+                            "tp": 2,
+                            "fp": 1,
+                            "fn": 3,
+                            "dice": 0.5,
+                            "iou": 1 / 3,
+                        },
+                    }
+                ],
+            }
+            path = run / "original-grid/metrics.json"
+            path.write_text(json.dumps(metrics))
+            (root / "fives-baseline-memory.json").write_text(
+                json.dumps({"samples": []})
+            )
+            report = summarize(root, root / "report")
+            self.assertFalse(report["core_complete"])
+            self.assertEqual(report["runs"][0]["status"], "queued")
+            row = report["class_results"][0]
+            self.assertAlmostEqual(row["pooled_precision"], 2 / 3)
+            self.assertAlmostEqual(row["pooled_recall"], 0.4)
+            self.assertEqual(row["false_positive_image_area_percent"], 1)
+            metrics["rows"][0]["metrics"]["dice"] = 0.9
+            path.write_text(json.dumps(metrics))
+            with self.assertRaises(ValueError):
+                summarize(root, root / "tampered")
 
     def test_overlap_reconstruction_oracle(self):
         W, H = 9, 7

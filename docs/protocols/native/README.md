@@ -59,3 +59,31 @@ The executable reports predicted pixel area, centroid, bounding box, and percent
 ## Validation requirements
 
 Analytical BCE/Dice and AdamW oracles; finite-difference derivatives for convolution, matrix products, normalization, attention composition, interpolation and weighted loss; missing/padded supervision checks; exact same-backend checkpoint resume; CPU/CUDA forward/backward/update parity; input/output geometry and metric oracles. CPU and CUDA summation orders differ, so cross-backend parity uses declared tolerances, not bitwise equality. New baselines must use one backend throughout.
+
+## Tiled inference and area reconstruction
+
+```bash
+python scripts/native_tiles.py --executable build-native/ocuweave-predict \
+  --checkpoint outputs/native-run/latest.ckpt --image /path/to/retina.png \
+  --output outputs/native-tiled --classes 1 --size 384 --tile-size 384 --overlap 96 --device cuda
+```
+
+Every original pixel must be covered. Tile probabilities are restored to their crop coordinates and averaged before thresholding. The geometry oracle reconstructs a known spatial ramp exactly, including overlaps and edge tiles, and rejects uncovered pixels. Tiled inference changes the prediction context relative to full-image letterboxing; its results require their own declared protocol and original-grid evaluation. No label is used to select inference tiles.
+
+Hard clDice is based on the skeleton-overlap definition of Shit et al., “clDice — A Novel Topology-Preserving Loss Function for Tubular Structure Segmentation,” CVPR 2021, pp. 16560–16569. [Official paper](https://openaccess.thecvf.com/content/CVPR2021/papers/Shit_clDice_-_A_Novel_Topology-Preserving_Loss_Function_for_Tubular_Structure_CVPR_2021_paper.pdf). Our metric uses our padded Zhang–Suen thinning implementation; it is not the paper's differentiable soft-skeleton training objective.
+
+## Execution and reporting
+
+`configs/native/diagnostic-programme.json` declares nine small-set runs: five IDRiD and four FIVES comparisons. The running native source is frozen independently of the final software release; `scripts/native_programme.py` checks that revision and batch hashes before execution. Do not restart the launcher into existing output directories. A manual interrupted-run continuation must use a new output path and the saved native checkpoint, retaining the original experiment contract.
+
+`configs/native/patch-programme.json` registers a separate tenth run. It fits eight 384 × 384 source-resolution crops (one annotated-positive and one zero-annotated-positive crop from each of the four FIVES training images). The selection is lexical and deliberately fixed, not optimized using validation. Background crops can contain black image borders. Both the full-image-trained checkpoint and the patch-trained checkpoint then receive identical full-coverage tiled inference with 96-pixel overlap. This separates inference-context effects, but does not isolate resolution from changed training context, sampling, or exposure. `scripts/native_patch_programme.py` queues it after the core programme and preserves failure receipts.
+
+```bash
+python scripts/native_report.py --session /path/to/native/session --output /path/to/new/report
+```
+
+Pass `--watch` with a new report-root directory to save a fresh snapshot after each run-state transition until the core programme completes or reports failure. This background writer does not restart training.
+
+Reports include only completed-run metrics; running/queued jobs retain null/unavailable results. Confusion counts independently verify Dice and IoU. Precision/recall are pooled across annotated images, whereas the primary Dice/IoU are positive-image macro averages; these aggregations must not be interchanged. Memory values are sampled process usage, not allocator peaks. [Measured native evidence and execution status](../../results/native-lqnet-v0120/README.md).
+
+Checkpoint writes in the released source use a same-directory temporary file and rename. The already running development source predates this I/O safeguard; its numerical graph is unchanged. Checkpoint bytes include AdamW state. A successful reload does not establish clinical accuracy.
