@@ -1,0 +1,5 @@
+task,run,class,steps,positive_annotated_images,positive_macro_dice,positive_macro_iou,pooled_precision,pooled_recall,false_positive_pixels,false_positive_image_area_percent,input_grid_cldice_macro,elapsed_seconds,sampled_gpu_mib
+idrid,baseline,MA,200,4,0.0,0.0,,0.0,0,0.0,,732.371761,156
+idrid,baseline,HE,200,4,0.46872362366941545,0.354501393391963,0.7455458989679522,0.39961568416225696,37476,0.07671821283330538,,732.371761,156
+idrid,baseline,EX,200,4,0.42580288064889443,0.28785795958292976,0.6362542635658914,0.46145985322665667,146635,0.30018078607139864,,732.371761,156
+idrid,baseline,SE,200,1,0.0,0.0,,0.0,0,0.0,,732.371761,156

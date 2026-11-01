@@ -13,7 +13,7 @@ Dates use ISO 8601. Research hypotheses are not software capabilities.
 
 ### Validation and scope
 - Five native CPU and seven pinned-source T4 CTest cases pass, including numerical derivatives, CPU/CUDA update parity and exact checkpoint resume. 89 Python tests cover source-data contracts, native patch training/inference, reconstruction geometry and report recounts; installed-wheel legacy demos remain supported.
-- Record the first completed native IDRiD training-only baseline: original-grid Dice 0.00% MA, 46.87% HE, 42.58% EX and 0.00% SE. Weighted-loss and subsequent native comparisons remain running/queued at the recorded snapshot; no improvement is inferred from their launch.
+- Record the first completed native IDRiD training-only baseline: original-grid Dice 0.00% MA, 46.87% HE, 42.58% EX and 0.00% SE. The paired weighted run measures 0.00%, 54.01%, 42.02% and 83.26%, respectively, with increased HE/EX false positives; SE has one positively annotated training image. Subsequent comparisons remain running/queued at the recorded snapshot.
 - Queue a separately registered FIVES patch diagnostic with positive/background crops and matched tiled inference. Add immutable numerical reporting and temporary-file checkpoint replacement.
 - No clinical accuracy or early-detection improvement is implied. Differentiable topology loss, clinical ROI/physical area and longitudinal prediction remain outside the implemented scope.
 

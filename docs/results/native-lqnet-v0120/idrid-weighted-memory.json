@@ -1,0 +1,741 @@
+{
+  "sampling_interval_seconds": 5,
+  "scope": "process memory sampled, not allocator peak",
+  "samples": [
+    {
+      "elapsed": 0.06813979148864746,
+      "gpu_process_mib": null,
+      "host_rss_kib": 22752
+    },
+    {
+      "elapsed": 5.095494747161865,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 669484
+    },
+    {
+      "elapsed": 10.121508359909058,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 15.146993637084961,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 20.18986487388611,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 25.2188503742218,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 30.246858596801758,
+      "gpu_process_mib": 116,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 35.27462959289551,
+      "gpu_process_mib": 104,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 40.30082702636719,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 45.33379507064819,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 50.36298871040344,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 55.389304637908936,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 60.41865873336792,
+      "gpu_process_mib": 112,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 65.44668436050415,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 70.47412967681885,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 75.50164341926575,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 80.53789806365967,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 85.56934356689453,
+      "gpu_process_mib": 124,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 90.59560012817383,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 95.62186408042908,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 100.6617603302002,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 105.69109654426575,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 110.72038769721985,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 115.74619030952454,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 120.77464628219604,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 125.80309557914734,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 130.82981300354004,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 135.87997245788574,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 140.90632891654968,
+      "gpu_process_mib": 156,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 145.94600558280945,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 150.97147679328918,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 156.00427651405334,
+      "gpu_process_mib": 134,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 161.03302335739136,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 166.05904293060303,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 171.0860996246338,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 176.11397242546082,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 181.14699816703796,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 186.17238759994507,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 191.20163941383362,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 196.2867238521576,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 201.3387417793274,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 206.36844515800476,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 211.3947730064392,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 216.4257743358612,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 221.45369386672974,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 226.48161029815674,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 231.50804996490479,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 236.53838872909546,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 241.5664427280426,
+      "gpu_process_mib": 104,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 246.59473085403442,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 251.62499499320984,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 256.6570370197296,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 261.68319392204285,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 266.71022748947144,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 271.7360587120056,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 276.7646253108978,
+      "gpu_process_mib": 108,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 281.79671478271484,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 286.82289385795593,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 291.8525757789612,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 296.8792486190796,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 301.90650820732117,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 306.9343717098236,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 311.96057176589966,
+      "gpu_process_mib": 156,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 316.9869387149811,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 322.0135328769684,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 327.040607213974,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 332.068576335907,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 337.09736227989197,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 342.1278121471405,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 347.1537275314331,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 352.18148469924927,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 357.2112092971802,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 362.2388722896576,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 367.27079916000366,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 372.2991006374359,
+      "gpu_process_mib": 150,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 377.34964418411255,
+      "gpu_process_mib": 104,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 382.3787431716919,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 387.4056293964386,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 392.4348990917206,
+      "gpu_process_mib": 104,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 397.46173095703125,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 402.488388299942,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 407.51895451545715,
+      "gpu_process_mib": 132,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 412.5585780143738,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 417.58601331710815,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 422.6125066280365,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 427.6374158859253,
+      "gpu_process_mib": 108,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 432.6706373691559,
+      "gpu_process_mib": 132,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 437.6965355873108,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 442.7222068309784,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 447.748854637146,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 452.77702736854553,
+      "gpu_process_mib": 104,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 457.80787324905396,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 462.8345501422882,
+      "gpu_process_mib": 108,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 467.86264634132385,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 472.8895893096924,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 477.91764402389526,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 482.99472737312317,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 488.0493996143341,
+      "gpu_process_mib": 104,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 493.07573652267456,
+      "gpu_process_mib": 110,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 498.1076741218567,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 503.13573575019836,
+      "gpu_process_mib": 104,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 508.16214966773987,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 513.190680027008,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 518.21950507164,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 523.246835231781,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 528.2746832370758,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 533.3028612136841,
+      "gpu_process_mib": 124,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 538.3294055461884,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 543.3744239807129,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 548.4041566848755,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 553.430460691452,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 558.4783074855804,
+      "gpu_process_mib": 104,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 563.5086288452148,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 568.5346164703369,
+      "gpu_process_mib": 124,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 573.5630650520325,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 578.6044273376465,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 583.6337049007416,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 588.6977906227112,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 593.723112821579,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 598.7503652572632,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 603.7761495113373,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 608.8059375286102,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 613.8431859016418,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 618.9058375358582,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 623.9317662715912,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 628.9570360183716,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 634.0068624019623,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 639.0322215557098,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 644.0618207454681,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 649.1076111793518,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 654.1353051662445,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 659.163868188858,
+      "gpu_process_mib": 106,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 664.1921215057373,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 669.2177720069885,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 674.248076915741,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 679.275205373764,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 684.3026344776154,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 689.3289425373077,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 694.3544635772705,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 699.3803458213806,
+      "gpu_process_mib": 124,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 704.4095265865326,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 709.4509699344635,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 714.477620601654,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 719.5086150169373,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 724.5364899635315,
+      "gpu_process_mib": 124,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 729.5642101764679,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    },
+    {
+      "elapsed": 734.5945379734039,
+      "gpu_process_mib": 102,
+      "host_rss_kib": 1386480
+    }
+  ]
+}

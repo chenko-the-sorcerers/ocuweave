@@ -1,0 +1,351 @@
+{
+  "scope": "training-only diagnostic",
+  "grid": "original image",
+  "threshold": 0.5,
+  "prediction_sha256": "f769e78c39fd078a38833e7e30d20845d9de74263a2fb62bf1e07e84be2cdb8a",
+  "export_metadata_sha256": "52f6c2b3e0e0e9103c476711ce8a5f34a4d128293fb15b01e0fc1bdcfacfc40f",
+  "summary": {
+    "MA": {
+      "positive_annotated_images": 4,
+      "positive_macro_dice": 0.0,
+      "positive_macro_iou": 0.0
+    },
+    "HE": {
+      "positive_annotated_images": 4,
+      "positive_macro_dice": 0.5401438516976189,
+      "positive_macro_iou": 0.4062114767726121
+    },
+    "EX": {
+      "positive_annotated_images": 4,
+      "positive_macro_dice": 0.4202193755063823,
+      "positive_macro_iou": 0.28619720254189
+    },
+    "SE": {
+      "positive_annotated_images": 1,
+      "positive_macro_dice": 0.8325664621676891,
+      "positive_macro_iou": 0.7131596233851544
+    }
+  },
+  "rows": [
+    {
+      "sample_id": "IDRiD_01",
+      "class": "MA",
+      "annotation_available": true,
+      "predicted_area_pixels": 0,
+      "image_area_pixels": 12212224,
+      "predicted_image_area_percent": 0.0,
+      "bbox_xyxy_exclusive": null,
+      "physical_area_mm2": null,
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 6941,
+        "dice": 0.0,
+        "iou": 0.0,
+        "reference_area_pixels": 6941
+      }
+    },
+    {
+      "sample_id": "IDRiD_01",
+      "class": "HE",
+      "annotation_available": true,
+      "predicted_area_pixels": 19839,
+      "image_area_pixels": 12212224,
+      "predicted_image_area_percent": 0.16245198253815193,
+      "bbox_xyxy_exclusive": [
+        1027,
+        133,
+        2577,
+        2291
+      ],
+      "physical_area_mm2": null,
+      "metrics": {
+        "tp": 19339,
+        "fp": 500,
+        "fn": 16091,
+        "dice": 0.6998136387486656,
+        "iou": 0.538241024213749,
+        "reference_area_pixels": 35430
+      }
+    },
+    {
+      "sample_id": "IDRiD_01",
+      "class": "EX",
+      "annotation_available": true,
+      "predicted_area_pixels": 114452,
+      "image_area_pixels": 12212224,
+      "predicted_image_area_percent": 0.9371921117725976,
+      "bbox_xyxy_exclusive": [
+        1304,
+        843,
+        2863,
+        2412
+      ],
+      "physical_area_mm2": null,
+      "metrics": {
+        "tp": 60912,
+        "fp": 53540,
+        "fn": 52374,
+        "dice": 0.5349304903002573,
+        "iou": 0.36512294246700155,
+        "reference_area_pixels": 113286
+      }
+    },
+    {
+      "sample_id": "IDRiD_01",
+      "class": "SE",
+      "annotation_available": false,
+      "predicted_area_pixels": 131611,
+      "image_area_pixels": 12212224,
+      "predicted_image_area_percent": 1.0776988695916485,
+      "bbox_xyxy_exclusive": [
+        1967,
+        458,
+        3439,
+        2315
+      ],
+      "physical_area_mm2": null,
+      "metrics": null
+    },
+    {
+      "sample_id": "IDRiD_03",
+      "class": "MA",
+      "annotation_available": true,
+      "predicted_area_pixels": 0,
+      "image_area_pixels": 12212224,
+      "predicted_image_area_percent": 0.0,
+      "bbox_xyxy_exclusive": null,
+      "physical_area_mm2": null,
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 11288,
+        "dice": 0.0,
+        "iou": 0.0,
+        "reference_area_pixels": 11288
+      }
+    },
+    {
+      "sample_id": "IDRiD_03",
+      "class": "HE",
+      "annotation_available": true,
+      "predicted_area_pixels": 271234,
+      "image_area_pixels": 12212224,
+      "predicted_image_area_percent": 2.221004134873386,
+      "bbox_xyxy_exclusive": [
+        626,
+        145,
+        3345,
+        2727
+      ],
+      "physical_area_mm2": null,
+      "metrics": {
+        "tp": 101082,
+        "fp": 170152,
+        "fn": 61523,
+        "dice": 0.4659885349173311,
+        "iou": 0.303771220440141,
+        "reference_area_pixels": 162605
+      }
+    },
+    {
+      "sample_id": "IDRiD_03",
+      "class": "EX",
+      "annotation_available": true,
+      "predicted_area_pixels": 346475,
+      "image_area_pixels": 12212224,
+      "predicted_image_area_percent": 2.83711631886215,
+      "bbox_xyxy_exclusive": [
+        1175,
+        889,
+        2882,
+        2399
+      ],
+      "physical_area_mm2": null,
+      "metrics": {
+        "tp": 185977,
+        "fp": 160498,
+        "fn": 115609,
+        "dice": 0.573949057264671,
+        "iou": 0.40247444187636877,
+        "reference_area_pixels": 301586
+      }
+    },
+    {
+      "sample_id": "IDRiD_03",
+      "class": "SE",
+      "annotation_available": true,
+      "predicted_area_pixels": 4506,
+      "image_area_pixels": 12212224,
+      "predicted_image_area_percent": 0.03689745618816032,
+      "bbox_xyxy_exclusive": [
+        1466,
+        2646,
+        1541,
+        2725
+      ],
+      "physical_area_mm2": null,
+      "metrics": {
+        "tp": 3257,
+        "fp": 1249,
+        "fn": 61,
+        "dice": 0.8325664621676891,
+        "iou": 0.7131596233851544,
+        "reference_area_pixels": 3318
+      }
+    },
+    {
+      "sample_id": "IDRiD_02",
+      "class": "MA",
+      "annotation_available": true,
+      "predicted_area_pixels": 0,
+      "image_area_pixels": 12212224,
+      "predicted_image_area_percent": 0.0,
+      "bbox_xyxy_exclusive": null,
+      "physical_area_mm2": null,
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 9446,
+        "dice": 0.0,
+        "iou": 0.0,
+        "reference_area_pixels": 9446
+      }
+    },
+    {
+      "sample_id": "IDRiD_02",
+      "class": "HE",
+      "annotation_available": true,
+      "predicted_area_pixels": 26656,
+      "image_area_pixels": 12212224,
+      "predicted_image_area_percent": 0.21827310078819387,
+      "bbox_xyxy_exclusive": [
+        2458,
+        611,
+        2901,
+        1606
+      ],
+      "physical_area_mm2": null,
+      "metrics": {
+        "tp": 4056,
+        "fp": 22600,
+        "fn": 13300,
+        "dice": 0.1843133690811597,
+        "iou": 0.10151166282911202,
+        "reference_area_pixels": 17356
+      }
+    },
+    {
+      "sample_id": "IDRiD_02",
+      "class": "EX",
+      "annotation_available": true,
+      "predicted_area_pixels": 247468,
+      "image_area_pixels": 12212224,
+      "predicted_image_area_percent": 2.0263958473084016,
+      "bbox_xyxy_exclusive": [
+        1596,
+        27,
+        3263,
+        1900
+      ],
+      "physical_area_mm2": null,
+      "metrics": {
+        "tp": 99119,
+        "fp": 148349,
+        "fn": 36275,
+        "dice": 0.517779252054265,
+        "iou": 0.34932667942469064,
+        "reference_area_pixels": 135394
+      }
+    },
+    {
+      "sample_id": "IDRiD_02",
+      "class": "SE",
+      "annotation_available": false,
+      "predicted_area_pixels": 0,
+      "image_area_pixels": 12212224,
+      "predicted_image_area_percent": 0.0,
+      "bbox_xyxy_exclusive": null,
+      "physical_area_mm2": null,
+      "metrics": null
+    },
+    {
+      "sample_id": "IDRiD_04",
+      "class": "MA",
+      "annotation_available": true,
+      "predicted_area_pixels": 0,
+      "image_area_pixels": 12212224,
+      "predicted_image_area_percent": 0.0,
+      "bbox_xyxy_exclusive": null,
+      "physical_area_mm2": null,
+      "metrics": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 804,
+        "dice": 0.0,
+        "iou": 0.0,
+        "reference_area_pixels": 804
+      }
+    },
+    {
+      "sample_id": "IDRiD_04",
+      "class": "HE",
+      "annotation_available": true,
+      "predicted_area_pixels": 51976,
+      "image_area_pixels": 12212224,
+      "predicted_image_area_percent": 0.4256063432835821,
+      "bbox_xyxy_exclusive": [
+        645,
+        1687,
+        1080,
+        2544
+      ],
+      "physical_area_mm2": null,
+      "metrics": {
+        "tp": 45126,
+        "fp": 6850,
+        "fn": 14257,
+        "dice": 0.8104598640433194,
+        "iou": 0.6813219996074464,
+        "reference_area_pixels": 59383
+      }
+    },
+    {
+      "sample_id": "IDRiD_04",
+      "class": "EX",
+      "annotation_available": true,
+      "predicted_area_pixels": 43688,
+      "image_area_pixels": 12212224,
+      "predicted_image_area_percent": 0.35773991698809327,
+      "bbox_xyxy_exclusive": [
+        931,
+        364,
+        1319,
+        695
+      ],
+      "physical_area_mm2": null,
+      "metrics": {
+        "tp": 1335,
+        "fp": 42353,
+        "fn": 4222,
+        "dice": 0.05421870240633567,
+        "iou": 0.02786474639949906,
+        "reference_area_pixels": 5557
+      }
+    },
+    {
+      "sample_id": "IDRiD_04",
+      "class": "SE",
+      "annotation_available": false,
+      "predicted_area_pixels": 0,
+      "image_area_pixels": 12212224,
+      "predicted_image_area_percent": 0.0,
+      "bbox_xyxy_exclusive": null,
+      "physical_area_mm2": null,
+      "metrics": null
+    }
+  ],
+  "area_denominator": "whole image, not verified retina/FOV",
+  "early_detection_validated": false,
+  "clinical_diagnosis": null
+}
