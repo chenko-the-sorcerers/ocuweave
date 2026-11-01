@@ -1,0 +1,19 @@
+{
+  "protocol": "native-lqnet-controlled-diagnostics-v1",
+  "status": "registered_before_execution",
+  "scope": "training-only; no validation/test selection",
+  "baseline": {"width": 24, "dim": 48, "queries": 8, "size": 384, "steps": 200, "seed": 42, "learning_rate": 0.001, "weight_decay": 0.0001, "gradient_clip": 1.0, "augmentation": "none", "precision": "float32", "threshold": 0.5},
+  "selections": {"idrid": ["IDRiD_01", "IDRiD_03", "IDRiD_02", "IDRiD_04"], "fives": ["train-101_A", "train-102_A", "train-103_A", "train-104_A"]},
+  "idrid_positive_weights": [20.0, 11.667243314128676, 12.01800482195464, 17.261825830351288],
+  "runs": [
+    {"name": "baseline", "variant": "baseline", "steps": 200, "loss": "observed BCE + soft Dice"},
+    {"name": "weighted", "task": "idrid", "variant": "baseline", "steps": 200, "loss": "positive-weighted observed BCE + unchanged soft Dice"},
+    {"name": "longer", "resume": "baseline/latest.ckpt", "additional_steps": 200, "total_steps": 400, "loss": "unchanged unweighted"},
+    {"name": "detail_full", "variant": "detail_full", "steps": 200, "loss": "unchanged unweighted"},
+    {"name": "spatial_query", "variant": "spatial_query", "steps": 200, "loss": "unchanged unweighted"}
+  ],
+  "patch_experiment": "Preparation supported; requires full-image reconstruction and separate sampling/exposure contract before measurement",
+  "topology_loss": "not implemented; gated after stable baseline; hard clDice metric only",
+  "early_detection_claim": false,
+  "native_initialization": "name-keyed random initialization, no pretrained weights; new paired native baseline required"
+}

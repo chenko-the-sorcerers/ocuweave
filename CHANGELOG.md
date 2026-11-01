@@ -3,6 +3,18 @@
 Notable changes to OcuWeave are recorded here. Versions follow Semantic Versioning.
 Dates use ISO 8601. Research hypotheses are not software capabilities.
 
+## [0.12.0] — 2026-11-01
+
+### Added
+- Framework-free C++17 LQNet forward/backward, observed-label BCE/soft Dice with optional positive weights, AdamW, versioned checkpoint/resume and standalone training/inference executables.
+- Optional custom CUDA convolution/matrix-product acceleration; other operators run on the host. No cuDNN, cuBLAS or ML framework is linked by the native executable.
+- Separate full-resolution local-detail and spatial-query ablations; training-only tensor exports with checksum/annotation checks, original-grid evaluation, area summaries and hard clDice evaluation.
+- Register paired native baseline, weighted-loss and extended-budget comparisons. Preserve historical PyTorch results and distinguish the new initialization/backend from those runs.
+
+### Validation and scope
+- CPU finite-difference, analytical metric/optimizer, end-to-end gradient, synthetic training and exact-resume checks pass. CUDA and medical-data execution are reported separately when measured.
+- No clinical accuracy or early-detection improvement is implied. Differentiable topology loss, clinical ROI/physical area and longitudinal prediction remain outside the implemented scope.
+
 ## [0.11.1] — 2026-11-01
 
 ### Measured research and documentation

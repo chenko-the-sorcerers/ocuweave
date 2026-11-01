@@ -2,7 +2,20 @@
 
 # OcuWeave
 
-### Evidence-Grounded Vision–Language Learning with Incomplete Clinical Records for Ophthalmic Disease Assessment
+### Framework-free native LQNet
+
+The C++17 implementation trains and predicts without PyTorch, TensorFlow, JAX, cuDNN or cuBLAS. It includes analytic backward operators, AdamW, weighted observed-label BCE/soft Dice, checkpoint resume and segmentation area summaries. Optional custom CUDA kernels accelerate convolution/matrix products; other operations remain on the CPU. Image export/evaluation uses Pillow, not an ML framework.
+
+```bash
+cmake -S . -B build-native -DCMAKE_BUILD_TYPE=Release
+cmake --build build-native -j2
+ctest --test-dir build-native --output-on-failure
+./build-native/ocuweave-lqnet --synthetic true --output outputs/native-demo --width 4 --dim 8 --queries 2 --steps 30
+```
+
+[Native build, data export, controlled experiments and limitations](docs/protocols/native/README.md). Historical Python/PyTorch commands below remain supported; they are a separate backend. Native initialization differs, so new paired native baselines are required. Synthetic demos are not medical benchmarks.
+
+## Evidence-Grounded Vision–Language Learning with Incomplete Clinical Records for Ophthalmic Disease Assessment
 
 **Marchel Andrian Shevchenko** · Data Sorcerers · 2026
 
@@ -10,7 +23,7 @@
 
 [![Checks](https://github.com/chenko-the-sorcerers/ocuweave/actions/workflows/ci.yml/badge.svg)](https://github.com/chenko-the-sorcerers/ocuweave/actions)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Software v0.11.1](https://img.shields.io/badge/software-v0.11.1-334bd3.svg)](https://github.com/chenko-the-sorcerers/ocuweave/tree/v0.11.1)
+[![Software v0.12.0](https://img.shields.io/badge/software-v0.12.0-334bd3.svg)](https://github.com/chenko-the-sorcerers/ocuweave/tree/v0.12.0)
 
 ![FIVES validation: photograph, reference vessel mask and LQNet prediction](docs/assets/fives-lqnet-feasibility.webp)
 
@@ -34,7 +47,7 @@ The release provides runnable segmentation workflows for **OTFID, FIVES and IDRi
 Python **3.10+**. Start with CPU; CUDA is optional. C++ tooling is optional, for native confusion counts and weighted pooling. Installation from source is supported; this release is not published to PyPI.
 
 ```bash
-git clone --branch v0.11.1 https://github.com/chenko-the-sorcerers/ocuweave.git
+git clone --branch v0.12.0 https://github.com/chenko-the-sorcerers/ocuweave.git
 cd ocuweave
 python -m venv .venv
 source .venv/bin/activate  # Windows: .venv\Scripts\activate
@@ -248,7 +261,7 @@ Please cite the **software** until a paper is publicly available. GitHub’s “
   title = {OcuWeave: Evidence-Grounded Vision--Language Learning with
            Incomplete Clinical Records for Ophthalmic Disease Assessment},
   year = {2026},
-  version = {0.11.1},
+  version = {0.12.0},
   url = {https://github.com/chenko-the-sorcerers/ocuweave}
 }
 ```
