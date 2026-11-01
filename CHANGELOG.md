@@ -3,6 +3,18 @@
 Notable changes to OcuWeave are recorded here. Versions follow Semantic Versioning.
 Dates use ISO 8601. Research hypotheses are not software capabilities.
 
+## [0.13.0] — 2026-11-01
+
+### Added
+- Standalone native disease classifier using the LQNet residual encoder, global-average pooling, stable multiclass cross entropy with analytic backward, deterministic minibatches and AdamW checkpoints.
+- FIVES classification preparation with official disease labels, frozen train/validation groups, source checksums, test exclusion and independent prediction recounts (accuracy, balanced accuracy, macro F1, per-class sensitivity/specificity and AUROC).
+- Registered validation targets and a Kaggle launcher with hardware checks, release/source provenance, native numerical tests and explicit real-data prerequisites. Preserve frozen segmentation experiments and their historical results.
+- Repository author/branch agreement matching the user's requested Git identity and `main` workflow.
+
+### Validation and execution scope
+- Six native CPU CTest cases, 92 Python tests and six Python/native parity checks passed. Release metadata, structural manifest auditing, wheel packaging and all three installed-wheel demos passed; Kaggle notebook schema and code-cell syntax validated.
+- New classifier CUDA parity is registered but not executed locally. Medical classification training is not started; Kaggle GPU/internet are blocked by account phone verification and Colab reports its GPU usage limit. No accuracy target is claimed as achieved.
+
 ## [0.12.0] — 2026-11-01
 
 ### Added

@@ -205,7 +205,7 @@ T LQNet::head_forward(const std::string &p, const std::vector<T> &f,
       add(spatial_gate(masks, softmax(scores, 1)), parameters_.at(p + ".bias"));
   return resize(logits, H, W);
 }
-T LQNet::forward(const T &x) {
+std::vector<T> LQNet::encode(const T &x) {
   ensure(x->shape.size() == 4 && x->shape[1] == 3 && x->shape[2] >= 16 &&
              x->shape[3] >= 16,
          "LQNet expects N,3,H,W with H/W >=16");
@@ -220,6 +220,10 @@ T LQNet::forward(const T &x) {
   z = mixer_forward("encoder.stages.2.1",
                     convolution_forward("encoder.stages.2.0", z, 2));
   f.push_back(z);
+  return f;
+}
+T LQNet::forward(const T &x) {
+  auto f = encode(x);
   std::vector<T> masks;
   for (int c = 0; c < config_.classes; ++c)
     masks.push_back(head_forward(

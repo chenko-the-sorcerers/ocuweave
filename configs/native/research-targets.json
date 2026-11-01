@@ -1,0 +1,18 @@
+{
+  "registered_date": "2026-11-01",
+  "segmentation": {
+    "partition": "validation",
+    "metric": "positive-image macro Dice at original image dimensions, reported separately for each annotated target",
+    "target_strictly_greater_than": 0.80,
+    "threshold": 0.5,
+    "secondary_metrics": ["IoU", "precision", "recall", "false_positive_area", "small_lesion_Dice", "vessel_continuity"],
+    "current_programme": "training-only diagnostics do not satisfy a validation target"
+  },
+  "classification": {
+    "partition": "validation",
+    "metric": "image-level disease classification accuracy",
+    "target_strictly_greater_than": 0.85,
+    "secondary_metrics": ["balanced_accuracy", "macro_f1", "per_class_recall", "specificity", "AUROC"]
+  },
+  "policy": "Targets are objectives, not guaranteed or measured results. Preserve failures. No test-based tuning, threshold selection, relabeling or exclusion to meet a score. Independent patient-level evaluation is required for stronger generalization claims."
+}

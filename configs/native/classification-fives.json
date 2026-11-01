@@ -1,0 +1,38 @@
+{
+  "protocol": "native-fives-disease-classification-v1",
+  "dataset": "FIVES",
+  "manifest_sha256": "632b76bad18375cb824fc18761216a00428310fe806f4170c2f866199f13ad68",
+  "classes": [
+    "AMD",
+    "DR",
+    "glaucoma",
+    "normal"
+  ],
+  "label_source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9352679/",
+  "split": "unchanged frozen provisional train/validation similarity groups; official test prohibited",
+  "model": "LQNet residual encoder + global-average disease classification head",
+  "seed": 42,
+  "input_size": 192,
+  "width": 24,
+  "batch_size": 8,
+  "steps": 1200,
+  "learning_rate": 0.001,
+  "weight_decay": 0.0001,
+  "gradient_clip": 1.0,
+  "augmentation": "none; first registered native classification baseline",
+  "loss": "multiclass cross entropy",
+  "pretrained": false,
+  "validation_classification_accuracy_target_gt": 0.85,
+  "secondary_metrics": [
+    "balanced_accuracy",
+    "macro_f1",
+    "per_class_recall",
+    "per_class_specificity",
+    "one_vs_rest_auroc",
+    "normal_vs_disease_sensitivity_specificity"
+  ],
+  "test_evaluated": false,
+  "patient_identity_verified": false,
+  "clinical_early_detection_validated": false,
+  "execution_gate": "Pass native CPU/CUDA tests before medical classification training. On a shared GPU wait for the frozen segmentation core and patch programme; a separate Kaggle GPU may run classification independently. Do not alter frozen segmentation runs."
+}

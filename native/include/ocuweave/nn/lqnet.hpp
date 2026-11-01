@@ -16,6 +16,7 @@ class LQNet {
 public:
   explicit LQNet(ModelConfig config);
   T forward(const T &image);
+  std::vector<T> encode(const T &image);
   const ModelConfig &config() const { return config_; }
   std::map<std::string, T> &parameters() { return parameters_; }
   void training(bool enabled);
