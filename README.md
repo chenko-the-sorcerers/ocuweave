@@ -2,20 +2,7 @@
 
 # OcuWeave
 
-### Framework-free native LQNet
-
-The C++17 implementation trains and predicts without PyTorch, TensorFlow, JAX, cuDNN or cuBLAS. It includes analytic backward operators, AdamW, weighted observed-label BCE/soft Dice, checkpoint resume and segmentation area summaries. Optional custom CUDA kernels accelerate convolution/matrix products; other operations remain on the CPU. Image export/evaluation uses Pillow, not an ML framework.
-
-```bash
-cmake -S . -B build-native -DCMAKE_BUILD_TYPE=Release
-cmake --build build-native -j2
-ctest --test-dir build-native --output-on-failure
-./build-native/ocuweave-lqnet --synthetic true --output outputs/native-demo --width 4 --dim 8 --queries 2 --steps 30
-```
-
-[Native build, data export, controlled experiments and limitations](docs/protocols/native/README.md). Historical Python/PyTorch commands below remain supported; they are a separate backend. Native initialization differs, so new paired native baselines are required. Synthetic demos are not medical benchmarks.
-
-## Evidence-Grounded Vision–Language Learning with Incomplete Clinical Records for Ophthalmic Disease Assessment
+### Evidence-Grounded Vision–Language Learning with Incomplete Clinical Records for Ophthalmic Disease Assessment
 
 **Marchel Andrian Shevchenko** · Data Sorcerers · 2026
 
@@ -31,7 +18,7 @@ ctest --test-dir build-native --output-on-failure
 
 *A real FIVES validation example selected at the median LQNet Dice. Green: dataset reference; amber: model prediction. The short CPU pilot misses substantial vessel extent. Images and masks: Jin et al., [FIVES v1](https://doi.org/10.6084/m9.figshare.19688169.v1), CC BY 4.0; display resizing and overlays added. [Figure provenance](docs/assets/fives-lqnet-feasibility.json).*
 
-OcuWeave is an open research toolkit for ophthalmic segmentation, with ocular toxoplasmosis as its first experimental task. **OcuWeave–LQNet** adds a local-detail residual branch to our compact query segmenter. Both networks are independently implemented and initialized from random weights. PyTorch supplies tensor operations and automatic differentiation.
+OcuWeave is an open research toolkit for ophthalmic segmentation, with ocular toxoplasmosis as its first experimental task. **OcuWeave–LQNet** adds a local-detail residual branch to our compact query segmenter. Both networks are independently implemented and initialized from random weights. The historical Python backend uses PyTorch; the new native backend implements its own operators and analytic backward in C++/CUDA.
 
 The release provides runnable segmentation workflows for **OTFID, FIVES and IDRiD**, including resumable training, validation and inference. Experimental note/structured-data conditioning modules are implemented and tested on synthetic inputs. They are not a trained LLM–EMR system; longitudinal prediction remains a research direction. The manuscript is in preparation; no conference acceptance or state-of-the-art result is claimed.
 
@@ -42,7 +29,20 @@ The release provides runnable segmentation workflows for **OTFID, FIVES and IDRi
 - **Inspect the method:** see [architecture](docs/architecture.md), [equations on the project page](https://data-sorcerers.com/ocuweave/#mathematical-formulation), and the [Python API](docs/api.md).
 - **Assess the evidence:** read the [results register](docs/results/README.md), including unsuccessful predictions and unresolved data-quality questions.
 
-## Install
+## Framework-free native LQNet
+
+The C++17 implementation trains and predicts without PyTorch, TensorFlow, JAX, cuDNN or cuBLAS. It includes analytic backward operators, AdamW, weighted observed-label BCE/soft Dice, checkpoint resume and segmentation area summaries. Optional custom CUDA kernels accelerate convolution/matrix products; other operations remain on the CPU. Image export/evaluation uses Pillow, not an ML framework.
+
+```bash
+cmake -S . -B build-native -DCMAKE_BUILD_TYPE=Release
+cmake --build build-native -j2
+ctest --test-dir build-native --output-on-failure
+./build-native/ocuweave-lqnet --synthetic true --output outputs/native-demo --width 4 --dim 8 --queries 2 --steps 30
+```
+
+[Native build, data export, controlled experiments and limitations](docs/protocols/native/README.md). Historical Python/PyTorch commands below remain supported; they are a separate backend. Native initialization differs, so new paired native baselines are required. Synthetic demos are not medical benchmarks.
+
+## Historical Python backend installation
 
 Python **3.10+**. Start with CPU; CUDA is optional. C++ tooling is optional, for native confusion counts and weighted pooling. Installation from source is supported; this release is not published to PyPI.
 
@@ -152,7 +152,7 @@ The local branch starts with a zero output projection. It refines logits at half
 - The new development manifest is frozen at **197 training / 41 validation**, with all **104 quality-flagged images retained** and all 42 historical test rows preserved. CPU smoke checks passed for all three variants. The original session was blocked by Colab limits; T4 became available on 1 November. New training-only diagnostics passed technical checks but failed their small-set fitting criterion, so the main matrix remains pending. See the [execution record](docs/experiments/2026-10-31-development-freeze.md) and [continuation protocol](docs/protocols/exploratory_training.md).
 - Supplementary FIVES vessel and IDRiD four-lesion CPU experiments are documented in the [cross-task feasibility report](docs/results/cross-task-feasibility-v0100/README.md). These use 100 steps and one seed; they do not complete the core GPU matrix.
 - Clinical annotation correctness and patient linkage remain unresolved. Vessel segmentation does not establish hypertension diagnosis. REFUGE2 disc/cup training remains blocked on dataset access.
-- Native C++ provides tested binary confusion counts, Dice/IoU through the Python binding, and weighted pooling. Neural-network training is Python/PyTorch; custom CUDA kernels and C++ autograd are not implemented.
+- Native C++ now also provides LQNet training/inference, analytic backward, AdamW and custom CUDA convolution/matrix products. Historical Python experiments remain preserved; native results require their own paired baseline.
 
 Training saves configuration, software version, source revision when available, working-tree state, archive/manifest hashes, optimizer-step counts, timing and memory. A wheel without Git metadata records the source revision as unavailable instead of borrowing the caller’s repository. CPU/GPU numerical equality is not guaranteed; preserve the environment and hardware record.
 

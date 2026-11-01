@@ -3,6 +3,14 @@ on: [push, pull_request]
 permissions:
   contents: read
 jobs:
+  native-standalone:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: cmake -S . -B build-native -DCMAKE_BUILD_TYPE=Release
+      - run: cmake --build build-native -j2
+      - run: ctest --test-dir build-native --output-on-failure
+      - run: ./build-native/ocuweave-lqnet --synthetic true --output /tmp/native-demo --width 4 --dim 8 --queries 2 --steps 30
   infrastructure:
     runs-on: ubuntu-latest
     steps:

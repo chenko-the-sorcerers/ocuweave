@@ -1,4 +1,5 @@
 import array
+import hashlib
 import importlib.util
 import json
 import struct
@@ -22,7 +23,7 @@ class NativeIOScripts(unittest.TestCase):
             Image.new("RGB", (16, 16), (128, 64, 32)).save(root / "image.png")
             mask = Image.new("L", (16, 16))
             mask.paste(255, (2, 3, 7, 9))
-            mask.save(root / "mask.png")
+            mask.convert("RGB").save(root / "mask.png")
             row = {
                 "sample_id": "sample",
                 "split": "train",
@@ -61,6 +62,30 @@ class NativeIOScripts(unittest.TestCase):
             manifest.write_text(json.dumps({"records": [row]}))
             with self.assertRaises(ValueError):
                 export(root, manifest, root / "changed.bin", ["sample"], 16, "fives")
+
+    def test_otfid_decoded_hash_contract(self):
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d)
+            image = Image.new("RGB", (16, 16), (8, 12, 14))
+            image.save(root / "image.png")
+            mask = Image.new("L", (16, 16))
+            mask.paste(255, (2, 2, 5, 5))
+            mask.save(root / "mask.png")
+            raw = bytes(bool(v) for v in mask.tobytes())
+            row = {
+                "sample_id": "tox",
+                "split": "train",
+                "image": "image.png",
+                "masks": ["mask.png"],
+                "pixel_sha256": hashlib.sha256(
+                    str((16, 16, 3)).encode() + image.tobytes()
+                ).hexdigest(),
+                "mask_sha256": hashlib.sha256(raw).hexdigest(),
+            }
+            manifest = root / "manifest.json"
+            manifest.write_text(json.dumps({"records": [row]}))
+            report = export(root, manifest, root / "otfid.bin", ["tox"], 16, "otfid")
+            self.assertEqual(report["classes"], ["lesion"])
 
     def test_overlap_reconstruction_oracle(self):
         W, H = 9, 7

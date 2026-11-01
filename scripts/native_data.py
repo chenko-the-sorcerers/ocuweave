@@ -8,6 +8,8 @@ import argparse
 import array
 import hashlib
 import json
+import io
+import zipfile
 import struct
 import sys
 from pathlib import Path
@@ -42,6 +44,11 @@ def mask_image(path):
             if any(g or b or a != 255 for r, g, b, a in pixels):
                 raise ValueError("Expected opaque red/black annotation")
             values = [r for r, _, _, _ in pixels]
+        elif source.mode == "RGB":
+            pixels = list(source.getdata())
+            if any(r != g or r != b for r, g, b in pixels):
+                raise ValueError("RGB binary masks must have identical channels")
+            values = [r for r, _, _ in pixels]
         elif source.mode in {"P", "L", "1"}:
             values = list(source.getdata())
         else:
@@ -53,7 +60,46 @@ def mask_image(path):
         return result
 
 
+def load_otfid_case(root, row):
+    def read_image(relative, mode):
+        if root.is_file():
+            with zipfile.ZipFile(root) as archive:
+                if archive.namelist().count(relative) != 1:
+                    raise ValueError("Missing or ambiguous archive member")
+                with Image.open(io.BytesIO(archive.read(relative))) as image:
+                    return image.convert(mode)
+        path = (root / relative).resolve()
+        if not path.is_relative_to(root.resolve()):
+            raise ValueError("Archive path escapes root")
+        with Image.open(path) as image:
+            return image.convert(mode)
+
+    image = read_image(row["image"], "RGB")
+    pixel_hash = hashlib.sha256(
+        str((image.height, image.width, 3)).encode() + image.tobytes()
+    ).hexdigest()
+    if pixel_hash != row["pixel_sha256"]:
+        raise ValueError("OTFID decoded image checksum differs")
+    union = bytearray(image.width * image.height)
+    if not row["masks"] and not row.get("healthy_zero_mask"):
+        raise ValueError("Missing OTFID mask is not background")
+    for name in row["masks"]:
+        mask = read_image(name, "L")
+        if mask.size != image.size:
+            raise ValueError("OTFID image-mask geometry mismatch")
+        raw = mask.tobytes()
+        threshold = 0 if max(raw) <= 1 else 127
+        for i, value in enumerate(raw):
+            union[i] |= value > threshold
+    if hashlib.sha256(union).hexdigest() != row["mask_sha256"]:
+        raise ValueError("OTFID decoded union-mask checksum differs")
+    target = Image.frombytes("L", image.size, bytes(255 if v else 0 for v in union))
+    return image, [target]
+
+
 def load_case(root, row, classes):
+    if isinstance(row.get("masks"), list):
+        return load_otfid_case(root, row)
     path = verified(root, row["image"], row["image_sha256"])
     with Image.open(path) as source:
         image = source.convert("RGB")
@@ -131,6 +177,8 @@ def export(root, manifest_path, output, ids, size, task, patch_size=None):
     if not ids or len(set(ids)) != len(ids):
         raise ValueError("Unique explicit training IDs required")
     manifest = json.loads(manifest_path.read_text())
+    if root.is_file() and sha256(root) != manifest.get("archive_sha256"):
+        raise ValueError("Source archive checksum differs")
     classes = (
         ["MA", "HE", "EX", "SE"]
         if task == "idrid"
